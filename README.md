@@ -3,7 +3,6 @@ Shareculator is an Open-source online share calculator.
 <p>Link: <a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">Shareculator</a></p>
 
 <h3>Features: </h3>
-<pre>
   <ul>
     <li>Online Calculator</li>
     <li>Client-side Operations</li>
@@ -11,10 +10,8 @@ Shareculator is an Open-source online share calculator.
     <li>Independent Payment</li>
     <li>Payment Recommendation</li>
   </ul>
-</pre>
 
 <h3>Technologies: </h3>
-<pre>
   <ul>
     <li>HTML5 + CSS3</li>
     <li>JavaScript</li>
@@ -22,16 +19,13 @@ Shareculator is an Open-source online share calculator.
     <li>AJAX</li>
     <li>XML</li>
   </ul>
-</pre>
 
 <h3>Further Design: </h3>
-<pre>
   <ul>
     <li>Build-in chart library</li>
     <li>More User support</li>
     <li>User data store</li>
   </ul>
-</pre>
 
 <p>Author: Hao Hu @Boston University</p>
 <p>Email:  hardys1206@gmail.com</p>
