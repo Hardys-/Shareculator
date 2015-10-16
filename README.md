@@ -8,7 +8,8 @@ Shareculator is an Open-source online share calculator.
     <li>Client-side Operations</li>
     <li>Up to 4 Users</li>
     <li>Independent Payment</li>
-    <li>Payment Recommendation</li>
+    <li>Payments Recommendation</li>
+    <li>Mobile Friendly</li>
   </ul>
 
 <h3>Technologies: </h3>
