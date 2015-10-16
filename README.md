@@ -18,6 +18,8 @@ Shareculator is an Open-source online share calculator.
     <li>JavaScript</li>
     <li>JQuery</li>
     <li>AJAX</li>
+    <li>JSON</li>
+    <li>PHP</li>
     <li>XML</li>
   </ul>
 
