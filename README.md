@@ -27,5 +27,10 @@ Shareculator is an Open-source online share calculator.
     <li>User data store</li>
   </ul>
 
-<p>Author: Hao Hu @Boston University</p>
-<p>Email:  hardys1206@gmail.com</p>
+
+<h3>Information: </h3>
+  <ul>
+    <li>Author: Hao Hu @Boston University</li>
+    <li>Email:  hardys1206@gmail.com</li>
+  </ul>
+
