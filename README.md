@@ -35,3 +35,8 @@ Shareculator is an Open-source online share calculator.
     <li>Email:  hardys1206@gmail.com</li>
   </ul>
 
+<h3>Events Log:</h3>
+  <ul>
+    <li>2015-10-16: Initialization</li>
+    <li>User Log-in and data load implementation</li>
+  </ul>
