@@ -1,10 +1,13 @@
 <?xml version="1.0"?>
 <info>
 	<record>
-		<user> </user>
-		<pw></pw>
+		<user>Hardys</user>
+		<pw>admin</pw>
 		<file1></file1>
 		<file2></file2>
 		<file3></file3>
+		<ip></ip>
+		<MAC></MAC>
+		<timeStamp></timeStamp>
 	</record>
 </info>

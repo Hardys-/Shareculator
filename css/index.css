@@ -1,3 +1,49 @@
-body(){}
+body{
+	background-image: url("../pic/bg.png");
+	background-repeat: repeat;
+
+}
+
+#logo{
+	margin-left:30px;
+	margin-top:30px;
+}
+
+.title{text-align:center;color:#6a6a6a;font-size:18px;font-family:"Times New Roman", Times, serif;}
+.title:hover{color:#19a5c8;}
+p.title{margin-top:15%;}
+#lan{cursor:pointer}
+#lan:hover{color:#fe6161}
+
+#front-panel{height:300px;margin-top:0px; margin-bottom:7%;margin-left:auto;margin-right:auto; width:240px;}
+
+.submit{
+	font-family:Calibri;
+	font-size:14px;
+	padding:6px 18px;
+	color: #ffffff;
+	background-color:#19a5c8;
+	border: #19a5c8 solid 1px; 
+	border-radius:4px;
+	width:100px;
+	box-shadow: 0 1px gray;
+}
+
+.submit:hover{cursor:pointer;}
 
 
+#login-panel{display:none;height:300px; margin-bottom:7%;}
+
+	.contact-form{margin-top:20px;margin-left:auto;margin-right:auto;width:550px;}
+
+	.contact-required-field{color:#f94444;font-family:Calibri;}
+
+	.input-text{ border:#9f9f9f solid 1px; color:#19a5c8; padding: 6px 18px;margin:8px 6px;}
+
+	#login{margin-top:8px;padding:4px 18px;}
+
+
+
+.line{color:#6a6a6a}
+
+.copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a }
