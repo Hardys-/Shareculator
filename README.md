@@ -1,7 +1,8 @@
 # Shareculator
 <p><a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">
-<img src="http://hhao.hostei.com/shareculator/pic/logo.png"/>Shareculator</a></p>
-Shareculator is an Open-source online share calculator.
+<img src="http://hhao.hostei.com/shareculator/pic/logo.png"/></a></p>
+
+<a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">Shareculator</a> is an Open-source online share calculator.
 
 <h3>Features: </h3>
   <ul>
