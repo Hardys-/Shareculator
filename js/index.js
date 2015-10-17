@@ -34,6 +34,11 @@ $( document ).ready(function() {
 		$("#front-panel").fadeOut(800,function(){$("#login-panel").fadeIn(800);})
 		$("p.title").html("Please enter your user name and password:");	
 	});
+
+	$("#createButton").click(function(){
+		
+		$("#front-panel").fadeOut(800,function(){$("#main-panel").fadeIn(800);$("p.title").css({"display":"none"});})		
+	});
 	
 });
 

@@ -12,6 +12,7 @@ body{
 .title{text-align:center;color:#6a6a6a;font-size:18px;font-family:"Times New Roman", Times, serif;}
 .title:hover{color:#19a5c8;}
 p.title{margin-top:15%;}
+
 #lan{cursor:pointer}
 #lan:hover{color:#fe6161}
 
@@ -43,6 +44,19 @@ p.title{margin-top:15%;}
 	#login{margin-top:8px;padding:4px 18px;}
 
 
+#main-panel{display:none;}
+
+#frame{margin-left:33px;margin-top:20px;margin-right:33px}
+
+.main-panel-button{padding: 4px 20px}
+
+#user{margin-top:20px;margin-bottom:20px;}
+
+#opera{margin-top:20px;}
+	#sharer{padding:5px 10px;}
+	#checkOutButton{border:#fe6161 solid 1px;background-color:#fe6161}
+
+#list{height:500px;}
 
 .line{color:#6a6a6a}
 
