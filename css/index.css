@@ -19,6 +19,9 @@ p.title{margin-top:15%;}
 #front-panel{height:300px;margin-top:0px; margin-bottom:7%;margin-left:auto;margin-right:auto; width:240px;}
 
 .submit{
+	-webkit-appearance: none;
+   	-moz-appearance: none;
+   	appearance: none;
 	font-family:Calibri;
 	font-size:14px;
 	padding:6px 18px;
@@ -39,7 +42,7 @@ p.title{margin-top:15%;}
 
 	.contact-required-field{color:#f94444;font-family:Calibri;}
 
-	.input-text{ border:#9f9f9f solid 1px; color:#19a5c8; padding: 6px 18px;margin:8px 6px;}
+	.input-text{ border:#9f9f9f solid 1px; width:90px;color:#19a5c8; padding: 6px 18px;margin:8px 6px;}
 
 	#login{margin-top:8px;padding:4px 18px;}
 
@@ -54,10 +57,82 @@ p.title{margin-top:15%;}
 
 #opera{margin-top:20px;}
 	#sharer{padding:5px 10px;}
+	#sharer option{ padding:3px 1px; }
 	#checkOutButton{border:#fe6161 solid 1px;background-color:#fe6161}
+
+#opera-button{display:inline}
+
+#sharer-list{margin-top:10px;}
 
 #list{height:500px;}
 
 .line{color:#6a6a6a}
 
 .copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a }
+
+
+#add-sharer-panel{
+   display: none;
+   width:35%;
+   height:50px;
+   border-radius: 3px;
+   font-family: Calibri;
+   font-size: 14px;
+   font-weight:bold;
+   border:  #626262 solid 1px;
+   background-color:  #626262;
+   opacity:0.6;
+   color:#141414;
+   padding-left:10px;
+   padding-top:5px;
+ }
+
+#addNewSharerButton{margin-left:20px; background-color:#1daf99;}
+
+#addNewSharerCancelButton{
+	border:#ffffff solid 2px;
+	background-color:#fe6161;
+	height:24px;
+	width:24px;
+	border-radius:50%;
+	padding:2px 2px;
+	float: right;
+  	margin-top: -16px;
+  	margin-right: -10px;
+}
+
+#msg{
+   display: none;
+   width:180px;
+   font-family: Calibri;
+   font-size: 13px;
+   font-weight:bold;
+   text-align: center;
+   border: #19a5c8 solid 1px;
+   border-radius: 3px;
+   background-color:#19a5c8;
+   opacity:0.9;
+   color:#ffffff;
+   padding: 6px 10px;
+ }
+
+#msg p{margin: 0px;}
+#msg:hover{opacity:0.5}
+
+span.attention1, span.attention2{
+ 	cursor: pointer;
+  	display: inline-block;
+ 	width: 16px;
+ 	height: 16px;
+ 	line-height: 16px;
+ 	color: White;
+ 	font-size: 13px;
+ 	font-weight: bold;
+ 	border-radius: 50%;
+ 	text-align: center;
+ 	position: relative;
+}
+
+span.attention1{background-color:#18ff5f}
+span.attention2{background-color:#fe6161}
+span.attention1:hover, span.attention2:hover{opacity:0.5}
