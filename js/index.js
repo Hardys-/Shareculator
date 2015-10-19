@@ -1,18 +1,119 @@
 
 function recmmendation(){}
 
+function consumeAna(){}
+
 function drawChart(){}
 
 function updateName(){}
 
+function addMoney(){
+	/*find out who paid this money*/
+	var payer = $("#sharer :selected").val();
+	var val = parseFloat($("#amount").val()) ;
+	var num = $( "input:checked" ).length;
+	var payment ={"payer":"","consumer":[],"memo":""};
+	for(i=0; i < jsonData.sharerName.length; i++){
+	 	if(sharerData[i].name == payer){  //name is unique, so only add once.
+			sharerData[i].pay(val);   //add the payment
+			payment.payer = payer;
+			break;
+		}
+	}
+	 
+	/*find out who consumed this money, and add to them's List*/	
+	for(i =0 ; i< jsonData.sharerName.length; i++){
+		if($("#"+sharerData[i].name).prop("checked")){
+			sharerData[i].cost( parseFloat((val/num).toFixed(3)) );   //keep three decimal number
+			payment.consumer.push(sharerData[i].name);
+			jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(3))); 
+		}else{
+			sharerData[i].cost(0);
+			jsonData.sharerCosts[i].push(0); 
+		}
+	}
+	
+	/*update cost*/
+	payment.memo = $("#memo").val();
+	jsonData.sharerCosts.push();
+	jsonData.payerList.push(payment);
+
+	//updateList();
+	
+
+	var htmlString = "";
+	var htmlTitle  = "<p><b> Amount  &nbsp;&nbsp;&nbsp;&nbsp;";
+	var totalAmount= 0;
+
+	for(i=0;i < jsonData.sharerName.length; i++){
+		htmlTitle += jsonData.sharerName[i] + "&nbsp;&nbsp;&nbsp;";
+	}
+	htmlTitle +="</b></p><br/>";
+
+	for(i = 0 ; i < jsonData.sharerCosts[0].length ; i++){
+		var htmlLine = "";
+		for(j = 0 ; j < jsonData.sharerName.length ; j++){
+			if(jsonData.sharerCosts[j][i]=="0"){
+				htmlLine += "&nbsp;&nbsp;&nbsp;&nbsp;";
+				totalAmount += 0;
+			}else{
+				htmlLine += jsonData.sharerCosts[j][i]+"&nbsp;&nbsp;&nbsp;";
+				totalAmount += parseFloat(jsonData.sharerCosts[j][i]);
+			}
+			
+		}
+		htmlString += "<p>"+totalAmount+"&nbsp;&nbsp;&nbsp;&nbsp;" + htmlLine +"</p>";
+		totalAmount = 0;
+	}
+
+	$("#list").html(htmlTitle+htmlString);
+
+}
+
 function undo(){}
 
-function checkOut(){}
+function checkOut(){
+	var s1 = "Names: ";
+	var s2 = "Costs: ";
+	var s3 = "Payer: ";
+
+	for(i = 0 ; i < jsonData.sharerName.length ; i++){
+		s1 += jsonData.sharerName[i]+", ";
+	}
+
+	for(i = 0 ; i < jsonData.sharerCosts.length ; i++){
+		s2 +="[";
+		for(j =0; j < jsonData.sharerCosts[i].length ;j++ ){
+			s2 += 	jsonData.sharerCosts[i][j]+","
+		};
+		s2 +="]";
+	}
+
+	for(i = 0 ; i < jsonData.payerList.length;i++){
+		s3 += "["+jsonData.payerList[i].payer+" consumer: ";
+		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
+			s3 += jsonData.payerList[i].consumer[j] + ", ";
+		};
+		s3 += "]";
+
+	}
+	console.log(s1);
+	console.log(s2);
+	console.log(s3);
+
+}
 
 function add(){
-	/*add options*/
+	/*check if name availabel*/
+	var newName = $("#addNewSharerText").val();
+	for(i = 0; i < sharerData.length; i++ ){
+		if(sharerData[i].name == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
+		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
+	}
 
-	var optionString = "<option value=\""+$("#addNewSharerText").val()+"\" selected>"+$("#addNewSharerText").val()+"</option>";
+	/*add options*/
+	
+	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
 	
 	if($("#sharer :selected").text() == "Add a sharer"){
 		$("#sharer").html(optionString);
@@ -27,18 +128,39 @@ function add(){
 
 	/*add new instance*/
 
-
-	if( $("#sharer :selected").text() == $("#addNewSharerText").val()){
-	       	notification($("#addNewSharerText").val()+" has been added",1);
+	if( $("#sharer :selected").text() == newName){
+	       	notification(newName+" has been added",1);
 	}	
+
+
+
+	/*add data to json & sharer class*/
+	var costArray = [];
+	sharerData.push(new sharer(newName)); //check sharer class in cal.js file
+	jsonData.sharerName.push(newName);
+	
+	if(jsonData.sharerCosts.length == 0 ){ //initialization
+		jsonData.sharerCosts.push(costArray);
+	}
+	else{
+		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
+			sharerData[sharerData.length-1].cost(0);
+			costArray.push(0);
+		}
+		jsonData.sharerCosts.push(costArray);
+	}
+
+	
+
 	$("#add-sharer-panel").fadeOut(300);
 	$("#addNewSharerText").val("");	
-	
+
+
 }
 
-function addMoney(){
-	sharerData.push(new sharer());
-	// sharerData[]
+
+function updateList(){ //updated when new data added or load a json 
+
 }
 
 function save(){}// save to local & serverside
@@ -56,9 +178,8 @@ function notification(str,flag){
       }
       $("#msg").html(htmlString);
       if(detectmob()){
-        $("#msg").css({"position":"absolute","width":"100%","left":"0px","top":"0px","height":"8%","border":"0px","padding":"6px 0px"});
         $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
-        $("#msg p").css({"font-size":"4em","margin-top":"30px"});
+        $("#msg p").css({"font-size":"4em","margin-top":"1%"});
         $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});   	
       }else{
         $("#msg").css({"position":"absolute","width":"20%","left":"40%","top":"40px"});
@@ -80,6 +201,8 @@ function detectmob() {
       return false;
     }
 }
+
+
 
 $( document ).ready(function() {
 	$(".submit").hover(function(){
@@ -106,6 +229,29 @@ $( document ).ready(function() {
     		$("#add-sharer-panel").css({"position":"absolute","left":"30%","top":"50%"});
 		$("#add-sharer-panel").fadeIn(300);//default 800
 		$("#addNewSharerText").focus();	
+	});
+
+	$("#saveButton").click(function(){// open add sharer panel
+		notification("Sorry, this function not available currently!",0);
+	});
+
+	$("#shareButton").click(function(){// open add sharer panel
+		notification("Sorry, this function not available currently!",0);
+	});
+
+	$("#addMoneyButton").click(function(){// open add sharer panel
+		if( $("#sharer :selected").text() == "Add a sharer"){notification("Please add a sharer first",0)}
+		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
+		else{addMoney();}
+		
+	});
+
+	$("#undoButton").click(function(){// open add sharer panel
+		notification("Sorry, this function not available currently!",0);
+	});
+
+	$("#checkOutButton").click(function(){// open add sharer panel
+		checkOut();
 	});
 
 	$("#addNewSharerCancelButton").click(function(){ //exit current panel

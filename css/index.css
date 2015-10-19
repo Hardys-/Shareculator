@@ -13,8 +13,8 @@ body{
 .title:hover{color:#19a5c8;}
 p.title{margin-top:15%;}
 
-#lan{cursor:pointer}
-#lan:hover{color:#fe6161}
+.menu{cursor:pointer}
+.menu:hover{color:#fe6161}
 
 #front-panel{height:300px;margin-top:0px; margin-bottom:7%;margin-left:auto;margin-right:auto; width:240px;}
 
@@ -138,3 +138,16 @@ span.attention1, span.attention2{
 span.attention1{background-color:#18ff5f}
 span.attention2{background-color:#fe6161}
 span.attention1:hover, span.attention2:hover{opacity:0.5}
+
+@media only screen and (max-device-width : 667px) {
+	#msg{
+		position:absolute;
+		width:100%;
+		left:0px;
+		top:0px;	
+		height:12%;
+		border:0px;
+		padding:6px 0px;
+	}
+
+}
