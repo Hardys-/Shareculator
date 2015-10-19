@@ -36,6 +36,11 @@ function add(){
 	
 }
 
+function addMoney(){
+	sharerData.push(new sharer());
+	// sharerData[]
+}
+
 function save(){}// save to local & serverside
 
 function load(){}// find user credential(in XML) and load data(from a json file named as userName.json)
@@ -51,10 +56,10 @@ function notification(str,flag){
       }
       $("#msg").html(htmlString);
       if(detectmob()){
-        $("#msg").css({"position":"absolute","width":"100%","left":"0px","top":"0px","height":"10%"});
+        $("#msg").css({"position":"absolute","width":"100%","left":"0px","top":"0px","height":"8%","border":"0px","padding":"6px 0px"});
         $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
-        $("#msg p").css({"font-size":"4em","margin-top":"5%"});
-        $("#msg span").css({"height":"4em","width":"4em","line-height":"5em"});
+        $("#msg p").css({"font-size":"4em","margin-top":"30px"});
+        $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});   	
       }else{
         $("#msg").css({"position":"absolute","width":"20%","left":"40%","top":"40px"});
         $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
@@ -123,10 +128,6 @@ $( document ).ready(function() {
         	}
 	});
 
-	var hh = new sharer();
-	hh.pay(50);
-        hh.pay(80);
-	alert(hh.getPaid());
-	alert(hh.paidList[0]);
+
 });
 

@@ -87,7 +87,9 @@ p.title{margin-top:15%;}
    padding-top:5px;
  }
 
-#addNewSharerButton{margin-left:20px; background-color:#1daf99;}
+#addNewSharerText{width:50%;}
+
+#addNewSharerButton{margin-left:15px; width:25%; background-color:#1daf99;}
 
 #addNewSharerCancelButton{
 	border:#ffffff solid 2px;
