@@ -8,10 +8,10 @@
   <ul>
     <li>Online Calculator</li>
     <li>Client-side Operations</li>
-    <li>Up to 4 Users</li>
+    <li>Up to 8 Users</li>
     <li>Independent Payment</li>
     <li>Payments Recommendation</li>
-    <li>Mobile Friendly</li>
+    <li>Mobile friendly design</li>
   </ul>
 
 <h3>Technologies: </h3>
