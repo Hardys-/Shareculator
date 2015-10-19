@@ -12,7 +12,7 @@ function addMoney(){
 	var payer = $("#sharer :selected").val();
 	var val = parseFloat($("#amount").val()) ;
 	var num = $( "input:checked" ).length;
-	var payment ={"payer":"","consumer":[],"memo":""};
+	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
 	for(i=0; i < jsonData.sharerName.length; i++){
 	 	if(sharerData[i].name == payer){  //name is unique, so only add once.
 			sharerData[i].pay(val);   //add the payment
@@ -27,6 +27,7 @@ function addMoney(){
 			sharerData[i].cost( parseFloat((val/num).toFixed(3)) );   //keep three decimal number
 			payment.consumer.push(sharerData[i].name);
 			jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(3))); 
+			console.log(val/num);
 		}else{
 			sharerData[i].cost(0);
 			jsonData.sharerCosts[i].push(0); 
@@ -34,39 +35,43 @@ function addMoney(){
 	}
 	
 	/*update cost*/
+	payment.amount = val;
 	payment.memo = $("#memo").val();
 	jsonData.sharerCosts.push();
 	jsonData.payerList.push(payment);
 
-	//updateList();
-	
-
+	//updateList();	
 	var htmlString = "";
-	var htmlTitle  = "<p><b> Amount  &nbsp;&nbsp;&nbsp;&nbsp;";
-	var totalAmount= 0;
+	var htmlTitle  = "<tr class=\"paymentTableTitle\"><th class=\"paymentTitle\"> Amount </th><th class=\"paymentTitle\">";
+	var totalAmount= 0; 
 
 	for(i=0;i < jsonData.sharerName.length; i++){
-		htmlTitle += jsonData.sharerName[i] + "&nbsp;&nbsp;&nbsp;";
+		htmlTitle += jsonData.sharerName[i] + "</th><th class=\"paymentTitle\">";
 	}
-	htmlTitle +="</b></p><br/>";
+	htmlTitle +="</th><th class=\"paymentTitle\">Memo</th></tr><br/>";
 
 	for(i = 0 ; i < jsonData.sharerCosts[0].length ; i++){
-		var htmlLine = "";
+		var htmlLine = "<td class=\"paymentTableData\">";
 		for(j = 0 ; j < jsonData.sharerName.length ; j++){
 			if(jsonData.sharerCosts[j][i]=="0"){
-				htmlLine += "&nbsp;&nbsp;&nbsp;&nbsp;";
-				totalAmount += 0;
+				htmlLine += "</td><td class=\"paymentTableData\">";
 			}else{
-				htmlLine += jsonData.sharerCosts[j][i]+"&nbsp;&nbsp;&nbsp;";
-				totalAmount += parseFloat(jsonData.sharerCosts[j][i]);
+				htmlLine += jsonData.sharerCosts[j][i]+"</td><td class=\"paymentTableData\">";
 			}
 			
 		}
-		htmlString += "<p>"+totalAmount+"&nbsp;&nbsp;&nbsp;&nbsp;" + htmlLine +"</p>";
+		var htmlMemo = "</td><td class=\"paymentTableData\">"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
+		totalAmount = jsonData.payerList[i].amount;
+		htmlString += "<tr class=\"paymentTableRow\"><td class=\"paymentTableData\">&#36; "+totalAmount+"</td>" + htmlLine + htmlMemo;
 		totalAmount = 0;
 	}
 
-	$("#list").html(htmlTitle+htmlString);
+	$("#list").html("<table id=\"paymentTable\">"+htmlTitle+htmlString+"</table>");
+
+	/*dynamic html layout*/
+	$(".paymentList").css({"font-family":"Calibri"});
+	$(".paymentTitle").css({"font-family":"Calibri"});
+	$(".paymentTable").css({"font-family":"Calibri"});
 
 }
 

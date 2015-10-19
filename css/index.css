@@ -103,6 +103,12 @@ p.title{margin-top:15%;}
   	margin-right: -10px;
 }
 
+#paymentTable{width:100%; text-align:center}
+#paymentTable th{height:30px; font-weight:bold; color:#fe6161;margin-bottom:100px;}
+#paymentTable td{height:20px;}
+#paymentTable td:last-child{color:#808080;}
+#paymentTable td:first-child{text-align:left;color:#19a5c8;}
+
 #msg{
    display: none;
    width:180px;
