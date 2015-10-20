@@ -1,0 +1,6 @@
+1. amount enter check
+2. undo
+3. share
+4. change name
+5. Layout overlap
+6. Shared with nobody? 

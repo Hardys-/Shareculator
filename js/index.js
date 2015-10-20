@@ -1,3 +1,32 @@
+function printOutJson(){
+	var s1 = "Names: ";
+	var s2 = "Costs: ";
+	var s3 = "Payer: ";
+
+	for(i = 0 ; i < jsonData.sharerName.length ; i++){
+		s1 += jsonData.sharerName[i]+", ";
+	}
+
+	for(i = 0 ; i < jsonData.sharerCosts.length ; i++){
+		s2 +="[";
+		for(j =0; j < jsonData.sharerCosts[i].length ;j++ ){
+			s2 += 	jsonData.sharerCosts[i][j]+","
+		};
+		s2 +="]";
+	}
+
+	for(i = 0 ; i < jsonData.payerList.length;i++){
+		s3 += "[Payer: "+jsonData.payerList[i].payer+"| Consumer: ";
+		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
+			s3 += jsonData.payerList[i].consumer[j] + ", ";
+		};
+		s3 += " | Amount:"+ jsonData.payerList[i].amount+" ]"
+
+	}
+	console.log(s1);
+	console.log(s2);
+	console.log(s3);
+}
 
 function recmmendation(){}
 
@@ -27,7 +56,6 @@ function addMoney(){
 			sharerData[i].cost( parseFloat((val/num).toFixed(3)) );   //keep three decimal number
 			payment.consumer.push(sharerData[i].name);
 			jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(3))); 
-			console.log(val/num);
 		}else{
 			sharerData[i].cost(0);
 			jsonData.sharerCosts[i].push(0); 
@@ -39,7 +67,75 @@ function addMoney(){
 	payment.memo = $("#memo").val();
 	jsonData.sharerCosts.push();
 	jsonData.payerList.push(payment);
+	updateList();
+}
 
+function undo(){
+	/*delete latest record:sharerCosts[0-length].lastValue, payerList[length-1]*/
+	for(i=0; i<jsonData.sharerCosts.length;i++){  //Traversal every sharer's cost and remove last one
+		jsonData.sharerCosts[i].splice([jsonData.sharerCosts[i].length-1]);
+	}
+
+	jsonData.payerList.splice([jsonData.payerList.length-1]);
+	updateList();
+}
+
+function checkOut(){
+	printOutJson();
+}
+
+function add(){
+	/*check if name availabel*/
+	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
+    	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+
+	for(i = 0; i < sharerData.length; i++ ){
+		if(sharerData[i].name == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
+		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
+	}
+
+	/*add options*/	
+	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
+	
+	if($("#sharer :selected").text() == "Add a sharer"){
+		$("#sharer").html(optionString);
+		$("#sharer-list").append("Shared with &nbsp;");
+	}else{
+		$("#sharer").append(optionString);
+	}	
+
+	/*add checkboxs*/
+	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+"\" value=\""+$("#sharer :selected").val()+"\" checked>"+$("#sharer :selected").val()+"&nbsp;";
+	$("#sharer-list").append(checkboxString);
+
+	/*send notification*/
+	if( $("#sharer :selected").text() == newName){
+	       	notification(newName+" has been added",1);
+	}	
+
+	/*add data to json & sharer class*/
+	var costArray = [];
+	sharerData.push(new sharer(newName)); //check sharer class in cal.js file
+	jsonData.sharerName.push(newName);
+	
+	if(jsonData.sharerCosts.length == 0 ){ //initialization
+		jsonData.sharerCosts.push(costArray);
+	}
+	else{
+		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
+			sharerData[sharerData.length-1].cost(0);
+			costArray.push(0);
+		}
+		jsonData.sharerCosts.push(costArray);
+	}
+
+	/*finish adding*/
+	$("#add-sharer-panel").fadeOut(300);
+	$("#addNewSharerText").val("");	
+}
+
+
+function updateList(){ //updated when new data added or load a json 
 	//updateList();	
 	var htmlString = "";
 	var htmlTitle  = "<tr><th > Amount </th><th>";
@@ -67,107 +163,6 @@ function addMoney(){
 	}
 
 	$("#list").html("<table id=\"paymentTable\">"+htmlTitle+htmlString+"</table>");
-
-	/*dynamic html layout*/
-
-}
-
-function undo(){}
-
-function checkOut(){
-	var s1 = "Names: ";
-	var s2 = "Costs: ";
-	var s3 = "Payer: ";
-
-	for(i = 0 ; i < jsonData.sharerName.length ; i++){
-		s1 += jsonData.sharerName[i]+", ";
-	}
-
-	for(i = 0 ; i < jsonData.sharerCosts.length ; i++){
-		s2 +="[";
-		for(j =0; j < jsonData.sharerCosts[i].length ;j++ ){
-			s2 += 	jsonData.sharerCosts[i][j]+","
-		};
-		s2 +="]";
-	}
-
-	for(i = 0 ; i < jsonData.payerList.length;i++){
-		s3 += "["+jsonData.payerList[i].payer+" consumer: ";
-		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
-			s3 += jsonData.payerList[i].consumer[j] + ", ";
-		};
-		s3 += "]";
-
-	}
-	console.log(s1);
-	console.log(s2);
-	console.log(s3);
-
-}
-
-function add(){
-	/*check if name availabel*/
-	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
-    	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
-	
-	
-
-
-	for(i = 0; i < sharerData.length; i++ ){
-		if(sharerData[i].name == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
-		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
-	}
-
-	/*add options*/
-	
-	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
-	
-	if($("#sharer :selected").text() == "Add a sharer"){
-		$("#sharer").html(optionString);
-		$("#sharer-list").append("Shared with &nbsp;");
-	}else{
-		$("#sharer").append(optionString);
-	}	
-
-	/*add checkboxs*/
-	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+"\" value=\""+$("#sharer :selected").val()+"\" checked>"+$("#sharer :selected").val()+"&nbsp;";
-	$("#sharer-list").append(checkboxString);
-
-	/*add new instance*/
-
-	if( $("#sharer :selected").text() == newName){
-	       	notification(newName+" has been added",1);
-	}	
-
-
-
-	/*add data to json & sharer class*/
-	var costArray = [];
-	sharerData.push(new sharer(newName)); //check sharer class in cal.js file
-	jsonData.sharerName.push(newName);
-	
-	if(jsonData.sharerCosts.length == 0 ){ //initialization
-		jsonData.sharerCosts.push(costArray);
-	}
-	else{
-		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
-			sharerData[sharerData.length-1].cost(0);
-			costArray.push(0);
-		}
-		jsonData.sharerCosts.push(costArray);
-	}
-
-	
-
-	$("#add-sharer-panel").fadeOut(300);
-	$("#addNewSharerText").val("");	
-
-
-}
-
-
-function updateList(){ //updated when new data added or load a json 
-
 }
 
 function save(){}// save to local & serverside
@@ -254,7 +249,7 @@ $( document ).ready(function() {
 	});
 
 	$("#undoButton").click(function(){// open add sharer panel
-		notification("Sorry, this function not available currently!",0);
+		undo();
 	});
 
 	$("#checkOutButton").click(function(){// open add sharer panel

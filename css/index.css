@@ -64,12 +64,9 @@ p.title{margin-top:15%;}
 
 #sharer-list{margin-top:10px;}
 
-#list{height:500px;}
+.line{color:#6a6a6a;bottom: 30px;width: 100%; position: absolute;}
 
-.line{color:#6a6a6a}
-
-.copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a }
-
+.copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a; position: absolute;bottom: 8px;margin-left: 30%;width: 30%; }
 
 #add-sharer-panel{
    display: none;
@@ -103,12 +100,12 @@ p.title{margin-top:15%;}
   	margin-right: -10px;
 }
 
-#paymentTable{width:100%; text-align:center;margin-bottom:40px}
+#paymentTable{width:100%; text-align:center;margin-bottom:100px}
 #paymentTable tr:last-child td{color:#19a5c8;}
-#paymentTable th{height:30px; font-weight:bold; color:#fe6161;margin-bottom:100px;}
+#paymentTable th{height:35px; font-weight:bold; color:#fe6161;margin:12px 10px;}
 #paymentTable th:first-child{text-align:left;width:10%}
 #paymentTable th:last-child{width:25%;}
-#paymentTable td{height:20px;}
+#paymentTable td{height:20px;padding:4px 4px;}
 #paymentTable td:first-child{text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;}
 #paymentTable td:last-child{text-align:left; color:#808080;width:25%;border-right:1px #c0c0c0 solid;}
 
