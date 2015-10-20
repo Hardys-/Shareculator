@@ -16,11 +16,11 @@ function printOutJson(){
 	}
 
 	for(i = 0 ; i < jsonData.payerList.length;i++){
-		s3 += "[Payer: "+jsonData.payerList[i].payer+"| Consumer: ";
+		s3 += "[Payer: "+jsonData.payerList[i].payer+" | Consumer: ";
 		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
 			s3 += jsonData.payerList[i].consumer[j] + ", ";
 		};
-		s3 += " | Amount:"+ jsonData.payerList[i].amount+" ]"
+		s3 += "s | Amount:"+ jsonData.payerList[i].amount+" ]"
 
 	}
 	console.log(s1);
