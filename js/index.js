@@ -42,36 +42,33 @@ function addMoney(){
 
 	//updateList();	
 	var htmlString = "";
-	var htmlTitle  = "<tr class=\"paymentTableTitle\"><th class=\"paymentTitle\"> Amount </th><th class=\"paymentTitle\">";
+	var htmlTitle  = "<tr><th > Amount </th><th>";
 	var totalAmount= 0; 
 
 	for(i=0;i < jsonData.sharerName.length; i++){
-		htmlTitle += jsonData.sharerName[i] + "</th><th class=\"paymentTitle\">";
+		htmlTitle += jsonData.sharerName[i] + "</th><th >";
 	}
-	htmlTitle +="</th><th class=\"paymentTitle\">Memo</th></tr><br/>";
+	htmlTitle +="</th><th>Memo</th></tr><br/>";
 
 	for(i = 0 ; i < jsonData.sharerCosts[0].length ; i++){
-		var htmlLine = "<td class=\"paymentTableData\">";
+		var htmlLine = "<td>";
 		for(j = 0 ; j < jsonData.sharerName.length ; j++){
 			if(jsonData.sharerCosts[j][i]=="0"){
-				htmlLine += "</td><td class=\"paymentTableData\">";
+				htmlLine += "</td><td>";
 			}else{
-				htmlLine += jsonData.sharerCosts[j][i]+"</td><td class=\"paymentTableData\">";
+				htmlLine += jsonData.sharerCosts[j][i]+"</td><td>";
 			}
 			
 		}
-		var htmlMemo = "</td><td class=\"paymentTableData\">"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
+		var htmlMemo = "</td><td>"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
 		totalAmount = jsonData.payerList[i].amount;
-		htmlString += "<tr class=\"paymentTableRow\"><td class=\"paymentTableData\">&#36; "+totalAmount+"</td>" + htmlLine + htmlMemo;
+		htmlString += "<tr><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo;
 		totalAmount = 0;
 	}
 
 	$("#list").html("<table id=\"paymentTable\">"+htmlTitle+htmlString+"</table>");
 
 	/*dynamic html layout*/
-	$(".paymentList").css({"font-family":"Calibri"});
-	$(".paymentTitle").css({"font-family":"Calibri"});
-	$(".paymentTable").css({"font-family":"Calibri"});
 
 }
 
@@ -110,7 +107,12 @@ function checkOut(){
 
 function add(){
 	/*check if name availabel*/
-	var newName = $("#addNewSharerText").val();
+	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
+    	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+	
+	
+
+
 	for(i = 0; i < sharerData.length; i++ ){
 		if(sharerData[i].name == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
 		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
