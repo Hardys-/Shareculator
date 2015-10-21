@@ -16,11 +16,11 @@ function printOutJson(){
 	}
 
 	for(i = 0 ; i < jsonData.payerList.length;i++){
-		s3 += "[Payer: "+jsonData.payerList[i].payer+"| Consumer: ";
+		s3 += "[Payer: "+jsonData.payerList[i].payer+" | Consumer: ";
 		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
 			s3 += jsonData.payerList[i].consumer[j] + ", ";
 		};
-		s3 += " | Amount:"+ jsonData.payerList[i].amount+" ]"
+		s3 += "s | Amount:"+ jsonData.payerList[i].amount+" ]"
 
 	}
 	console.log(s1);
@@ -39,7 +39,10 @@ function updateName(){}
 function addMoney(){
 	/*find out who paid this money*/
 	var payer = $("#sharer :selected").val();
-	var val = parseFloat($("#amount").val()) ;
+	var newAmount = $("#amount").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string
+    	newAmount = newAmount.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\,|\<|\>|\||\\|\&/g, "");
+	if(isNaN(parseFloat(newAmount))){notification("This input is invalide",0); return;}
+	var val = parseFloat(newAmount) ;
 	var num = $( "input:checked" ).length;
 	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
 	for(i=0; i < jsonData.sharerName.length; i++){
@@ -244,7 +247,9 @@ $( document ).ready(function() {
 	$("#addMoneyButton").click(function(){// open add sharer panel
 		if( $("#sharer :selected").text() == "Add a sharer"){notification("Please add a sharer first",0)}
 		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
-		else{addMoney();}
+		else{
+			addMoney();
+		}
 		
 	});
 

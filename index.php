@@ -12,7 +12,7 @@
 <script type="text/javascript" src="js/cal.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 
-<img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/>
+<img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 
 <p class ="title">Please select one to begin. | Set English / Chinese <span id="lan" class="menu"> here</span>. | First time to use <span class="menu">ShareCulator?<span></p>
 <div id="front-panel">

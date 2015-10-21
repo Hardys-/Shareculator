@@ -3,4 +3,5 @@
 3. share
 4. change name
 5. Layout overlap
-6. Shared with nobody? 
+6. Shared with nobody?
+7. Mobile friendly. 
