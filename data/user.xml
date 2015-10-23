@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="user.xsl"?>
 <info>
 	<record>
-		<user>Hardys</user>
-		<pw>admin</pw>
-		<file1></file1>
-		<file2></file2>
-		<file3></file3>
-		<ip></ip>
-		<MAC></MAC>
-		<timeStamp></timeStamp>
+		<group>Hardys-</group>
+		<owner>admin</owner>
+		<file>string</file>
+		<ip>155.41.*.*</ip>
+		<timeStamp>2015-10-23</timeStamp>
+		<count/>
 	</record>
-</info>
+<record><group>HH</group><owner>H@bu.edu</owner><file>c23dc4a9f7240d53484029c202c4c70c</file><ip>155.41.18.94</ip><timeStamp>2015-10-23 02:38:43</timeStamp><count>0</count></record><record><group>?</group><owner>let@it.go</owner><file>c3b28c0381e45a64cca05b367e1d8091</file><ip>155.41.18.94</ip><timeStamp>2015-10-23 03:16:51</timeStamp><count>0</count></record><record><group>?</group><owner>let@it.go</owner><file>c3b28c0381e45a64cca05b367e1d8091</file><ip>155.41.18.94</ip><timeStamp>2015-10-23 03:25:59</timeStamp><count>0</count></record><record><group>?</group><owner>Hallo@seattle.com</owner><file>f4f8cab5e846f7f66e7060a14c17a1ff</file><ip>155.41.18.94</ip><timeStamp>2015-10-23 03:26:18</timeStamp><count>0</count></record><record><group>Google</group><owner>hao@google.com</owner><file>52fc1fed1e3af6d905403de8d546f59a</file><ip>155.41.2.171</ip><timeStamp>2015-10-23 03:38:38</timeStamp><count>0</count></record></info>

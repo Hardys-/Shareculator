@@ -18,7 +18,35 @@ function saveData(gName,oName){
 
 function load(){}// find user credential(in XML) and load data(from a json file named as userName.json)
 
+function checkEmail(email){
+	 if (email == "") {                               //cannot be empty
+		return false;
+	 }
 
+	 var invalidChars = " /:,;";
+	 for (i=0; i<invalidChars.length; i++) {
+		var invalidchar = invalidChars.charAt(i)
+		if (email.indexOf(invalidchar,0) > -1) {   //found invalid char
+		return false
+		}
+	 }
+
+	 var periodPos = email.indexOf(".",atPos)
+	 if (periodPos == -1) {     	        	   //must contain a . char
+		return false
+	 }
+	 if (periodPos+2 > email.length) { return false; } //must have at least 2 chars after .
+
+	 var atPos = email.indexOf("@",1)
+	 if (atPos == -1) {			//cannot find @ char
+		return false
+	 }
+
+	 if (email.indexOf("@",atPos+1) > -1) { //only need one @ char
+		return false
+	 }	 
+	 return true;   //passed all check
+}
 /*
 function loadXMLDoc()
 {
