@@ -1,3 +1,25 @@
+/*talk.js focus on data send and receive*/
+function saveData(gName,oName){
+	$.ajax({
+    		type: "POST",
+    		url: "save.php",
+		data: {json:$.toJSON(jsonData),group:gName,owner:oName},
+		success: function(msg){
+    	    	// return value stored in msg variable
+		}
+				
+	}).done(function(response) {
+			notification(response,1);
+		}).fail(function(response) {
+		    	notifiction(response,0);		
+		});
+};
+
+
+function load(){}// find user credential(in XML) and load data(from a json file named as userName.json)
+
+
+/*
 function loadXMLDoc()
 {
 var xmlhttp;
@@ -123,4 +145,4 @@ $( document ).ready(function() {
 	
 
 });
-
+*/
