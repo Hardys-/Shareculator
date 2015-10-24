@@ -44,22 +44,14 @@ function addMoney(){
 	var val = parseFloat(newAmount) ;
 	var num = $( "input:checked" ).length;
 	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
-	for(i=0; i < jsonData.sharerName.length; i++){
-	 	if(sharerData[i].name == payer){  //name is unique, so only add once.
-			sharerData[i].pay(val);   //add the payment
-			payment.payer = payer;
-			break;
-		}
-	}
+	payment.payer = payer;
 	 
-	/*find out who consumed this money, and add to them's List*/	
+	/*find out who consumed this money, and add to their List*/	
 	for(i =0 ; i< jsonData.sharerName.length; i++){
-		if($("#"+sharerData[i].name).prop("checked")){
-			sharerData[i].cost( parseFloat((val/num).toFixed(2)) );   //keep three decimal number
-			payment.consumer.push(sharerData[i].name);
+		if($("#"+jsonData.sharerName[i]).prop("checked")){
+			payment.consumer.push(jsonData.sharerName[i]);
 			jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(2))); 
 		}else{
-			sharerData[i].cost(0);
 			jsonData.sharerCosts[i].push(0); 
 		}
 	}
@@ -67,7 +59,6 @@ function addMoney(){
 	/*update cost*/
 	payment.amount = val;
 	payment.memo = $("#memo").val();
-	jsonData.sharerCosts.push();
 	jsonData.payerList.push(payment);
 	updateList();
 }
@@ -128,8 +119,8 @@ function add(){
 	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
     	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
 
-	for(i = 0; i < sharerData.length; i++ ){
-		if(sharerData[i].name == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
+	for(i = 0; i < jsonData.sharerName.length; i++ ){
+		if(jsonData.sharerName[i] == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
 		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
 	}
 
@@ -154,7 +145,6 @@ function add(){
 
 	/*add data to json & sharer class*/
 	var costArray = [];
-	sharerData.push(new sharer(newName)); //check sharer class in cal.js file
 	jsonData.sharerName.push(newName);
 	
 	if(jsonData.sharerCosts.length == 0 ){ //initialization
@@ -162,7 +152,6 @@ function add(){
 	}
 	else{
 		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
-			sharerData[sharerData.length-1].cost(0);
 			costArray.push(0);
 		}
 		jsonData.sharerCosts.push(costArray);
@@ -240,6 +229,9 @@ function detectmob() {//detect what mobile type the user is using.
 
 
 $( document ).ready(function() {
+	/*URL string query: if this page contain json data*/
+	urlQueryLoad();
+
 	$(".submit").hover(function(){
 			$(this).stop().animate({
 				opacity:"0.8"
@@ -295,6 +287,7 @@ $( document ).ready(function() {
 
 	$("#shareButton").click(function(){// open add sharer panel
 		notification("Sorry, this function not available currently!",0);
+		alert(getParameterByName("Id"));
 	});
 
 	$("#addMoneyButton").click(function(){// open add sharer panel

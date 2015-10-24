@@ -15,8 +15,61 @@ function saveData(gName,oName){
 		});
 };
 
+function urlQueryLoad(){
+	var id = getParameterByName("Id") ;
+	if( id != ""){
+		/*
+		$.ajax({
+    		type: "POST",
+    		url: "data/"+getParameterByName("Id")+".json",
+		success: function(msg){
+    	    	// return value stored in msg variable
+		}
+				
+		}).done(function(response) {
+			jsonData = response;
+			alert(jsonData);
+			printOutJson()
+		}).fail(function() {
+		    	notifiction("Bill list load failed, Please try again!",0);		
+		});*/
+		
+		$.get("data/"+id+".json", function(data, status){
+			jsonData = data;
+			$("#createButton").click();
+			for(i =0; i < jsonData.sharerName.length; i++){
+				/*add options*/	
+				var optionString = "<option value=\""+jsonData.sharerName[i]+"\" selected>"+jsonData.sharerName[i]+"</option>";
+			
+				if($("#sharer :selected").text() == "Add a sharer"){
+					$("#sharer").html(optionString);
+					$("#sharer-list").append("Shared with &nbsp;");
+				}else{
+					$("#sharer").append(optionString);
+				}	
+
+				/*add checkboxs*/
+				var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+"\" value=\""+jsonData.sharerName[i]+"\" checked>"+jsonData.sharerName[i]+"&nbsp;";
+				$("#sharer-list").append(checkboxString);
+			}
+			updateList();
+            		notification("File: "+id+" opened!",1);
+        });
+	}	
+}
+
+
 
 function load(){}// find user credential(in XML) and load data(from a json file named as userName.json)
+
+
+
+function getParameterByName(name) {//url string query
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 function checkEmail(email){
 	 if (email == "") {                               //cannot be empty

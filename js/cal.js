@@ -1,33 +1,4 @@
 /*cal.js focus on calculation and data analyze*/
-var sharer = function(name){
-    	this.name = name;
-    	this.totalCost = 0;
-    	this.paid = 0;
-    	this.costList = [];
-   
-    
-    	this.pay = function(amount){
-    		this.paid += amount;
-    	};
-    
-    	this.cost = function(amount) {
-    		this.totalCost += amount;
-		this.costList.push(amount);
-    	};
-
-    	this.getPaid = function(){
-    		return this.paid;
-    	};
-    
-    	this.getTotalCost = function(){
-    		return this.totalCost;
-    	};
-
-	this.getName = function(){
-		return this.name;
-	}
-}
-
 
 /*data used to store the whole data*/
 var jsonData = {
@@ -36,7 +7,6 @@ var jsonData = {
 	"payerList":[],	          //e.g. each record:{"payer":"sharerName2","consumer":[sharerName2,sharerName3,sharerName4],"amount":"$***","memo":"string memo"} 
 }  
 
-var sharerData = [];
 
 var payerList = [];
 

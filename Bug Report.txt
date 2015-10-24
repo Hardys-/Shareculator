@@ -5,4 +5,6 @@
 5. Layout overlap
 6. Shared with nobody?
 7. Mobile friendly.
-8. check xml exist. 
+8. safari does not work
+9. keep same id when save
+10. serverside group & name check 
