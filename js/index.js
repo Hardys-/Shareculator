@@ -244,11 +244,15 @@ $( document ).ready(function() {
 
 	$("#logInButton").click(function(){//default 800
 		$("#front-panel").fadeOut(300,function(){$("#login-panel").fadeIn(300);})
-		$("p.title").html("Please enter your user name and password:");	
+		$("p.title").html("Please enter Group name and Owner Name:");	
 	});
 
 	$("#createButton").click(function(){//default 800
 		$("#front-panel").fadeOut(300,function(){$("#main-panel").fadeIn(300);$("p.title").css({"display":"none"});})		
+	});
+
+	$("#login").click(function(){//default 800
+			loadData();
 	});
 
 	$("#addSharerButton").click(function(){// open add sharer panel

@@ -2,7 +2,7 @@
 function saveData(gName,oName){
 	$.ajax({
     		type: "POST",
-    		url: "save.php",
+    		url: "php/save.php",
 		data: {json:$.toJSON(jsonData),group:gName,owner:oName},
 		success: function(msg){
     	    	// return value stored in msg variable
@@ -15,25 +15,24 @@ function saveData(gName,oName){
 		});
 };
 
+function loadData(){
+	$.ajax({
+    		type: "POST",
+    		url: "php/load.php",
+		data: {group:"HH"},//{json:$.toJSON(jsonData),group:gName,owner:oName},
+		success: function(msg){
+    	    	// return value stored in msg variable
+		}				
+	}).done(function(response) {
+			notification(response,1);
+		}).fail(function(response) {
+		    	notifiction(response,0);		
+		});
+}
+
 function urlQueryLoad(){
 	var id = getParameterByName("Id") ;
 	if( id != ""){
-		/*
-		$.ajax({
-    		type: "POST",
-    		url: "data/"+getParameterByName("Id")+".json",
-		success: function(msg){
-    	    	// return value stored in msg variable
-		}
-				
-		}).done(function(response) {
-			jsonData = response;
-			alert(jsonData);
-			printOutJson()
-		}).fail(function() {
-		    	notifiction("Bill list load failed, Please try again!",0);		
-		});*/
-		
 		$.get("data/"+id+".json", function(data, status){
 			jsonData = data;
 			$("#createButton").click();
