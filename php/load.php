@@ -1,16 +1,18 @@
 <?php
 
 	$group_name = (string) $_POST['group'];
-	$xml = simplexml_load_file('../data/user.xml');	
-	$xpath = $xml->xpath('/info/record[0]');// . $group_name . ']');
-	echo $xpath[0];/*
-	if ($xpath == $group_name) {
-	    echo (string) $xpath[0];
-	} else {
-	    echo "Not found";
-	}
+	$owner_name = (string) $_POST['owner'];
+	$result = find_record_by_name($group_name, $owner_name);
+	if( $result != ""){echo $result; }
+	else{ echo "Error";}       		
 
-	/*$xml = simplexml_load_file('../data/user.xml');
-	$info = new SimpleXMLElement($xml);
-	echo  $info->record[0]->group;*/
+	function find_record_by_name($group, $owner){
+		$xml = simplexml_load_file('../data/user.xml');	
+		$xpath = $xml->xpath("//record");
+		while(list( , $node) = each($xpath)) {
+			if ($node->group == $group && $node->owner == $owner ){return $node->file; }
+		};
+		return "";
+	}
+	
 ?>		

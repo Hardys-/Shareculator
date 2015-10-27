@@ -15,51 +15,60 @@ function saveData(gName,oName){
 		});
 };
 
-function loadData(){
+function loadData(gName,oName){
+	var jsonFile;
 	$.ajax({
     		type: "POST",
     		url: "php/load.php",
-		data: {group:"HH"},//{json:$.toJSON(jsonData),group:gName,owner:oName},
+		data: {group:gName,owner:oName},
 		success: function(msg){
     	    	// return value stored in msg variable
 		}				
-	}).done(function(response) {
-			notification(response,1);
-		}).fail(function(response) {
-		    	notifiction(response,0);		
-		});
+	}).done(function(response) {// becareful the redirect url is hardcoded.
+			if(response != "Error" ) { 
+				jsonFile = response; 
+				notification("Opening file "+ jsonFile,1);
+				window.location.replace("http://hhao.hostei.com/shareculator/index.php?Id="+jsonFile);
+			}
+			else{notification("Cannot find the file!",0); return;}; //no further actions
+	}).fail(function(response) {
+		    	notifiction(response,0); return;		//no further actions
+	});
+	
 }
 
 function urlQueryLoad(){
 	var id = getParameterByName("Id") ;
 	if( id != ""){
-		$.get("data/"+id+".json", function(data, status){
-			jsonData = data;
-			$("#createButton").click();
-			for(i =0; i < jsonData.sharerName.length; i++){
-				/*add options*/	
-				var optionString = "<option value=\""+jsonData.sharerName[i]+"\" selected>"+jsonData.sharerName[i]+"</option>";
-			
-				if($("#sharer :selected").text() == "Add a sharer"){
-					$("#sharer").html(optionString);
-					$("#sharer-list").append("Shared with &nbsp;");
-				}else{
-					$("#sharer").append(optionString);
-				}	
-
-				/*add checkboxs*/
-				var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+"\" value=\""+jsonData.sharerName[i]+"\" checked>"+jsonData.sharerName[i]+"&nbsp;";
-				$("#sharer-list").append(checkboxString);
-			}
-			updateList();
-            		notification("File: "+id+" opened!",1);
-        });
+		load(id);
 	}	
 }
 
 
 
-function load(){}// find user credential(in XML) and load data(from a json file named as userName.json)
+function load(id){// find user credential(in XML) and load data(from a json file named as userName.json)
+	$.get("data/"+id+".json", function(data, status){
+		jsonData = data;
+		$("#createButton").click();
+		for(i =0; i < jsonData.sharerName.length; i++){
+			/*add options*/	
+			var optionString = "<option value=\""+jsonData.sharerName[i]+"\" selected>"+jsonData.sharerName[i]+"</option>";
+		
+			if($("#sharer :selected").text() == "Add a sharer"){
+				$("#sharer").html(optionString);
+				$("#sharer-list").append("Shared with &nbsp;");
+			}else{
+				$("#sharer").append(optionString);
+			}	
+
+			/*add checkboxs*/
+			var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+"\" value=\""+jsonData.sharerName[i]+"\" checked>"+jsonData.sharerName[i]+"&nbsp;";
+			$("#sharer-list").append(checkboxString);
+		}
+		updateList();
+		notification("File: "+id+" opened!",1);
+	});
+}
 
 
 

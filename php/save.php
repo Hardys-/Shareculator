@@ -27,4 +27,13 @@
 	if(file_exists( $fileName ))
 	{echo "Record saved!";}
 	else{echo "Save failed!";}
+
+	function find_record_by_id($file){
+		$xml = simplexml_load_file('../data/user.xml');	
+		$xpath = $xml->xpath("//record");
+		while(list( , $node) = each($xpath)) {
+			if ($node->file == $file ){return array("group"=>$node->group, "owner"=> $node->owner); }
+		};
+		return "";
+	}
 ?>

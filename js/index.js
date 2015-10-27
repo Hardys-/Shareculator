@@ -252,7 +252,9 @@ $( document ).ready(function() {
 	});
 
 	$("#login").click(function(){//default 800
-			loadData();
+		if($("input[name='user']").val() == ""){notification("Group name cannot be empty!",0);return;};
+		if($("input[name='pw']").val() =="" ){notification("Owner name cannot be empty!",0);return;};
+		loadData($("input[name='user']").val(),$("input[name='pw']").val());
 	});
 
 	$("#addSharerButton").click(function(){// open add sharer panel
