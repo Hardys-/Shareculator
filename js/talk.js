@@ -24,11 +24,11 @@ function loadData(gName,oName){
 		success: function(msg){
     	    	// return value stored in msg variable
 		}				
-	}).done(function(response) {// becareful the redirect url is hardcoded.
+	}).done(function(response) {
 			if(response != "Error" ) { 
 				jsonFile = response; 
 				notification("Opening file "+ jsonFile,1);
-				window.location.replace("http://hhao.hostei.com/shareculator/index.php?Id="+jsonFile);
+				window.location.replace("index.php?Id="+jsonFile);
 			}
 			else{notification("Cannot find the file!",0); return;}; //no further actions
 	}).fail(function(response) {
