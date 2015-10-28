@@ -6,5 +6,6 @@
 6. Shared with nobody?
 7. Mobile friendly.
 8. safari does not work
-9. keep same id when save
+9. keep same id when save(error detected)
 10. press enter and do actions when have the required info 
+11. compare error: php returned string 
