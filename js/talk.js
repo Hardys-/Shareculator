@@ -25,12 +25,12 @@ function loadData(gName,oName){
     	    	// return value stored in msg variable
 		}				
 	}).done(function(response) {
-			if(response != "Error" ) { 
+			if(response != "Error" ) {//????????????????????????????????????????????? do not match, encode?
 				jsonFile = response; 
 				notification("Opening file "+ jsonFile,1);
 				window.location.replace("index.php?Id="+jsonFile);
 			}
-			else{notification("Cannot find the file!",0); return;}; //no further actions
+			else{notification("Cannot find the file!",0);return;}; //no further actions
 	}).fail(function(response) {
 		    	notifiction(response,0); return;		//no further actions
 	});
@@ -41,6 +41,23 @@ function urlQueryLoad(){
 	var id = getParameterByName("Id") ;
 	if( id != ""){
 		load(id);
+		$.ajax({
+			type: "POST",
+			url: "php/getNameById.php",
+			data: {Id:id},
+			dataType: 'json',
+		       	cache: false,
+			success: function(msg){
+			// return value stored in msg variable
+				groupName = msg.group[0];
+				ownerName = msg.owner[0];
+				saved = true;
+			}					
+		}).done(function(response) {
+				notification("File: "+id+" opened!",1);
+		}).fail(function(response) {
+				notification("Error: file "+id,0);		
+		});
 	}	
 }
 
