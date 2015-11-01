@@ -9,3 +9,4 @@
 9. keep same id when save(error detected)
 10. press enter and do actions when have the required info 
 11. compare error: php returned string 
+12. Chinese version does not work
