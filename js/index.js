@@ -278,7 +278,7 @@ $( document ).ready(function() {
 	$("#savetoButton").click(function(){ //confirm save
 		if($("#groupNameText").val() == ""){notification("Please pick up a name for your group!",0);return;};
 		if(!checkEmail($("#ownerNameText").val())){notification("Please enter a valid email address!",0);return;}
-		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//a new user 		
+		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//add a new user 		
 	});
 
 	$("#saveCancelButton").click(function(){ //exit current panel
