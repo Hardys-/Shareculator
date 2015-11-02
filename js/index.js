@@ -242,6 +242,8 @@ $( document ).ready(function() {
 			}, 300);//default 800
 	})
 
+	/*Front-page buttons*/
+
 	$("#logInButton").click(function(){//default 800
 		$("#front-panel").fadeOut(300,function(){$("#login-panel").fadeIn(300);})
 		$("p.title").html("Please enter Group name and Owner Name:");	
@@ -258,6 +260,9 @@ $( document ).ready(function() {
 		loadData($("input[name='user']").val(),$("input[name='pw']").val());
 	});
 
+	/*Create new buttons*/
+
+	/*----------------add functions----------------*/
 	$("#addSharerButton").click(function(){// open add sharer panel
 		/*add panel*/
     		$("#add-sharer-panel").css({"position":"absolute","left":"30%","top":"50%"});
@@ -265,6 +270,21 @@ $( document ).ready(function() {
 		$("#addNewSharerText").focus();	
 	});
 
+	$("#addNewSharerButton").click(function(){ //add new sharer
+		if($("#addNewSharerText").val() != ""){
+			add();
+		}else{
+			notification("Please type in a name",0);
+		}
+		
+	});
+	
+	$("#addNewSharerCancelButton").click(function(){ //exit current panel
+		$("#add-sharer-panel").fadeOut(300);
+		$("#addNewSharerText").val("");
+	});
+
+	/*----------------save functions----------------*/
 	$("#saveButton").click(function(){// open save panel
 		if( saved == false || ownerName == "" || groupName == ""){  //did not saved 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
@@ -281,16 +301,25 @@ $( document ).ready(function() {
 		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//add a new user 		
 	});
 
-	$("#saveCancelButton").click(function(){ //exit current panel
+	$("#saveCancelButton").click(function(){//exit current panel
 		$("#save-panel").fadeOut(300);
 		$("#groupNameText").val("");
 	});
 
+	/*----------------share functions----------------*/
 	$("#shareButton").click(function(){// open add sharer panel
-		notification("Sorry, this function not available currently!",0);
-		alert(getParameterByName("Id"));
+		$("#share-panel").css({"position":"absolute","left":"28%","top":"25%"});
+		$("#share-panel").fadeIn(300);//default 800
+		$("#shareEmailText").focus();
 	});
 
+	$("#shareCancelButton").click(function(){ //exit current panel
+		$("#share-panel").fadeOut(300);
+		$("#shareEmailText").val("");
+		$("#shareMessage").val("");
+	});
+
+	/*----------------opration functions----------------*/
 	$("#addMoneyButton").click(function(){// open add sharer panel
 		if( $("#sharer :selected").text() == "Add a sharer"){notification("Please add a sharer first",0)}
 		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
@@ -307,20 +336,9 @@ $( document ).ready(function() {
 		checkOut();
 	});
 
-	$("#addNewSharerCancelButton").click(function(){ //exit current panel
-		$("#add-sharer-panel").fadeOut(300);
-		$("#addNewSharerText").val("");
-	});
 
-	$("#addNewSharerButton").click(function(){ //add new sharer
-		if($("#addNewSharerText").val() != ""){
-			add();
-		}else{
-			notification("Please type in a name",0);
-		}
-		
-	});
-	
+
+
 	$("#addNewSharerText").keydown(function(event) {
     		if (event.keyCode == 13) {
         		$("#addNewSharerButton").click();

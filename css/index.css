@@ -64,7 +64,7 @@ p.title{margin-top:15%;}
 
 #sharer-list{margin-top:10px;}
 
-#add-sharer-panel, #save-panel{
+#add-sharer-panel, #save-panel, #share-panel{
    display: none;
    width:35%;
    height:50px;
@@ -84,7 +84,7 @@ p.title{margin-top:15%;}
 
 #addNewSharerButton{margin-left:15px; width:25%; background-color:#1daf99;}
 
-#addNewSharerCancelButton, #saveCancelButton{
+#addNewSharerCancelButton, #saveCancelButton, #shareCancelButton{
 	border:#ffffff solid 2px;
 	background-color:#fe6161;
 	height:24px;
@@ -95,10 +95,17 @@ p.title{margin-top:15%;}
   	margin-top: -16px;
   	margin-right: -10px;
 }
-#save-panel{width:50%;color:#ffffff; }
+
+#save-panel{width:45%;color:#ffffff; }
 #groupNameText{width:15%; padding:6px 3px;}
 #ownerNameText{width:20%; padding:6px 3px;}
 #savetoButton{margin-left:10px; width:12%; background-color:#fe6161;}
+
+#share-panel{width:40%;color:#ffffff; height:260px; }
+#shareEmailText{width:88%;}
+#shareMessage{width:88%;height:40%; font-size:14px; font-weight: bold;}
+#sharetoButton{margin-right: 22px;float: right;}
+#shareCancelButton{}
 
 #paymentTable{width:100%; text-align:center;margin-bottom:100px}
 #paymentTable tr:last-child td{color:#19a5c8;}

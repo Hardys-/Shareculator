@@ -74,6 +74,14 @@
 	<input id="saveCancelButton" class="submit main-panel-button" type="submit" value="X">
 </div>
 
+<div id="share-panel">
+	&nbsp;Email address:<input id="shareCancelButton" class="submit main-panel-button" type="submit" value="X"><br/>
+	<input id="shareEmailText"class="input-text" type="text" name="shareEmailText" placeholder="name1@example.com, name2@example.com"><br/>
+	<textarea id="shareMessage"class="input-text" type="text" name="shareMessage">Hey, I want to share this with you!</textarea><br/>
+	<input id="sharetoButton" class="submit main-panel-button" type="submit" value="Share">
+	
+</div>
+
 <div id="msg"></div>
 </body>
 </html>
