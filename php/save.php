@@ -2,12 +2,11 @@
 	/*load client data*/
 	$group = $_POST['group'];
 	$owner = $_POST['owner'];
+	$new = $_POST['isNew'];
 	$json =  stripcslashes($_POST['json']);
 
 	$hash_string = hash('md5',$group.$owner,FALSE);
 	$fileName = '../data/'.$hash_string.'.json';
-
-
 
 	
 	if(find_record_by_name($group, $owner) == "" ){ 
@@ -21,7 +20,7 @@
 		$record->addChild('timeStamp',date('Y-m-d H:i:s'));
 		$record->addChild('count',0);
 		file_put_contents('../data/user.xml', $xml->asXML());
-	}	
+	}else if( $new == 0 ){exit("Group & owner already existed!");}// keep unique
 
 	/*save data*/
 	$myfile = fopen($fileName, "w") or die("Unable to open file!");//depande on the user info

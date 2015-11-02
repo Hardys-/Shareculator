@@ -252,8 +252,9 @@ $( document ).ready(function() {
 	});
 
 	$("#login").click(function(){//default 800
-		if($("input[name='user']").val() == ""){notification("Group name cannot be empty!",0);return;};
-		if($("input[name='pw']").val() =="" ){notification("Owner name cannot be empty!",0);return;};
+		if($("input[name='user']").val() == ""){notification("Group name cannot be empty!",0);return;}
+		else if($("input[name='pw']").val() =="" ){notification("Owner name cannot be empty!",0);return;}
+		else if(!checkEmail($("input[name='pw']").val())){notification("Please enter a valid email address!",0);return;}
 		loadData($("input[name='user']").val(),$("input[name='pw']").val());
 	});
 
@@ -265,25 +266,19 @@ $( document ).ready(function() {
 	});
 
 	$("#saveButton").click(function(){// open save panel
-		if( saved == false|| ownerName == "" || groupName == ""){  //did not saved 
+		if( saved == false || ownerName == "" || groupName == ""){  //did not saved 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
 			$("#groupNameText").focus();
 		}else{
-			saveData(groupName,ownerName);
+			saveData(groupName,ownerName,0); // Resave, not a new record
 		}
 	});
 
 	$("#savetoButton").click(function(){ //confirm save
 		if($("#groupNameText").val() == ""){notification("Please pick up a name for your group!",0);return;};
 		if(!checkEmail($("#ownerNameText").val())){notification("Please enter a valid email address!",0);return;}
-		saved = true;
-		groupName = $("#groupNameText").val();
-		ownerName = $("#ownerNameText").val();
-		$("#save-panel").fadeOut(300);
-		saveData(groupName,ownerName);		
-		$("#groupNameText").val("");
-		$("#ownerNameText").val("");
+		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//a new user 		
 	});
 
 	$("#saveCancelButton").click(function(){ //exit current panel
@@ -332,6 +327,17 @@ $( document ).ready(function() {
         	}
 	});
 
+	$("#groupNameText").keydown(function(event) {
+    		if (event.keyCode == 13) {
+        		$("#savetoButton").click();
+        	}
+	});
+
+	$("#ownerNameText").keydown(function(event) {
+    		if (event.keyCode == 13) {
+        		$("#savetorButton").click();
+        	}
+	});
 
 });
 

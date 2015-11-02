@@ -1,15 +1,27 @@
 /*talk.js focus on data send and receive*/
-function saveData(gName,oName){
+function saveData(gName,oName,isNew){
 	$.ajax({
     		type: "POST",
     		url: "php/save.php",
-		data: {json:$.toJSON(jsonData),group:gName,owner:oName},
+		data: {json:$.toJSON(jsonData),group:gName,owner:oName,flag:isNew},
 		success: function(msg){
     	    	// return value stored in msg variable
 		}
 				
-	}).done(function(response) {
-			notification(response,1);
+	}).done(function(response) {			
+			if(isNew == 1 && response !="Group & owner already existed!"){
+				saved = true;
+				groupName = $("#groupNameText").val();
+				ownerName = $("#ownerNameText").val();
+				$("#groupNameText").val("");
+				$("#ownerNameText").val("");	
+				$("#save-panel").fadeOut(300);
+			}
+
+
+			if(response !="Group & owner already existed!")	notification(response,1)
+			else 	notification(response,0);
+
 		}).fail(function(response) {
 		    	notifiction(response,0);		
 		});
