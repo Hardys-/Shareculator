@@ -327,6 +327,7 @@ $( document ).ready(function() {
         	}
 	});
 
+	/*press enter to save*/
 	$("#groupNameText").keydown(function(event) {
     		if (event.keyCode == 13) {
         		$("#savetoButton").click();
@@ -335,9 +336,23 @@ $( document ).ready(function() {
 
 	$("#ownerNameText").keydown(function(event) {
     		if (event.keyCode == 13) {
-        		$("#savetorButton").click();
+        		$("#savetoButton").click();
+        	}
+	});
+	/*--press enter to save--*/
+
+	/*press enter to load*/
+	$("input[name='user']").keydown(function(event) {
+    		if (event.keyCode == 13) {
+        		$("#login").click();
         	}
 	});
 
+	$("input[name='pw']").keydown(function(event) {
+    		if (event.keyCode == 13) {
+        		$("#login").click();
+        	}
+	});
+	/*--press enter to load--*/
 });
 
