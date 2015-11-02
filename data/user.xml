@@ -17,4 +17,12 @@
 		<timeStamp>2015-10-23 21:01:09</timeStamp>
 		<count>0</count>
 	</record>
-<record><group>M2</group><owner>test@cmu.edu</owner><file>de3c947dd9e4128e883f3c8f3c62278e</file><ip>155.41.100.146</ip><timeStamp>2015-10-27 02:57:09</timeStamp><count>0</count></record><record><group>&#x4E2D;&#x6587;</group><owner>owner@bu.edu</owner><file>fc79c3bd7091494390f3fe3d7379809c</file><ip>155.41.100.146</ip><timeStamp>2015-10-27 02:59:02</timeStamp><count>0</count></record><record><group>EC544</group><owner>EC544@bu.edu</owner><file>1cc163cc9dae28e01eedae5fc5863db1</file><ip>155.41.106.17</ip><timeStamp>2015-10-27 15:40:39</timeStamp><count>0</count></record><record><group>HH</group><owner>fhc@bu.edu</owner><file>573e7275f67faa835a87b4d1582c550c</file><ip>155.41.102.226</ip><timeStamp>2015-10-27 22:54:49</timeStamp><count>0</count></record></info>
+	<record>
+		<group>&#x4E2D;&#x6587;</group>
+		<owner>owner@bu.edu</owner>
+		<file>fc79c3bd7091494390f3fe3d7379809c</file>
+		<ip>155.41.100.146</ip>
+		<timeStamp>2015-10-27 02:59:02</timeStamp>
+		<count>0</count>
+	</record>
+</info>

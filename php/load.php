@@ -4,7 +4,6 @@
 	$owner_name = (string) $_POST['owner'];
 	$result = find_record_by_name($group_name, $owner_name);
 	if( $result != ""){echo $result; }
-	else{ echo "Error";}       		
 
 	function find_record_by_name($group, $owner){
 		$xml = simplexml_load_file('../data/user.xml');	
