@@ -1,4 +1,4 @@
-1. email check
+1. share email check
 2. cml write
 3. share
 4. change name
