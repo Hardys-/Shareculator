@@ -1,4 +1,4 @@
-1. share email check
+1. email check
 2. cml write
 3. share
 4. change name
@@ -6,4 +6,5 @@
 6. Shared with nobody?
 7. Mobile friendly.
 8. safari does not work
-9. share multiple emails.
+9. keep same id when save
+10. press enter and do actions when have the required info 

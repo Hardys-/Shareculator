@@ -307,10 +307,22 @@ $( document ).ready(function() {
 	});
 
 	/*----------------share functions----------------*/
-	$("#shareButton").click(function(){// open add sharer panel
-		$("#share-panel").css({"position":"absolute","left":"28%","top":"25%"});
-		$("#share-panel").fadeIn(300);//default 800
-		$("#shareEmailText").focus();
+	$("#shareButton").click(function(){// open share panel
+		if( saved == false || ownerName == "" || groupName == ""){  //did not save 
+			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
+			$("#save-panel").fadeIn(300);//default 800
+			$("#groupNameText").focus();
+			return;
+		}else {
+			$("#share-panel").css({"position":"absolute","left":"28%","top":"25%"});
+			$("#share-panel").fadeIn(300);//default 800
+			$("#shareEmailText").focus();
+		}		
+	});
+
+	$("#sharetoButton").click(function(){// share
+		share();
+		$("#share-panel").fadeOut(300);//default 800
 	});
 
 	$("#shareCancelButton").click(function(){ //exit current panel
@@ -328,15 +340,15 @@ $( document ).ready(function() {
 		}		
 	});
 
+
 	$("#undoButton").click(function(){// open add sharer panel
 		undo();
 	});
 
+
 	$("#checkOutButton").click(function(){// open add sharer panel
 		checkOut();
 	});
-
-
 
 
 	$("#addNewSharerText").keydown(function(event) {

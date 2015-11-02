@@ -107,6 +107,22 @@ function getParameterByName(name) {//url string query
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function share(){
+	$.ajax({
+    		type: "POST",
+    		url: "php/share.php",
+		data: {email:$("#shareEmailText").val(),message:$("#shareMessage").val(),group:groupName,owner:ownerName},
+		success: function(msg){
+    	    	// return value stored in msg variable
+		}				
+	}).done(function(response) {
+			notification(response,1); return;
+	}).fail(function(response) {
+		    	notification(response,0); return;
+	});
+	
+}
+
 function checkEmail(email){
 	 if (email == "") {                               //cannot be empty
 		return false;
