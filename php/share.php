@@ -24,50 +24,14 @@
 		  <title>Your friend shared a ShareCulator Bill with you</title>
 		</head>
 		<body>
-		  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-		  <style>
-		      .submit{
-		      -webkit-appearance: none;
-		      -moz-appearance: none;
-		      appearance: none;
-		      font-family:Calibri;
-		      font-size:14px;
-		      padding:3px 18px;
-		      color: #ffffff;
-		      background-color:#19a5c8;
-		      border: #19a5c8 solid 1px;
-		      border-radius:4px;
-		      width:120px;
-		      box-shadow: 0 1px gray;
-		      }
-
-		      .submit:hover{cursor:pointer;}
-		      a{color:#19a5c8;text-decoration:none;font-weight:bold;}
-		      a:hover{color:#fe6161}
-	 	      p{color:#626262; margin-left:20px;}
-		      #msg{font-style: italic; font-size:16px; color:#484848;}
-		  </style>
-		  <script>
-		    $( document ).ready(function() {
-		      $(".submit").hover(function(){
-			  $(this).stop().animate({
-			    opacity:"0.8"
-			  },300); //default 800
-		      },function(){
-			  $(this).stop().animate({
-			    opacity:"1"
-			  }, 300);//default 800
-		      })
-		    })
-		  </script>
-		  <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
+		  <a href="http://hhao.hostei.com/shareculator/index.php" style="text-decoration:none;"><img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span></a>
 		  <br/><br/>
-		  <p id="msg"> "'.$msg.'"  -- '$_POST['group']' </p>
-		  <p><a href="'.$link.'">Click here</a> to check the bill, or copy the URL ("'.$link.'") to your browser to check.</p>
+		  <p id="msg" style="font-style: italic; font-size:16px; color:#484848;"> "'.$msg.'"  -- '.$_POST['group'].' </p>
+		  <p style="color:#626262; margin-left:20px;"><a href="'.$link.'" style="color:#19a5c8;text-decoration:none;font-weight:bold;">Click here</a> to check the bill, or copy the URL ("'.$link.'") to your browser to check.</p>
 		  <br/>
-		  <p> -- ShareCulator is an Open-source online share calculator. It allows multiple user access and edit a shared list of payments, and calculate the final payment that each sharer should pay.
+		  <p style="color:#626262; margin-left:20px;"> -- ShareCulator is an Open-source online share calculator. It allows multiple user access and edit a shared list of payments, and calculate the final payment that each sharer should pay.
 		      ShareCulator is easy to load, save and share, and support graphic chart and finance analyze. </p>
-		  <p>Try <a href="http://hhao.hostei.com/shareculator/index.php"><input class="submit" type="submit" value="ShareCulator"></a> now.</p>
+		  <p style="color:#626262; margin-left:20px;">Try <a href="http://hhao.hostei.com/shareculator/index.php" style="color:#19a5c8;text-decoration:none;font-weight:bold;"><input class="submit" type="submit" value="ShareCulator" style=" -webkit-appearance: none;-moz-appearance: none;appearance: none; font-family:Calibri;font-size:14px; padding:3px 18px; color: #ffffff; background-color:#19a5c8;border: #19a5c8 solid 1px; border-radius:4px;width:120px; box-shadow: 0 1px gray; cursor:pointer;"></a> now.</p>
 		</body>
 	</html>
 	';
@@ -84,8 +48,6 @@
 	unset($value); 
 	$headers .=$sender.' <'.$sender.'>'."\r\n";
 	$headers .= 'From: '.$sender.' <'.$sender.'>' . "\r\n";
-	//$headers .= 'To: Mary <mary@example.com>, Kelly <kelly@example.com>' . "\r\n";
-	///$headers .= 'Cc: birthdayarchive@example.com' . "\r\n";
 
 	/* Mail it */
 	mail($to, $subject, $message, $headers);
