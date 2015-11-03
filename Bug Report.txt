@@ -8,3 +8,4 @@
 8. safari does not work
 9. keep same id when save
 10. press enter and do actions when have the required info 
+11. quit without save warning
