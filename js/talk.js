@@ -153,3 +153,13 @@ function checkEmail(email){
 	 return true;   //passed all check
 }
 
+
+function checkEmailList(str){
+	str = str.replace(/ /g, ""); //remove all spaces
+	var emailList = new Array();
+	emailList = str.split(",");
+	for(s in emailList){
+	 	if(!checkEmail(emailList[s])) return false;		
+	}
+ 	return true;
+}

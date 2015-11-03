@@ -321,6 +321,7 @@ $( document ).ready(function() {
 	});
 
 	$("#sharetoButton").click(function(){// share
+		if(!checkEmailList($("#shareEmailText").val())){notification("One or more email address is invalid!",0);return;}
 		share();
 		$("#share-panel").fadeOut(300);//default 800
 	});

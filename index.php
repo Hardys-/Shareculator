@@ -39,7 +39,7 @@
 			<select id="sharer">
 				<option value="1" selected >Add a sharer</option>
 			</select>	
-			paid <img src="http://hhao.hostei.com/shareculator/pic/edit_0.png"/>
+			paid
 			<input id="amount" class="input-text" type="text" name="amount" placeholder="Amount">for 
 			<input id="memo" class="input-text" type="text" name="amount" placeholder="Memo">&nbsp;
 			<div id="opera-button">

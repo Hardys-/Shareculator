@@ -24,14 +24,14 @@
 		  <title>Your friend shared a ShareCulator Bill with you</title>
 		</head>
 		<body>
-		  <a href="http://hhao.hostei.com/shareculator/index.php" style="text-decoration:none;"><img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span></a>
+		  <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 		  <br/><br/>
-		  <p id="msg" style="font-style: italic; font-size:16px; color:#484848;"> "'.$msg.'"  -- '.$_POST['group'].' </p>
+		  <p id="msg" style="font-style: italic; font-size:16px; color:#484848; margin-left:20px;"> "'.$msg.'"  -- '.$_POST['group'].' </p>
 		  <p style="color:#626262; margin-left:20px;"><a href="'.$link.'" style="color:#19a5c8;text-decoration:none;font-weight:bold;">Click here</a> to check the bill, or copy the URL ("'.$link.'") to your browser to check.</p>
 		  <br/>
 		  <p style="color:#626262; margin-left:20px;"> -- ShareCulator is an Open-source online share calculator. It allows multiple user access and edit a shared list of payments, and calculate the final payment that each sharer should pay.
 		      ShareCulator is easy to load, save and share, and support graphic chart and finance analyze. </p>
-		  <p style="color:#626262; margin-left:20px;">Try <a href="http://hhao.hostei.com/shareculator/index.php" style="color:#19a5c8;text-decoration:none;font-weight:bold;"><input class="submit" type="submit" value="ShareCulator" style=" -webkit-appearance: none;-moz-appearance: none;appearance: none; font-family:Calibri;font-size:14px; padding:3px 18px; color: #ffffff; background-color:#19a5c8;border: #19a5c8 solid 1px; border-radius:4px;width:120px; box-shadow: 0 1px gray; cursor:pointer;"></a> now.</p>
+		  <p style="color:#626262; margin-left:20px;"><a href="http://hhao.hostei.com/shareculator/index.php" style="color:#ffffff;text-decoration:none;font-weight:bold;background-color:#19a5c8;padding:6px 16px; border: #19a5c8 solid 1px; border-radius:4px;width:120px; box-shadow: 0 1px gray;">ShareCulator</a>  Try it now.</p>
 		</body>
 	</html>
 	';
