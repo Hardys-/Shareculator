@@ -74,7 +74,7 @@ p.title{margin-top:15%;}
    font-weight:bold;
    border:  #626262 solid 1px;
    background-color:  #626262;
-   opacity:0.6;
+   opacity:0.65;
    color:#141414;
    padding-left:10px;
    padding-top:5px;
@@ -101,7 +101,7 @@ p.title{margin-top:15%;}
 #ownerNameText{width:20%; padding:6px 3px;}
 #savetoButton{margin-left:10px; width:12%; background-color:#fe6161;}
 
-#share-panel{width:40%;color:#ffffff; height:260px; }
+#share-panel{width:40%;color:#ffffff; height:260px;opacity:0.9;background-color:  #828282 }
 #shareEmailText{width:88%;}
 #shareMessage{width:88%;height:40%; font-size:14px; font-weight: bold;}
 #sharetoButton{margin-right: 22px;float: right;}
