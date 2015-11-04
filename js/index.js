@@ -75,11 +75,11 @@ function undo(){
 }
 
 function checkOut(){
-	printOutJson();
-	var totalPaid=[]; 
-	var totalCost=[];
-
-
+	//printOutJson();
+	var totalPaid = []; 
+	var totalCost = [];
+       	checkoutResult = []; // reset
+	
 	for(i=0;i < jsonData.sharerName.length; i++){ //add each sharer's cost to totalCost
 		var personalCost = 0;
 		totalPaid.push(0);
@@ -104,6 +104,7 @@ function checkOut(){
 		htmlStringLine1+="<td>"+totalCost[i].toFixed(2)+"</td>";
 		htmlStringLine2+="<td>"+totalPaid[i].toFixed(2)+"</td>";
 		htmlStringLine3+="<td>"+(totalPaid[i] - totalCost[i]).toFixed(2) +"</td>";
+		checkoutResult.push({"name":jsonData.sharerName[i],"val":(totalPaid[i] - totalCost[i]).toFixed(2)});
 	}
 	htmlStringLine1 +="<td></td><td></td></tr>";
 	htmlStringLine2 +="<td></td><td></td></tr>";
@@ -113,6 +114,7 @@ function checkOut(){
 	$(".tableTotalCost td").css({"border-top":"#fe6161  solid 1px","color":"#fe6161","font-size":"16px;","font-weight":"bold","padding-top":"12px"});
 	$(".tableTotalPaid td").css({"color":"#1daf99","font-size":"16px;","font-weight":"bold","padding-top":"6px"});
 	$(".tableResult td").css({"color":"#19a5c8","border-top":"#19a5c8  solid 1px","font-size":"16px;","font-weight":"bold","padding-top":"12px"});
+	recommendation();
 }
 
 function add(){

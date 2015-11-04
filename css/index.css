@@ -119,6 +119,13 @@ p.title{margin-top:15%;}
 #paymentTable td:first-child{text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;font-weight:bold;}
 #paymentTable td:last-child{text-align:left; color:#808080;width:25%;border-right:1px #c0c0c0 solid;}
 
+#recommendation{color:#646464;font-family:Calibri;font-size:16px;display:flex;border: solid #c4c4c4 1px; padding: 20px 15px;}
+.subRec{margin-left:25px;  line-height: 150%;}
+.subRec:first-child{margin-left:0px;}
+.rt{color:#19a5c8;font-weight:bold}
+.rn{color:#fe6161;}
+.rm{color:#1daf99;font-style:italic}
+
 #bottom{color:#6a6a6a;width: 90%; position: absolute;bottom:28px;margin-left:5%;}
 
 #copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a; position: absolute;bottom:10px;margin-left: 35%;width: 30%; }

@@ -98,7 +98,7 @@ function load(id){// find user credential(in XML) and load data(from a json file
 
 		/*reset position*/
 		if(jsonData.payerList.length>8){
-			var h = 350 - $(window).height()/5;
+			var h = jsonData.payerList.length * 20;
 			$("#bottom").css({"position":"static","margin-top":h+"px"});
 			$("#copyright").css({"position":"static"});
 		}
