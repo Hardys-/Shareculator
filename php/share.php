@@ -24,7 +24,7 @@
 		  <title>Your friend shared a ShareCulator Bill with you</title>
 		</head>
 		<body>
-		  <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
+		  <a href="http://hhao.hostei.com/shareculator/index.php" style="text-decoration:none;"><img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span></a>
 		  <br/><br/>
 		  <p id="msg" style="font-style: italic; font-size:16px; color:#484848; margin-left:20px;"> "'.$msg.'"  -- '.$_POST['group'].' </p>
 		  <p style="color:#626262; margin-left:20px;"><a href="'.$link.'" style="color:#19a5c8;text-decoration:none;font-weight:bold;">Click here</a> to check the bill, or copy the URL ("'.$link.'") to your browser to check.</p>

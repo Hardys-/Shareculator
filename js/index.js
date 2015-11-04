@@ -32,7 +32,6 @@ function printOutJson(){
 	console.log(s3);
 }
 
-function updateName(){}
 
 function addMoney(){
 	/*find out who paid this money*/
@@ -61,6 +60,7 @@ function addMoney(){
 	payment.memo = $("#memo").val();
 	jsonData.payerList.push(payment);
 	updateList();
+
 }
 
 function undo(){
@@ -71,6 +71,7 @@ function undo(){
 
 	jsonData.payerList.splice([jsonData.payerList.length-1]);
 	updateList();
+
 }
 
 function checkOut(){
@@ -191,6 +192,18 @@ function updateList(){ //updated when new data added or load a json
 	}
 
 	$("#list").html("<table id=\"paymentTable\">"+htmlTitle+htmlString+"</table>"); //content of the table
+	
+	//reset position
+	if($("#paymentTable").height()>300){
+		var h = $("#paymentTable").height() - $(window).height()/5;
+		$("#bottom").css({"position":"static","margin-top":h+"px"});
+		$("#copyright").css({"position":"static"});
+	}
+	if($("#paymentTable").height()<300){
+		$("#bottom").css({"position":"absolute","margin-top":"8px"});
+		$("#copyright").css({"position":"absolute","margin-top":"12px"});
+	}
+
 }
 
 function notification(str,flag){//(notification string, 0: ! mark / 1: correct mark)

@@ -95,6 +95,13 @@ function load(id){// find user credential(in XML) and load data(from a json file
 		}
 		updateList();
 		notification("File: "+id+" opened!",1);
+
+		/*reset position*/
+		if(jsonData.payerList.length>8){
+			var h = 350 - $(window).height()/5;
+			$("#bottom").css({"position":"static","margin-top":h+"px"});
+			$("#copyright").css({"position":"static"});
+		}
 	});
 }
 

@@ -58,8 +58,8 @@
 	
 	</div>
 </div>
-<hr class="line"/>
-<p class="copyright">Copyright &#169;2015 Hao Hu, under the MIT License.</p>
+<hr id="bottom"/>
+<p id="copyright">Copyright &#169;2015 Hao Hu, under the MIT License.</p>
 <div id="add-sharer-panel">
 	<input id="addNewSharerText"class="input-text" type="text" name="newSharer" placeholder="Sharer Name">&nbsp;&nbsp;
 	<input id="addNewSharerButton" class="submit main-panel-button" type="submit" value="Add">

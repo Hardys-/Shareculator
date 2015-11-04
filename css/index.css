@@ -16,7 +16,7 @@ p.title{margin-top:15%;}
 .menu{cursor:pointer}
 .menu:hover{color:#fe6161}
 
-#front-panel{height:300px;margin-top:0px; margin-bottom:7%;margin-left:auto;margin-right:auto; width:240px;}
+#front-panel{height:280px;margin-top:0px; margin-bottom:7%;margin-left:auto;margin-right:auto; width:240px;}
 
 .submit{
 	-webkit-appearance: none;
@@ -36,7 +36,7 @@ p.title{margin-top:15%;}
 .submit:hover{cursor:pointer;}
 
 
-#login-panel{display:none;height:300px; margin-bottom:7%;}
+#login-panel{display:none;height:278px; margin-bottom:7%;}
 
 	.contact-form{margin-top:20px;margin-left:auto;margin-right:auto;width:460px;}
 
@@ -55,7 +55,9 @@ p.title{margin-top:15%;}
 
 #user{margin-top:20px;margin-bottom:20px;}
 
-#opera{margin-top:20px;}
+.line{color:#6a6a6a;width: 90%; position: absolute;}
+
+#opera{margin-top:40px;}
 	#sharer{padding:5px 10px;}
 	#sharer option{ padding:3px 1px; }
 	#checkOutButton{border:#fe6161 solid 1px;background-color:#fe6161}
@@ -107,6 +109,7 @@ p.title{margin-top:15%;}
 #sharetoButton{margin-right: 22px;float: right;}
 #shareCancelButton{}
 
+#list{height:474px;}
 #paymentTable{width:100%; text-align:center;margin-bottom:100px}
 #paymentTable tr:last-child td{color:#19a5c8;}
 #paymentTable th{height:35px; font-weight:bold; color:#fe6161;margin:12px 10px;}
@@ -116,9 +119,9 @@ p.title{margin-top:15%;}
 #paymentTable td:first-child{text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;font-weight:bold;}
 #paymentTable td:last-child{text-align:left; color:#808080;width:25%;border-right:1px #c0c0c0 solid;}
 
-.line{color:#6a6a6a;bottom: 30px;width: 90%; position: absolute;}
+#bottom{color:#6a6a6a;width: 90%; position: absolute;bottom:28px;margin-left:5%;}
 
-.copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a; position: absolute;bottom: 8px;margin-left: 30%;width: 30%; }
+#copyright{ text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a; position: absolute;bottom:10px;margin-left: 35%;width: 30%; }
 
 
 
