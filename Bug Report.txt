@@ -1,5 +1,4 @@
-1. cml write
-2. data analyze
-3. Mobile friendly.
-4. safari does not work
-5. animation & graph
+1. data analyze
+2. Mobile friendly.
+3. safari does not work
+4. animation & graph
