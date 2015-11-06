@@ -1,4 +1,10 @@
-1. data analyze
-2. Mobile friendly.
-3. safari does not work
-4. animation & graph
+1. email check
+2. cml write
+3. share
+4. change name
+5. Layout overlap
+6. Shared with nobody?
+7. Mobile friendly.
+8. safari does not work
+9. keep same id when save
+10. press enter and do actions when have the required info 

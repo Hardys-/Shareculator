@@ -18,9 +18,14 @@ function saveData(gName,oName,isNew){
 				$("#save-panel").fadeOut(300);
 			}
 
-
-			if(response !="Group & owner already existed!")	notification(response,1)
-			else 	notification(response,0);
+			if(response !="Group & owner already existed!") {
+				if(language == "en"){notification(response,1)}
+				else if(language == "cn"){notification("账单存储成功！",1)}
+			}	
+			else {
+				if(language == "en"){notification(response,0)}
+				else if(language == "cn"){notification("您输入的群名称和群主已存在！",0)}
+			}	
 
 		}).fail(function(response) {
 		    	notifiction(response,0);		
@@ -39,8 +44,9 @@ function loadData(gName,oName){
 	}).done(function(response) {
 			if(response != "Error" ) {//????????????????????????????????????????????? do not match, encode?
 				jsonFile = response; 
-				notification("Opening file "+ jsonFile,1);
-				window.location.replace("index.php?Id="+jsonFile);
+				if(language == "en"){notification("Opening file "+ jsonFile,1);window.location.replace("index.php?Id="+jsonFile);}
+				else if(language == "cn"){notification("成功打开文件："+ jsonFile,1);window.location.replace("index_cn.php?Id="+jsonFile);}
+				
 			}
 	}).fail(function(response) {
 		    	notifiction(response,0); return;		//no further actions
@@ -65,9 +71,11 @@ function urlQueryLoad(){
 				saved = true;
 			}					
 		}).done(function(response) {
-				notification("File: "+id+" opened!",1);
+				if(language == "en"){notification("File: "+id+" opened!",1);}
+				else if(language == "cn"){notification("文件: "+id+" 已打开!",1);}			
 		}).fail(function(response) {
-				notification("Group & Owner name cannot be loaded",0);		
+				if(language == "en"){notification("Group & Owner name cannot be loaded",0);}
+				else if(language == "cn"){notification("错误：无法载入账单！",0);}		
 		});
 	}	
 }
@@ -82,20 +90,30 @@ function load(id){// find user credential(in XML) and load data(from a json file
 			/*add options*/	
 			var optionString = "<option value=\""+jsonData.sharerName[i]+"\" selected>"+jsonData.sharerName[i]+"</option>";
 		
-			if($("#sharer :selected").text() == "Add a sharer"){
-				$("#sharer").html(optionString);
-				$("#sharer-list").append("Shared with &nbsp;");
-			}else{
-				$("#sharer").append(optionString);
-			}	
+			if(language == "en"){
+				if($("#sharer :selected").text() == "Add a sharer"){
+					$("#sharer").html(optionString);
+					$("#sharer-list").append("Shared with &nbsp;");
+				}else{
+					$("#sharer").append(optionString);
+				}
+			}
+			else if(language == "cn"){
+				if($("#sharer :selected").text() == "请先添加一个用户"){
+					$("#sharer").html(optionString);
+					$("#sharer-list").append("参与者： &nbsp;");
+				}else{
+					$("#sharer").append(optionString);
+				}
+			}
 
 			/*add checkboxs*/
 			var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+"\" value=\""+jsonData.sharerName[i]+"\" checked>"+jsonData.sharerName[i]+"&nbsp;";
 			$("#sharer-list").append(checkboxString);
 		}
 		updateList();
-		notification("File: "+id+" opened!",1);
-
+		if(language == "en"){notification("File: "+id+" loaded!",1);}
+		else if(language == "cn"){notification("文件: "+id+" 已载入!",1);}
 		/*reset position*/
 		if(jsonData.payerList.length>8){
 			var h = jsonData.payerList.length * 20;
@@ -123,9 +141,11 @@ function share(){
     	    	// return value stored in msg variable
 		}				
 	}).done(function(response) {
-			notification(response,1); return;
+		if(language == "en"){notification(response,1); return;}
+		else if(language == "cn"){notification("链接已分享，请注意查收邮件！",1); return;}	
 	}).fail(function(response) {
-		    	notification(response,0); return;
+		if(language == "en"){notification(response,0); return;}
+		else if(language == "cn"){notification("警告：分享失败！",0); return;}
 	});
 	
 }
@@ -170,3 +190,4 @@ function checkEmailList(str){
 	}
  	return true;
 }
+

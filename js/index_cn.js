@@ -39,8 +39,8 @@ function addMoney(){
 	var payer = $("#sharer :selected").val();
 	var newAmount = $("#amount").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string
     	newAmount = newAmount.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\,|\<|\>|\||\\|\&/g, "");
-	if(isNaN(parseFloat(newAmount))){notification("This input is invalid",0); return;}
-	if($( "input:checked" ).length == 0){notification("You need at least one sharer to share!",0); return;}
+	if(isNaN(parseFloat(newAmount))){notification("您的输入数字无效！",0); return;}
+	if($( "input:checked" ).length == 0){notification("您至少需要添加一个用户才能开始！",0); return;}
 	var val = parseFloat(newAmount) ;
 	var num = $( "input:checked" ).length;
 	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
@@ -98,8 +98,8 @@ function checkOut(){
 		
 	}
 
-	var htmlStringLine1 ="<tr class=\"tableTotalCost\"><td>Total cost:</td>";
-	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td>Total paid:</td>";   
+	var htmlStringLine1 ="<tr class=\"tableTotalCost\"><td>总花费:</td>";
+	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td>总支付:</td>";   
 	var htmlStringLine3 ="<tr class=\"tableResult\"><td></td>"; 
     	for(i = 0; i< totalPaid.length;i++){
 		htmlStringLine1+="<td>"+totalCost[i].toFixed(2)+"</td>";
@@ -124,16 +124,16 @@ function add(){
     	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
 
 	for(i = 0; i < jsonData.sharerName.length; i++ ){
-		if(jsonData.sharerName[i] == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
-		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
+		if(jsonData.sharerName[i] == newName){notification("用户 \""+newName+"\" 已存在!",0);return; }
+		if(i == 7){notification("您最多只能添加8个用户！",0);return;} //set the limitation of # of sharers.	
 	}
 
 	/*add options*/	
 	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
 	
-	if($("#sharer :selected").text() == "Add a sharer"){
+	if($("#sharer :selected").text() == "请先添加一个用户"){
 		$("#sharer").html(optionString);
-		$("#sharer-list").append("Shared with &nbsp;");
+		$("#sharer-list").append("参与者： &nbsp;");
 	}else{
 		$("#sharer").append(optionString);
 	}	
@@ -144,7 +144,7 @@ function add(){
 
 	/*send notification*/
 	if( $("#sharer :selected").text() == newName){
-	       	notification(newName+" has been added",1);
+	       	notification("用户："+newName+" 已添加！",1);
 	}	
 
 	/*add data to json & sharer class*/
@@ -170,13 +170,13 @@ function add(){
 function updateList(){ //updated when new data added or load a json 
 	//updateList();	
 	var htmlString = "";
-	var htmlTitle  = "<tr><th > Amount </th><th>";
+	var htmlTitle  = "<tr><th > 金额 </th><th>";
 	var totalAmount= 0; 
 
 	for(i=0;i < jsonData.sharerName.length; i++){// add each sharer's name to table header: <th></th>
 		htmlTitle += jsonData.sharerName[i] + "</th><th >";
 	}
-	htmlTitle +="</th><th>Memo</th></tr><br/>";
+	htmlTitle +="</th><th>备注</th></tr><br/>";
 
 	for(i = 0 ; i < jsonData.sharerCosts[0].length ; i++){// add the detail of each payment, format a line
 		var htmlLine = "<td>";
@@ -263,18 +263,18 @@ $( document ).ready(function() {
 
 	$("#logInButton").click(function(){//default 800
 		$("#front-panel").fadeOut(300,function(){$("#login-panel").fadeIn(300);})
-		$("p.title").html("Please enter Group name and Owner Name:");
+		$("p.title").html("请输入群名称和群主邮箱:");	
 	});
 
 	$("#createButton").click(function(){//default 800
 		$("#front-panel").fadeOut(300,function(){$("#main-panel").fadeIn(300);$("p.title").css({"display":"none"});})
-		notification("Remember do not include personal information!",0);
+		notification("请不要包含个人敏感信息！",0);		
 	});
 
 	$("#login").click(function(){//default 800
-		if($("input[name='user']").val() == ""){notification("Group name cannot be empty!",0);return;}
-		else if($("input[name='pw']").val() =="" ){notification("Owner name cannot be empty!",0);return;}
-		else if(!checkEmail($("input[name='pw']").val())){notification("Please enter a valid email address!",0);return;}
+		if($("input[name='user']").val() == ""){notification("群名称不可以为空!",0);return;}
+		else if($("input[name='pw']").val() =="" ){notification("群主邮箱不可以为空!",0);return;}
+		else if(!checkEmail($("input[name='pw']").val())){notification("请输入有效的邮箱号码!",0);return;}
 		loadData($("input[name='user']").val(),$("input[name='pw']").val());
 	});
 
@@ -292,7 +292,7 @@ $( document ).ready(function() {
 		if($("#addNewSharerText").val() != ""){
 			add();
 		}else{
-			notification("Please type in a name",0);
+			notification("请输入用户名字！",0);
 		}
 		
 	});
@@ -314,8 +314,8 @@ $( document ).ready(function() {
 	});
 
 	$("#savetoButton").click(function(){ //confirm save
-		if($("#groupNameText").val() == ""){notification("Please pick up a name for your group!",0);return;};
-		if(!checkEmail($("#ownerNameText").val())){notification("Please enter a valid email address!",0);return;}
+		if($("#groupNameText").val() == ""){notification("请输入您的群名称",0);return;};
+		if(!checkEmail($("#ownerNameText").val())){notification("请输入有效的邮箱号码!",0);return;}
 		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//add a new user 		
 	});
 
@@ -326,6 +326,7 @@ $( document ).ready(function() {
 
 	/*----------------share functions----------------*/
 	$("#shareButton").click(function(){// open share panel
+		alert(saved);alert(ownerName);alert( groupName);
 		if( saved == false || ownerName == "" || groupName == ""){  //did not save 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
@@ -339,7 +340,7 @@ $( document ).ready(function() {
 	});
 
 	$("#sharetoButton").click(function(){// share
-		if(!checkEmailList($("#shareEmailText").val())){notification("One or more email address is invalid!",0);return;}
+		if(!checkEmailList($("#shareEmailText").val())){notification("错误：有一个或多个邮箱无效!",0);return;}
 		share();
 		$("#share-panel").fadeOut(300);//default 800
 	});
@@ -352,8 +353,8 @@ $( document ).ready(function() {
 
 	/*----------------opration functions----------------*/
 	$("#addMoneyButton").click(function(){// open add sharer panel
-		if( $("#sharer :selected").text() == "Add a sharer"){notification("Please add a sharer first",0)}
-		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
+		if( $("#sharer :selected").text() == "Add a sharer"){notification("请先添加要分享的用户名称！",0)}
+		else if($("#amount").val() == ""){notification("请输入他/她支付的金额！",0)}
 		else{
 			addMoney();
 		}		

@@ -13,9 +13,10 @@
 <script type="text/javascript" src="js/talk.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/lib/jquery_json.js"></script>
+<input id="lan" type="text" value="en">
 <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 
-<p class ="title">Please select one to begin. | Set English / Chinese <span id="lan" class="menu"> here</span>. | First time to use <span class="menu">ShareCulator?<span></p>
+<p class ="title">Please select one to begin. | <a href="index_cn.php" class="nolink"><span id="changeLan" class="menu">Set language to 中文 </span></a> | <a href="" class="nolink"><span class="menu"> First time to use ShareCulator?<span></a></p>
 <div id="front-panel">
 	<input id="logInButton" class="submit" type="submit" value="Load One"> or 
 	<input id="createButton" class="submit" type="submit" value="Create One">
