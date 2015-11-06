@@ -2,9 +2,12 @@
 	/*user info & multiple recipients*/
 	$email = (string) $_POST['email'];
 	$msg = (string) $_POST['message'];
+	$lan = (string) $_POST['lan'];
 	$sender = $_POST['owner'];
 	$hash_string = hash('md5', $_POST['group'].$_POST['owner'],FALSE);
-	$link = 'http://hhao.hostei.com/shareculator/index.php?Id='.$hash_string; //*****************************This link is hard coded***************** 
+	//*****************************This link is hard coded**************/
+	$link = 'http://hhao.hostei.com/shareculator/index.php?Id='.$hash_string; //default
+	if($lan == 'cn'){$link = 'http://hhao.hostei.com/shareculator/index_cn.php?Id='.$hash_string;}	
 
 	/*format multiple email addresses*/
 	$to  = ''; 
