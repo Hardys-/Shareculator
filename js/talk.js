@@ -184,7 +184,8 @@ function checkEmail(email){
 function checkEmailList(str){
 	str = str.replace(/ /g, ""); //remove all spaces
 	var emailList = new Array();
-	emailList = str.split(",");
+	if(language == "en"){emailList = str.split(",");}
+	else if(language == "cn"){emailList = str.split("，");}
 	for(s in emailList){
 	 	if(!checkEmail(emailList[s])) return false;		
 	}

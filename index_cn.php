@@ -22,11 +22,11 @@
 	<input id="createButton" class="submit" type="submit" value="新建">
 </div>
 <div id="login-panel">
-		<form class="contact-form" id="contact-form" action="login.php" method="post" onSubmit="return infoCheck(this)">
+		<div class="contact-form" id="contact-form" >
 			<input class="input-text" type="text" name="user" placeholder="群名称"><b class="contact-required-field">&nbsp;*</b>
 			<input class="input-text" type="text" name="pw" placeholder="群主邮箱"><b class="contact-required-field">&nbsp;*</b>
 			<input id="login" class="submit" type="submit" value="登录">
-		</form>
+		</div>
 </div>
 <div id = "main-panel">
 	<div id="frame">
@@ -73,6 +73,13 @@
 	<input id="ownerNameText"class="input-text" type="text" name="ownerpName" placeholder="群主邮箱">&nbsp;
 	<input id="savetoButton" class="submit main-panel-button" type="submit" value="保存">
 	<input id="saveCancelButton" class="submit main-panel-button" type="submit" value="X">
+</div>
+
+<div id="share-panel">
+	&nbsp;邮件地址（以逗号分隔）:<input id="shareCancelButton" class="submit main-panel-button" type="submit" value="X"><br/>
+	<input id="shareEmailText"class="input-text" type="text" name="shareEmailText" placeholder="name1@example.com, name2@example.com"><br/>
+	<textarea id="shareMessage"class="input-text" type="text" name="shareMessage">Hello! 我想把这个账单分享给你。</textarea><br/>
+	<input id="sharetoButton" class="submit main-panel-button" type="submit" value="分享">
 </div>
 
 <div id="msg"></div>

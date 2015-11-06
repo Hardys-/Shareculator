@@ -13,9 +13,10 @@
 <script type="text/javascript" src="js/talk.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript" src="js/lib/jquery_json.js"></script>
+<input id="lan" type="text" value="en">
 <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 
-<p class ="title">Please select one to begin. | Set English / Chinese <span id="lan" class="menu"> here</span>. | First time to use <span class="menu">ShareCulator?<span></p>
+<p class ="title">Please select one to begin. | <a href="index_cn.php" class="nolink"><span id="changeLan" class="menu">Set language to 中文 </span></a> | <a href="" class="nolink"><span class="menu"> First time to use ShareCulator?<span></a></p>
 <div id="front-panel">
 	<input id="logInButton" class="submit" type="submit" value="Load One"> or 
 	<input id="createButton" class="submit" type="submit" value="Create One">
@@ -39,7 +40,7 @@
 			<select id="sharer">
 				<option value="1" selected >Add a sharer</option>
 			</select>	
-			paid <img src="http://hhao.hostei.com/shareculator/pic/edit_0.png"/>
+			paid
 			<input id="amount" class="input-text" type="text" name="amount" placeholder="Amount">for 
 			<input id="memo" class="input-text" type="text" name="amount" placeholder="Memo">&nbsp;
 			<div id="opera-button">
@@ -58,8 +59,8 @@
 	
 	</div>
 </div>
-<hr class="line"/>
-<p class="copyright">Copyright &#169;2015 Hao Hu, under the MIT License.</p>
+<hr id="bottom"/>
+<p id="copyright">Copyright &#169;2015 Hao Hu, under the MIT License.</p>
 <div id="add-sharer-panel">
 	<input id="addNewSharerText"class="input-text" type="text" name="newSharer" placeholder="Sharer Name">&nbsp;&nbsp;
 	<input id="addNewSharerButton" class="submit main-panel-button" type="submit" value="Add">

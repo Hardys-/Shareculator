@@ -326,7 +326,6 @@ $( document ).ready(function() {
 
 	/*----------------share functions----------------*/
 	$("#shareButton").click(function(){// open share panel
-		alert(saved);alert(ownerName);alert( groupName);
 		if( saved == false || ownerName == "" || groupName == ""){  //did not save 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
