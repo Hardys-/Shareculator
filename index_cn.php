@@ -33,7 +33,8 @@
 		<div id="user">
 			<input id="addSharerButton" class="submit main-panel-button" type="submit" value="加入用户">&nbsp;&nbsp;
 			<input id="saveButton" class="submit main-panel-button" type="submit" value="保存">&nbsp;&nbsp;
-			<input id="shareButton" class="submit main-panel-button" type="submit" value="分享">&nbsp;&nbsp;	
+			<input id="shareButton" class="submit main-panel-button" type="submit" value="分享">&nbsp;&nbsp;
+			<input id="printButton" class="submit main-panel-button" type="submit" value="打印">&nbsp;&nbsp;	
 		</div>
 		<hr class="line" />
 		<div id="opera">

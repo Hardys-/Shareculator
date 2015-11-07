@@ -33,7 +33,8 @@
 		<div id="user">
 			<input id="addSharerButton" class="submit main-panel-button" type="submit" value="Sharer + ">&nbsp;&nbsp;
 			<input id="saveButton" class="submit main-panel-button" type="submit" value="Save">&nbsp;&nbsp;
-			<input id="shareButton" class="submit main-panel-button" type="submit" value="Share">&nbsp;&nbsp;	
+			<input id="shareButton" class="submit main-panel-button" type="submit" value="Share">&nbsp;&nbsp;
+			<input id="printButton" class="submit main-panel-button" type="submit" value="Print">&nbsp;&nbsp;	
 		</div>
 		<hr class="line" />
 		<div id="opera">

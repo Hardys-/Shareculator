@@ -350,6 +350,11 @@ $( document ).ready(function() {
 		$("#shareMessage").val("");
 	});
 
+	/*-----------------print function------------------*/
+	$("#printButton").click(function(){
+		window.print();
+	});
+	
 	/*----------------opration functions----------------*/
 	$("#addMoneyButton").click(function(){// open add sharer panel
 		if( $("#sharer :selected").text() == "Add a sharer"){notification("请先添加要分享的用户名称！",0)}
