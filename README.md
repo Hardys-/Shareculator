@@ -1,8 +1,8 @@
 # Shareculator
-<p><a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">
+<p><a href="http://hhao.hostei.com/shareculator/index.php" target="_blank">
 <img src="http://hhao.hostei.com/shareculator/pic/logo.png"/></a></p>
 
-<a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">Shareculator</a> is an Open-source online share calculator.
+<a href="http://hhao.hostei.com/shareculator/index.html" target="_blank">Shareculator</a> is an Open-source online share calculator. It allows multiple user access and edit a shared list of payments, and calculate the final payment that each sharer should pay. ShareCulator is easy to load, save and share, and support graphic chart and finance analyze
 
 <h3>Features: </h3>
   <ul>
@@ -39,8 +39,3 @@
     <li>Email:  hardys1206@gmail.com</li>
   </ul>
 
-<h3>Events Log:</h3>
-  <ul>
-    <li>2015-10-16: Initialization</li>
-    
-  </ul>
