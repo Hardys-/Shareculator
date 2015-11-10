@@ -1,7 +1,7 @@
-1. Mobile friendly.
-2. safari does not work.
-3. quit without saving, warning.
-4. tutorial
-5. graphic & chart
-6. data analyze.
+1. Mobile friendly. CSS mobile rules
+2. safari does not work. 
+3. quit without saving, warning. - change value of "saved" in every action
+4. tutorial - one page limited functions (PHP side)
+5. graphic & chart via miniChart
+6. data analyze. (food, tickets)
 7. documentation
