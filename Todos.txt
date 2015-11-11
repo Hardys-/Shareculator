@@ -5,3 +5,4 @@
 5. graphic & chart via miniChart
 6. data analyze. (food, tickets)
 7. documentation
+8. miniChart implementation (library)
