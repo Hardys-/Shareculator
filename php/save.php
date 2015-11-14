@@ -29,7 +29,7 @@
 
 	/*check*/
 	if(file_exists( $fileName ))
-	{echo "Record saved!";}
+	{echo "Record saved!".$hash_string;}
 	else{echo "Save failed!";}
 
 	function find_record_by_name($grp, $own){

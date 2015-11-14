@@ -10,17 +10,20 @@ function saveData(gName,oName,isNew){
 				
 	}).done(function(response) {			
 			if(isNew == 1 && response !="Group & owner already existed!"){
+				var fn = response.substring(13); 
 				saved = true;
 				groupName = $("#groupNameText").val();
 				ownerName = $("#ownerNameText").val();
 				$("#groupNameText").val("");
 				$("#ownerNameText").val("");	
 				$("#save-panel").fadeOut(300);
+				window.history.pushState("", "", "?Id="+fn);
 			}
 
 			if(response !="Group & owner already existed!") {
-				if(language == "en"){notification(response,1)}
-				else if(language == "cn"){notification("账单存储成功！",1)}
+				saved = true;
+				if(language == "en"){notification(response.substring(0,13),1);}
+				else if(language == "cn"){notification("账单存储成功！",1);}
 			}	
 			else {
 				if(language == "en"){notification(response,0)}
@@ -136,7 +139,7 @@ function share(){
 	$.ajax({
     		type: "POST",
     		url: "php/share.php",
-		data: {email:$("#shareEmailText").val(),message:$("#shareMessage").val(),group:groupName,owner:ownerName},
+		data: {email:$("#shareEmailText").val(),message:$("#shareMessage").val(),group:groupName,owner:ownerName,lan:language},
 		success: function(msg){
     	    	// return value stored in msg variable
 		}				
