@@ -1,9 +1,9 @@
 1. Mobile friendly. CSS mobile rules
 2. safari does not work. 
-3. quit without saving, warning. - change value of "saved" in every action
+3. Vulnerability & warning(terms of service)
 4. tutorial - one page limited functions (PHP side)
 5. graphic & chart via miniChart
 6. data analyze. (food, tickets)
 7. documentation
 8. miniChart implementation (library)
-9. Vulnerability & warning(terms of service)
+
