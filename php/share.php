@@ -30,7 +30,7 @@
 		  <a href="http://hhao.hostei.com/shareculator/index.php" style="text-decoration:none;"><img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span></a>
 		  <br/><br/>
 		  <p id="msg" style="font-style: italic; font-size:16px; color:#484848; margin-left:20px;"> "'.$msg.'"  -- '.$_POST['group'].' </p>
-		  <p style="color:#626262; margin-left:20px;"><a href="'.$link.'" style="color:#19a5c8;text-decoration:none;font-weight:bold;">Click here</a> to check the bill, or copy and paste the URL ("'.$link.'") into your internet browser.</p>
+		  <p style="color:#626262; margin-left:20px;"><a href="'.$link.'" style="color:#19a5c8;text-decoration:none;font-weight:bold;">Click here</a> to check the bill, or copy the URL ("'.$link.'") to your browser to check.</p>
 		  <br/>
 		  <p style="color:#626262; margin-left:20px;"> -- ShareCulator is an Open-source online share calculator. It allows multiple user access and edit a shared list of payments, and calculate the final payment that each sharer should pay.
 		      ShareCulator is easy to load, save and share, and support graphic chart and finance analyze. </p>

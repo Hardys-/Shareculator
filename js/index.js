@@ -291,6 +291,7 @@ $( document ).ready(function() {
 	$("#addNewSharerButton").click(function(){ //add new sharer
 		if($("#addNewSharerText").val() != ""){
 			add();
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving			
 		}else{
 			notification("Please type in a name",0);
 		}
@@ -304,7 +305,7 @@ $( document ).ready(function() {
 
 	/*----------------save functions----------------*/
 	$("#saveButton").click(function(){// open save panel
-		if( saved == false || ownerName == "" || groupName == ""){  //did not saved 
+		if( ownerName == "" || groupName == ""){  //did not saved 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
 			$("#groupNameText").focus();
@@ -361,12 +362,14 @@ $( document ).ready(function() {
 		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
 		else{
 			addMoney();
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 		}		
 	});
 
 
 	$("#undoButton").click(function(){// open add sharer panel
 		undo();
+		if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 	});
 
 
@@ -407,6 +410,20 @@ $( document ).ready(function() {
         		$("#login").click();
         	}
 	});
-	/*--press enter to load--*/
+	/*--press enter to load end--*/
+
+	window.addEventListener("beforeunload", function (e) {//warning when leave without saving
+		if(saved == false && groupName != "" ){
+			var confirmationMessage = 'You have been editing something without saving it. \n\n'
+                            + 'If you leave before saving, your changes will be lost.';	
+		}
+		else{
+			var confirmationMessage = 'Are you sure you want to leave this page?';
+		}
+    		(e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    		return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+	});
 });
 
+
+/*Copyright Hao Hu, MIT LICENSE*/

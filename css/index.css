@@ -13,6 +13,8 @@ body{
 	display:none;
 }
 
+input:hover{#646464}
+input:focus{border: #19a5c8 solid 1px}
 .title, .nolink{text-align:center;color:#6a6a6a;font-size:18px;font-family:"Times New Roman", Times, serif;}
 .title:hover, .nolink:hover{color:#19a5c8;}
 p.title{margin-top:15%;}

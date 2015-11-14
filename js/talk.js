@@ -9,21 +9,21 @@ function saveData(gName,oName,isNew){
 		}
 				
 	}).done(function(response) {			
-			if(isNew == 1 && response !="Group & owner already existed!"){
+			if(isNew == 1 && response !="Group & owner already existed!"){ //first save
 				var fn = response.substring(13); 
-				saved = true;
 				groupName = $("#groupNameText").val();
 				ownerName = $("#ownerNameText").val();
 				$("#groupNameText").val("");
 				$("#ownerNameText").val("");	
 				$("#save-panel").fadeOut(300);
+				notification(response.substring(0,13),1);
 				window.history.pushState("", "", "?Id="+fn);
-			}
-
-			if(response !="Group & owner already existed!") {
 				saved = true;
+			}
+			else if(response !="Group & owner already existed!") { //saved file update
 				if(language == "en"){notification(response.substring(0,13),1);}
 				else if(language == "cn"){notification("账单存储成功！",1);}
+				if (saved == false) {saved = true; document.title =  document.title.substring(2);}
 			}	
 			else {
 				if(language == "en"){notification(response,0)}
@@ -195,3 +195,5 @@ function checkEmailList(str){
  	return true;
 }
 
+
+/*Copyright Hao Hu, MIT LICENSE*/

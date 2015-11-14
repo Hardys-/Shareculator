@@ -291,6 +291,7 @@ $( document ).ready(function() {
 	$("#addNewSharerButton").click(function(){ //add new sharer
 		if($("#addNewSharerText").val() != ""){
 			add();
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 		}else{
 			notification("请输入用户名字！",0);
 		}
@@ -304,7 +305,7 @@ $( document ).ready(function() {
 
 	/*----------------save functions----------------*/
 	$("#saveButton").click(function(){// open save panel
-		if( saved == false || ownerName == "" || groupName == ""){  //did not saved 
+		if( ownerName == "" || groupName == ""){  //did not saved 
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
 			$("#groupNameText").focus();
@@ -361,12 +362,14 @@ $( document ).ready(function() {
 		else if($("#amount").val() == ""){notification("请输入他/她支付的金额！",0)}
 		else{
 			addMoney();
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 		}		
 	});
 
 
 	$("#undoButton").click(function(){// open add sharer panel
 		undo();
+		if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 	});
 
 
@@ -407,6 +410,17 @@ $( document ).ready(function() {
         		$("#login").click();
         	}
 	});
-	/*--press enter to load--*/
+	/*--press enter to load end--*/
+	
+	window.addEventListener("beforeunload", function (e) {//warning when leave without saving
+		if(saved == false && groupName != "" ){
+			var confirmationMessage = '您有新的操作未保存。 \n';	
+		}
+		else{
+			var confirmationMessage = '当前未保存编辑内容将会消失。\n';
+		}
+    		(e || window.event).returnValue = confirmationMessage; //Gecko + IE
+    		return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
+	});
 });
-
+/*Copyright Hao Hu, MIT LICENSE*/

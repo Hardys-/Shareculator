@@ -143,3 +143,6 @@ function recommendation(){
 function consumeAna(){}
 
 function drawChart(){}
+
+
+/*Copyright Hao Hu, MIT LICENSE*/
