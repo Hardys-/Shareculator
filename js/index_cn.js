@@ -412,15 +412,15 @@ $( document ).ready(function() {
 	});
 	/*--press enter to load end--*/
 	
-	window.addEventListener("beforeunload", function (e) {//warning when leave without saving
-		if(saved == false && groupName != "" ){
-			var confirmationMessage = '您有新的操作未保存。 \n';	
+
+	window.onbeforeunload = confirmExit;
+    	function confirmExit() {
+       		if(saved == false && groupName != "" ){
+			return  '您有新的操作未保存。 \n';	
 		}
-		else{
-			var confirmationMessage = '当前未保存编辑内容将会消失。\n';
+		else if(saved == false && jsonData.sharerName.length > 0) {//User has some action and file not saved 
+			return  '当前未保存编辑内容将会消失。\n';
 		}
-    		(e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    		return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-	});
+  	}
 });
 /*Copyright Hao Hu, MIT LICENSE*/

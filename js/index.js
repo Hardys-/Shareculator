@@ -412,17 +412,18 @@ $( document ).ready(function() {
 	});
 	/*--press enter to load end--*/
 
-	window.addEventListener("beforeunload", function (e) {//warning when leave without saving
-		if(saved == false && groupName != "" ){
-			var confirmationMessage = 'You have been editing something without saving it. \n\n'
-                            + 'If you leave before saving, your changes will be lost.';	
+	window.onbeforeunload = confirmExit;
+    	function confirmExit() {
+       		if(saved == false && groupName != "" ){
+			return  'You have been editing something without saving it. \n\n'
+			+ 'If you leave before saving, your changes will be lost.';	
 		}
-		else{
-			var confirmationMessage = 'Are you sure you want to leave this page?';
+		else if(saved == false && jsonData.sharerName.length > 0) {//User has some action and file not saved 
+			return  'Are you sure you want to leave this page?';
 		}
-    		(e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    		return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
-	});
+  	}
+
+	
 });
 
 
