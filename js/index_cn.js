@@ -412,7 +412,7 @@ $( document ).ready(function() {
 	});
 	/*--press enter to load end--*/
 	
-
+	/*warning before leave*/
 	window.onbeforeunload = confirmExit;
     	function confirmExit() {
        		if(saved == false && groupName != "" ){
@@ -422,5 +422,29 @@ $( document ).ready(function() {
 			return  '当前未保存编辑内容将会消失。\n';
 		}
   	}
+
+	/*Reset opera panel position when scrolling down*/
+	$(window).scroll(function() {
+    		if ($(this).scrollTop() > 100) {
+			$("#opera").stop();
+			$("#opera").animate({
+		       	        padding: '10px 15px',
+			        opacity: '0.85',
+			       	top:'20px'	
+			});
+			$("#opera").css({"position": 'fixed',"box-shadow": '4px 4px 10px #888888',"background-image": 'url("pic/bg.png")'});
+		};
+
+		if ($(this).scrollTop() < 100) {
+			$("#opera").stop();
+			$("#opera").animate({
+		       	        padding:'0px 0px',
+			        opacity: '1'
+			});
+
+			$("#opera").css({"position": 'static',"box-shadow": 'none',"background-image": 'none',"margin-top": "40px"});
+		};
+	})
+
 });
 /*Copyright Hao Hu, MIT LICENSE*/
