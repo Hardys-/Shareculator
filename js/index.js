@@ -98,9 +98,9 @@ function checkOut(){
 		
 	}
 
-	var htmlStringLine1 ="<tr class=\"tableTotalCost\"><td>Total cost:</td>";
-	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td>Total paid:</td>";   
-	var htmlStringLine3 ="<tr class=\"tableResult\"><td></td>"; 
+	var htmlStringLine1 ="<tr class=\"tableTotalCost\"><td></td><td>Total cost:</td>";
+	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td></td><td>Total paid:</td>";   
+	var htmlStringLine3 ="<tr class=\"tableResult\"><td></td><td></td>"; 
     	for(i = 0; i< totalPaid.length;i++){
 		htmlStringLine1+="<td>"+totalCost[i].toFixed(2)+"</td>";
 		htmlStringLine2+="<td>"+totalPaid[i].toFixed(2)+"</td>";
@@ -170,7 +170,7 @@ function add(){
 function updateList(){ //updated when new data added or load a json 
 	//updateList();	
 	var htmlString = "";
-	var htmlTitle  = "<tr><th > Amount </th><th>";
+	var htmlTitle  = "<tr><th> No. </th><th> Amount </th><th>";
 	var totalAmount= 0; 
 
 	for(i=0;i < jsonData.sharerName.length; i++){// add each sharer's name to table header: <th></th>
@@ -190,7 +190,7 @@ function updateList(){ //updated when new data added or load a json
 		}
 		var htmlMemo = "</td><td>"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
 		totalAmount = jsonData.payerList[i].amount;
-		htmlString += "<tr><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo; //format of each row in table
+		htmlString += "<tr><td> "+(i+1)+" </td><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo; //format of each row in table
 		totalAmount = 0;
 	}
 

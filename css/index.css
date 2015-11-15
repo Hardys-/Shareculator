@@ -121,10 +121,13 @@ p.title{margin-top:15%;}
 #paymentTable{width:100%; text-align:center;margin-bottom:100px}
 #paymentTable tr:last-child td{color:#19a5c8;}
 #paymentTable th{height:35px; font-weight:bold; color:#fe6161;margin:12px 10px;}
-#paymentTable th:first-child{text-align:left;width:10%;font-weight:bold;}
+#paymentTable th:first-child{text-align:left;width:3%;font-weight:bold;}
+#paymentTable th:nth-child(2){text-align:left;width:10%;font-weight:bold;padding-left:15px}
 #paymentTable th:last-child{width:25%;}
+
 #paymentTable td{height:20px;padding:6px 4px;}
-#paymentTable td:first-child{text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;font-weight:bold;}
+#paymentTable td:first-child{text-align:left;width:3%;border-right:1px #c0c0c0 solid;}
+#paymentTable td:nth-child(2){text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;font-weight:bold;padding-left:15px}
 #paymentTable td:last-child{text-align:left; color:#808080;width:25%;border-right:1px #c0c0c0 solid;}
 
 #recommendation{color:#646464;font-family:Calibri;font-size:16px;display:flex;border: solid #c4c4c4 1px; padding: 20px 15px;}
