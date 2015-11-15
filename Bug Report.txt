@@ -1,6 +1,0 @@
-1. Mobile friendly.
-2. safari does not work.
-3. quit without saving, warning.
-4. tutorial
-5. graphic & chart
-6. data analyze.
