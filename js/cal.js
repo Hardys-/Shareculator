@@ -130,7 +130,7 @@ function recommendation(){
 		if(language == "en"){$("#list").append("<span class=\"rt\">Recommendation:</span><br/><br/><div id=\"recommendation\">"+recHtmlString+"</div>");}
 		else if(language == "cn"){$("#list").append("<span class=\"rt\">推荐：</span><br/><br/><div id=\"recommendation\">"+recHtmlString+"</div>");}
 		/*extend height*/
-		var h = jsonData.payerList.length * 30 + outputString.length * 28;
+		var h = jsonData.payerList.length * 45 + outputString.length * 40 + 100;
 		$("#bottom").css({"position":"static","margin-top":h+"px"});
 		$("#copyright").css({"position":"static"});
 		

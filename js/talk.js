@@ -119,7 +119,7 @@ function load(id){// find user credential(in XML) and load data(from a json file
 		else if(language == "cn"){notification("文件: "+id+" 已载入!",1);}
 		/*reset position*/
 		if(jsonData.payerList.length>8){
-			var h = jsonData.payerList.length * 20;
+			var h = jsonData.payerList.length * 35;
 			$("#bottom").css({"position":"static","margin-top":h+"px"});
 			$("#copyright").css({"position":"static"});
 		}
