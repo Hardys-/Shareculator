@@ -47,11 +47,20 @@ function addMoney(){
 	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
 	payment.payer = payer;
 	 
-	/*find out who consumed this money, and add to their List*/	
+	/*find out who consumed this money, and add to their List*/
+	var ranPayer = Math.floor((Math.random() * num)+1) // if payment not divisible, find random cosumer to pay.
+	var remMoney = (val - num*(val/num).toFixed(2)).toFixed(2);
+	var payerCount = 1;
 	for(i =0 ; i< jsonData.sharerName.length; i++){
 		if($("#"+jsonData.sharerName[i]).prop("checked")){
 			payment.consumer.push(jsonData.sharerName[i]);
-			jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(2))); 
+			if(payerCount == ranPayer){ //find the random payer
+				var costValueTemp =  parseFloat((val/num).toFixed(2)) + parseFloat(remMoney); 
+				jsonData.sharerCosts[i].push(costValueTemp); 
+			}else{
+				jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(2))); 
+			}
+			payerCount ++;	 
 		}else{
 			jsonData.sharerCosts[i].push(0); 
 		}

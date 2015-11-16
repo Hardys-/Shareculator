@@ -110,6 +110,7 @@ function recommendation(){
 						trans += "|&nbsp;&nbsp;<span class =\"rn\">"+arr[j].name + "</span> -> <span class =\"rn\">" + arr[i].name +"</span> <span class=\"rm\"> &#36;"+ Math.abs(parseFloat(arr[j].val))+"</span>.<br/> ";
 						arr[i].val = (parseFloat(arr[i].val) + parseFloat(arr[j].val)).toFixed(2);
 						arr[j].val = 0;
+						if(parseFloat(arr[i].val) < 0.03){ arr[i].val = 0; outputString.push(trans+"</div>");} // bug case
 					}
 					else if(parseFloat(arr[i].val) + parseFloat(arr[j].val) <= 0 && parseFloat(arr[j].val) < 0 ){
 						trans += "|&nbsp;&nbsp;<span class =\"rn\">"+arr[j].name + "</span> -> <span class =\"rn\">" + arr[i].name +"</span> <span class=\"rm\"> &#36;"+ Math.abs(parseFloat(arr[i].val))+"</span>.<br/> ";
