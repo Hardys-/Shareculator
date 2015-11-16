@@ -2,6 +2,7 @@ var saved = false; //alrt when quit without saving
 var groupName = "";
 var ownerName = "";
 var language = ""; //set the language.
+var checked = false;//check if already checked 
 
 function printOutJson(){
 	var s1 = "Names: ";
@@ -362,6 +363,7 @@ $( document ).ready(function() {
 		else if($("#amount").val() == ""){notification("请输入他/她支付的金额！",0)}
 		else{
 			addMoney();
+			checked = false; 
 			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 		}		
 	});
@@ -369,12 +371,16 @@ $( document ).ready(function() {
 
 	$("#undoButton").click(function(){// open add sharer panel
 		undo();
+		checked = false; 
 		if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 	});
 
 
 	$("#checkOutButton").click(function(){// open add sharer panel
-		checkOut();
+		if(!checked){
+			checkOut();
+			checked = true;
+		} 
 	});
 
 
