@@ -43,6 +43,7 @@ function recommendation(){
 		/*find solution: 1 payer = 1 owe*/
 		for(i = arr.length-1; i >=0; i--){
 			for(j = 0; j < i;j++){
+				if(i<j) break;
 				if (Math.abs(parseFloat(arr[i].val) + parseFloat(arr[j].val)) <= 0.02 && parseFloat(arr[j].val) < 0){
 					outputString.push("<div class=\"subRec\"><span class =\"rn\">"+arr[i].name+"</span> ("+arr[i].val+"):<br/>");
 					var trans = "|&nbsp;&nbsp;<span class =\"rn\">"+arr[j].name + "</span> -> <span class =\"rn\">" + arr[i].name +"</span> <span class=\"rm\"> &#36;"+ Math.abs(parseFloat(arr[i].val))+"</span>.<br/><br/> ";
