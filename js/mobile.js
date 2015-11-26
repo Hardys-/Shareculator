@@ -13,3 +13,12 @@ function detectmob() {//detect what mobile type the user is using.
       return false;
     }
 }
+
+
+$( document ).ready(function() {
+   if(detectmob()){
+    /* Change behaviors here*/
+    // do things here
+      
+   }
+})
