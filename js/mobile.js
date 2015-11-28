@@ -23,9 +23,11 @@ function getParameterByName(name) {//url string query
 
 
 $( document ).ready(function() {
-   if(detectmob()){
+   if(detectmob() && language == getParameterByName("en")){
     /* Change behaviors here*/
     // do things here
+      
+   }else if(detectmob() && language == getParameterByName("cn")){
       
    }
 })
