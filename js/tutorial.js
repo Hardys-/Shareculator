@@ -1,3 +1,12 @@
+lan_package_en = {
+   steps:["","","",""], 
+   other:"",
+};
+
+lan_package_cn = {
+   steps:["","","",""], 
+   other:"",
+};
 
 
 function detectmob() {//detect what mobile type the user is using.
@@ -27,8 +36,10 @@ $( document ).ready(function() {
    if(detectmob() && language == getParameterByName("en")){
     /* Change behaviors here*/
     // do things here
+      lan_package = lan_package_en;
       
    }else if(detectmob() && language == getParameterByName("cn")){
+      lan_package = lan_package_cn; 
       
    }
 })
