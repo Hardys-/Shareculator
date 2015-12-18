@@ -4,3 +4,4 @@
 4. tutorial - one page limited functions (PHP side)
 5. graphic & chart via miniChart
 6. data analyze. (food, tickets)
+7. replace xml by SQL for large user scale?
