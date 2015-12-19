@@ -63,7 +63,7 @@ p.title{margin-top:15%;}
 
 #user{margin-top:20px;margin-bottom:20px;}
 
-.line{color:#6a6a6a;width: 90%; position: absolute;}
+.line{color:#6a6a6a;width: 92%; position: absolute;}
 
 #opera{margin-top:40px;}
 	#sharer{padding:5px 10px;}
@@ -178,7 +178,7 @@ span.attention1, span.attention2{
 span.attention1{background-color:#18ff5f}
 span.attention2{background-color:#fe6161}
 span.attention1:hover, span.attention2:hover{opacity:0.5}
-
+#gName{float:right; color:#19a5c8;font-weight:bold}
 @media only screen and (max-device-width : 667px) {
 	#msg{
 		position:absolute;

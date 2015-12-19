@@ -16,6 +16,7 @@ function saveData(gName,oName,isNew){
 				$("#groupNameText").val("");
 				$("#ownerNameText").val("");	
 				$("#save-panel").fadeOut(300);
+				$("#user").append("<div id = \"gName\">Group: "+groupName+"</div>");
 				notification(response.substring(0,13),1);
 				window.history.pushState("", "", "?Id="+fn);
 				saved = true;
@@ -71,6 +72,7 @@ function urlQueryLoad(){
 			// return value stored in msg variable
 				groupName = msg.group[0];
 				ownerName = msg.owner[0];
+				$("#user").append("<div id = \"gName\">Group: "+groupName+"</div>");
 				saved = true;
 			}					
 		}).done(function(response) {
