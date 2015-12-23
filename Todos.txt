@@ -1,7 +1,6 @@
 1. Mobile friendly. CSS mobile rules
-2. safari does not work. 
-3. Vulnerability & warning(terms of service)
-4. tutorial - one page limited functions (PHP side)
-5. graphic & chart via miniChart
-6. data analyze. (food, tickets)
-7. replace xml by SQL for large user scale?
+2. safari(mobile side) does not work. 
+3. tutorial - one page limited functions (PHP side)
+4. graphic & chart via miniChart
+5. data analyze. (food, tickets)
+6. replace xml by SQL for large user scale?
