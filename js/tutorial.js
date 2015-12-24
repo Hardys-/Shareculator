@@ -1,3 +1,4 @@
+//for the instruction info
 lan_package_en = {
    steps:["Welcome ！ Shareculator allowed you simplify your share with your friends.\n Just click the button add 'sharer' to add the first sharer in your group consume.",
    "","",""], 
