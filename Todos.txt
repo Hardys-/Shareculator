@@ -4,3 +4,4 @@
 4. graphic & chart via miniChart
 5. data analyze. (food, tickets)
 6. replace xml by SQL for large user scale?
+7. connect to miniChart
