@@ -1,7 +1,6 @@
 1. Mobile friendly. CSS mobile rules
 2. safari(mobile side) does not work. (use php instead of ajax in mobile)
 3. tutorial - one page limited functions (PHP side)
-4. graphic & chart via miniChart
-5. data analyze. (food, tickets)
-6. replace xml by SQL for large user scale?
-7. connect to miniChart
+4. data analyze. (food, tickets)
+5. replace xml by SQL for large user scale?
+6. connect to miniChart(bar chart & pie chart)
