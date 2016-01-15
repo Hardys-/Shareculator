@@ -1,4 +1,4 @@
-# Shareculator
+# Shareculator (in processing)
 <p><a href="http://hhao.hostei.com/shareculator/index.php" target="_blank">
 <img src="http://hhao.hostei.com/shareculator/pic/logo.png"/></a></p>
 
