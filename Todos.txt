@@ -1,8 +1,6 @@
-<ol>
-<li>Mobile friendly. CSS mobile rules for layout</li>
-<li>safari(mobile side ajax) does not work. (use php instead of ajax in mobile)</li>
-<li>tutorial - one page limited functions (PHP side)</li> 
-<li>data analyze. (food, tickets, restaurant, etc)</li> 
-<li>replace xml by SQL for large user scale?</li> 
-<li> connect to miniChart(bar chart & pie chart)</li> 
-</ol>
+Mobile friendly. CSS mobile rules for layout
+safari(mobile side ajax) does not work. (use php instead of ajax in mobile)
+tutorial - one page limited functions (PHP side)
+data analyze. (food, tickets, restaurant, etc) 
+replace xml by SQL for large user scale?
+connect to miniChart(bar chart & pie chart) 
