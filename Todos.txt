@@ -4,3 +4,4 @@ tutorial - one page limited functions (PHP side)
 data analyze. (food, tickets, restaurant, etc) 
 replace xml by SQL for large user scale?
 connect to miniChart(bar chart & pie chart) 
+memo options dynamic tips？
