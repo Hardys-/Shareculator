@@ -6,36 +6,23 @@
 
 <h3>Features: </h3>
   <ul>
-    <li>Online Calculator</li>
-    <li>Client-side Operations</li>
+    <li>Online Calculator for sharing</li>
+    <li>Client-side Operation</li>
     <li>Up to 8 Users</li>
-    <li>Independent Payment</li>
     <li>Payments Recommendation</li>
     <li>Mobile friendly design</li>
   </ul>
 
-<h3>Technologies: </h3>
-  <ul>
-    <li>HTML5 + CSS3</li>
-    <li>JavaScript</li>
-    <li>JQuery</li>
-    <li>AJAX</li>
-    <li>JSON</li>
-    <li>PHP</li>
-    <li>XML</li>
-  </ul>
-
 <h3>Further Design: </h3>
   <ul>
-    <li>Build-in chart library</li>
-    <li>More User support</li>
-    <li>User data store</li>
+    <li>Build-in chart library(please see miniChart.js)</li>
+    <li>Massive user architecture(database)</li>
   </ul>
-
 
 <h3>Information: </h3>
   <ul>
     <li>Author: Hao Hu @Boston University</li>
     <li>Email:  hardys1206@gmail.com</li>
+    <li>License: MIT</li>
   </ul>
 
