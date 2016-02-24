@@ -16,7 +16,7 @@
 <input id="lan" type="text" value="en">
 <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 
-<p class ="title">Please select one to begin. | <a href="index_cn.php" class="nolink"><span id="changeLan" class="menu">Change language to 中文 </span></a> | <a href="" class="nolink"><span class="menu"> First time to use ShareCulator?<span></a></p>
+<p class ="title">Please select one to begin. | <a href="index_cn.php" class="nolink"><span id="changeLan" class="menu">Change language to 中文 </span></a> | <a href="tutorial.php" class="nolink"><span class="menu"> First time to use ShareCulator?<span></a></p>
 <div id="front-panel">
 	<input id="logInButton" class="submit" type="submit" value="Load One"> or 
 	<input id="createButton" class="submit" type="submit" value="Create One">
