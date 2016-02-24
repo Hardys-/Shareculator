@@ -1,12 +1,12 @@
 //for the instruction info
 lan_package_en = {
    steps:["Welcome ！ Shareculator allowed you simplify your share with your friends.\n Just click the button add 'sharer' to add the first sharer in your group consume.",
-   "","",""], 
+   "","",""],
    other:"",
 };
 
 lan_package_cn = {
-   steps:["","","",""], 
+   steps:["","","",""],
    other:"",
 };
 
@@ -23,9 +23,14 @@ $( document ).ready(function() {
     /* Change behaviors here*/
     // do things here
       lan_package = lan_package_en;
-      
+
    }else if(detectmob() && language == getParameterByName("cn")){
-      lan_package = lan_package_cn; 
-      
+      lan_package = lan_package_cn;
+
    }
+
+	$("#main-panel").fadeIn(300);
+	$("p.title").css({"display":"none"});
+	notification("Welcome to ShareCulator Tutorial!",1); 
+
 })
