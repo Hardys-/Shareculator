@@ -1,6 +1,8 @@
-1.Mobile friendly. CSS mobile rules for layout
+1.CSS mobile rules for layout Mobile
 2.safari(mobile side ajax) does not work. (use php submit instead of ajax in mobile)
-3.tutorial - one page limited functions (PHP side)
+3.tutorial.php - one page limited functions
+  animation
+  hints
 4.data analyze. (food, tickets, restaurant, etc)
   payment category analyze
 5.replace xml by SQL for large user scale?
@@ -9,4 +11,4 @@
 6.connect to miniChart(bar chart & pie chart) 
   bar chart: individual cost & paid
   pie chart: purchasement details: category
-7.memo options dynamic tips(optional)？
+7.memo options dynamic tips(optional): ajax？
