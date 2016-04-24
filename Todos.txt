@@ -1,10 +1,11 @@
-1.CSS mobile rules for layout Mobile
+1.CSS mobile rules for Mobile layout.
 2.safari(mobile side ajax) does not work. (use php submit instead of ajax in mobile)
 3.tutorial.php - one page limited functions
   animation
   hints
 4.data analyze. (food, tickets, restaurant, etc)
   payment category analyze
+  
 5.replace xml by SQL for large user scale?
   build sql database(same scheme) and connect to php
   change code to query and insert into the sql database
