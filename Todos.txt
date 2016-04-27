@@ -1,3 +1,4 @@
+check if MVC framework works for this application.
 1.CSS mobile rules for Mobile layout.
 2.safari(mobile side ajax) does not work. (use php submit instead of ajax in mobile)
 3.tutorial.php - one page limited functions
