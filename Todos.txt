@@ -1,4 +1,5 @@
 check if MVC framework works for this application.
+Use Model- view - controller to separate files and build the frame for further extension
 1.CSS mobile rules for Mobile layout.
 2.safari(mobile side ajax) does not work. (use php submit instead of ajax in mobile)
 3.tutorial.php - one page limited functions
