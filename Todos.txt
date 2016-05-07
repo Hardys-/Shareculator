@@ -1,7 +1,7 @@
 check if MVC framework works for this application.
 Use Model- view - controller to separate files and build the frame for further extension
 1.CSS mobile rules for Mobile layout.
-2.safari(mobile side ajax) does not work. (use php submit instead of ajax in mobile)
+2.safari(mobile side ajax) does not work. redirect to a mobile verstion that talk to php backend directly
 3.tutorial.php - one page limited functions
   animation
   hints
@@ -12,7 +12,7 @@ Use Model- view - controller to separate files and build the frame for further e
 5.replace xml by SQL for large user scale?
   build sql database(same scheme) and connect to php
   change code to query and insert into the sql database
+  
 6.connect to miniChart(bar chart & pie chart) 
   bar chart: individual cost & paid
   pie chart: purchasement details: category
-7.memo options dynamic tips(optional): ajax？
