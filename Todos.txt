@@ -5,8 +5,9 @@ Use Model- view - controller to separate files and build the frame for further e
 3.tutorial.php - one page limited functions
   animation
   hints
-4.data analyze. (food, tickets, restaurant, etc)
+4.data analyze. (parse each memo string and provide optional hints food, tickets, restaurant, etc)
   payment category analyze
+  - ajax hint when typing in memo (trie) 
   
 5.replace xml by SQL for large user scale?
   build sql database(same scheme) and connect to php
