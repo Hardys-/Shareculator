@@ -1,18 +1,19 @@
-check if MVC framework works for this application.
-Use Model- view - controller to separate files and build the frame for further extension
-1.CSS mobile rules for Mobile layout.
-2.safari(mobile side ajax) does not work. redirect to a mobile verstion that talk to php backend directly
-3.tutorial.php - one page limited functions
-  animation
-  hints
-4.data analyze. (parse each memo string and provide optional hints food, tickets, restaurant, etc)
-  payment category analyze
+1.safari(mobile side ajax) does not work. redirect to a mobile verstion that talk to php backend directly
+  - CSS mobile rules for Mobile layout.
+  - bigger font and mobile-friendly design
+
+2.tutorial.php - one page limited functions
+  - animation
+  - hints and instructions
+
+3.data analyze. (parse each memo string and provide optional hints food, tickets, restaurant, etc)
+  - payment category analyze in sections like food/events/travel/hotel/shopping
   - ajax hint when typing in memo (trie) 
   
-5.replace xml by SQL for large user scale?
-  build sql database(same scheme) and connect to php
-  change code to query and insert into the sql database
+4.replace xml by SQL for large user scale?
+  - build sql database(same scheme) and connect to php
+  - change code to query and insert into the sql database
   
-6.connect to miniChart(bar chart & pie chart) 
-  bar chart: individual cost & paid
-  pie chart: purchasement details: category
+5.connect to miniChart(bar chart & pie chart) 
+  - bar chart: individual cost & paid
+  - pie chart: purchasement details: category
