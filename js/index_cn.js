@@ -228,12 +228,12 @@ function notification(str,flag){//(notification string, 0: ! mark / 1: correct m
       }
       $("#msg").html(htmlString);
       if(detectmob()){
-        $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
+        $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
         $("#msg p").css({"font-size":"4em","margin-top":"1%"});
         $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});   	
       }else{
         $("#msg").css({"position":"fixed","width":"20%","left":"40%","top":"40px"});
-        $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
+        $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
       };
 }
 
