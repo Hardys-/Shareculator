@@ -9,20 +9,4 @@
 		<timeStamp>2015-10-23</timeStamp>
 		<count/>
 	</record>
-	<record>
-		<group>HH</group>
-		<owner>hardys1206@gmail.com</owner>
-		<file>b029d15203d559b5de9cd53b3167cc42</file>
-		<ip>155.41.97.102</ip>
-		<timeStamp>2015-10-23 21:01:09</timeStamp>
-		<count>0</count>
-	</record>
-	<record>
-		<group>&#x4E2D;&#x6587;</group>
-		<owner>owner@bu.edu</owner>
-		<file>fc79c3bd7091494390f3fe3d7379809c</file>
-		<ip>155.41.100.146</ip>
-		<timeStamp>2015-10-27 02:59:02</timeStamp>
-		<count>0</count>
-	</record>
-<record><group>bug</group><owner>bug@bu.edu</owner><file>a2200f977d94b0a8f60eca86eb70e0bb</file><ip>155.41.110.92</ip><timeStamp>2015-11-15 04:15:17</timeStamp><count>0</count></record></info>
+</info>
