@@ -10,7 +10,7 @@
   - payment category analyze in sections like food/events/travel/hotel/shopping
   - ajax hint when typing in memo (trie) 
   
-4.replace xml by SQL for large user scale?
+4.replace xml by MySQL for large user scale?
   - build sql database(same scheme) and connect to php
   - change code to query and insert into the sql database
   
@@ -19,5 +19,5 @@
   - pie chart: purchasement details: category
 
 6. other features
-  - allow user to upload a recipt
-  - enable name edit
+  - allow user to upload a recipt (change json structure with a url)
+  - enable name edit(jquery)
