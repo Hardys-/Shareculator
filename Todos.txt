@@ -17,7 +17,13 @@
 5.connect to miniChart(bar chart & pie chart) 
   - bar chart: individual cost & paid
   - pie chart: purchasement details: category
-
+    <ul>
+      <li>Clothing/Shoes</li>
+      <li>Travel</li>
+      <li>Restaurants/Dining</li>
+      <li>Groceries</li>
+      <li>All Other Categories</li>
+    </ul>
 6. other features
   - allow user to upload a recipt (change json structure with a url)
-  - enable name edit(jquery)
+  - enable sharer name edit(jquery)
