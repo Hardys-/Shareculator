@@ -1,4 +1,4 @@
-1.safari(mobile side ajax) does not work. redirect to a mobile verstion that talk to php backend directly
+1.make sure safari side ajax works.
   - CSS mobile rules for Mobile layout.
   - bigger font and mobile-friendly design
 
