@@ -7,14 +7,14 @@ function saveData(gName,oName,isNew){
 		success: function(msg){
     	    	// return value stored in msg variable
 		}
-				
-	}).done(function(response) {			
+
+	}).done(function(response) {
 			if(isNew == 1 && response !="Group & owner already existed!"){ //first save
-				var fn = response.substring(13); 
+				var fn = response.substring(13);
 				groupName = $("#groupNameText").val();
 				ownerName = $("#ownerNameText").val();
 				$("#groupNameText").val("");
-				$("#ownerNameText").val("");	
+				$("#ownerNameText").val("");
 				$("#save-panel").fadeOut(300);
 				$("#user").append("<div id = \"gName\">Group: "+groupName+"</div>");
 				notification(response.substring(0,13),1);
@@ -25,14 +25,14 @@ function saveData(gName,oName,isNew){
 				if(language == "en"){notification(response.substring(0,13),1);}
 				else if(language == "cn"){notification("账单存储成功！",1);}
 				if (saved == false) {saved = true; document.title =  document.title.substring(2);}
-			}	
+			}
 			else {
 				if(language == "en"){notification(response,0)}
 				else if(language == "cn"){notification("您输入的群名称和群主已存在！",0)}
-			}	
+			}
 
 		}).fail(function(response) {
-		    	notifiction(response,0);		
+		    	notifiction(response,0);
 		});
 };
 
@@ -44,18 +44,18 @@ function loadData(gName,oName){
 		data: {group:gName,owner:oName},
 		success: function(msg){
     	    	// return value stored in msg variable
-		}				
+		}
 	}).done(function(response) {
 			if(response != "Error" ) {//????????????????????????????????????????????? do not match, encode?
-				jsonFile = response; 
+				jsonFile = response;
 				if(language == "en"){notification("Opening file "+ jsonFile,1);window.location.replace("index.php?Id="+jsonFile);}
 				else if(language == "cn"){notification("成功打开文件："+ jsonFile,1);window.location.replace("index_cn.php?Id="+jsonFile);}
-				
+
 			}
 	}).fail(function(response) {
 		    	notifiction(response,0); return;		//no further actions
 	});
-	
+
 }
 
 function urlQueryLoad(){
@@ -74,15 +74,15 @@ function urlQueryLoad(){
 				ownerName = msg.owner[0];
 				$("#user").append("<div id = \"gName\">Group: "+groupName+"</div>");
 				saved = true;
-			}					
+			}
 		}).done(function(response) {
 				if(language == "en"){notification("File: "+id+" opened!",1);}
-				else if(language == "cn"){notification("文件: "+id+" 已打开!",1);}			
+				else if(language == "cn"){notification("文件: "+id+" 已打开!",1);}
 		}).fail(function(response) {
 				if(language == "en"){notification("Group & Owner name cannot be loaded",0);}
-				else if(language == "cn"){notification("错误：无法载入账单！",0);}		
+				else if(language == "cn"){notification("错误：无法载入账单！",0);}
 		});
-	}	
+	}
 }
 
 
@@ -92,9 +92,9 @@ function load(id){// find user credential(in XML) and load data(from a json file
 		jsonData = data;
 		$("#createButton").click();
 		for(i =0; i < jsonData.sharerName.length; i++){
-			/*add options*/	
+			/*add options*/
 			var optionString = "<option value=\""+jsonData.sharerName[i]+"\" selected>"+jsonData.sharerName[i]+"</option>";
-		
+
 			if(language == "en"){
 				if($("#sharer :selected").text() == "Add a sharer"){
 					$("#sharer").html(optionString);
@@ -113,7 +113,12 @@ function load(id){// find user credential(in XML) and load data(from a json file
 			}
 
 			/*add checkboxs*/
-			var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+"\" value=\""+jsonData.sharerName[i]+"\" checked>"+jsonData.sharerName[i]+"&nbsp;";
+			var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+
+				"\" value=\""+jsonData.sharerName[i]+
+				"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
+				jsonData.sharerName[i]+
+				"&nbsp;</label>";
+
 			$("#sharer-list").append(checkboxString);
 		}
 		updateList();
@@ -144,15 +149,15 @@ function share(){
 		data: {email:$("#shareEmailText").val(),message:$("#shareMessage").val(),group:groupName,owner:ownerName,lan:language},
 		success: function(msg){
     	    	// return value stored in msg variable
-		}				
+		}
 	}).done(function(response) {
 		if(language == "en"){notification(response,1); return;}
-		else if(language == "cn"){notification("链接已分享，请注意查收邮件！",1); return;}	
+		else if(language == "cn"){notification("链接已分享，请注意查收邮件！",1); return;}
 	}).fail(function(response) {
 		if(language == "en"){notification(response,0); return;}
 		else if(language == "cn"){notification("警告：分享失败！",0); return;}
 	});
-	
+
 }
 
 function checkEmail(email){
@@ -181,7 +186,7 @@ function checkEmail(email){
 
 	 if (email.indexOf("@",atPos+1) > -1) { //only need one @ char
 		return false
-	 }	 
+	 }
 	 return true;   //passed all check
 }
 
@@ -192,7 +197,7 @@ function checkEmailList(str){
 	if(language == "en"){emailList = str.split(",");}
 	else if(language == "cn"){emailList = str.split("，");}
 	for(s in emailList){
-	 	if(!checkEmail(emailList[s])) return false;		
+	 	if(!checkEmail(emailList[s])) return false;
 	}
  	return true;
 }

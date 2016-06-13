@@ -149,7 +149,11 @@ function add(){
 	}	
 
 	/*add checkboxs*/
-	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+"\" value=\""+$("#sharer :selected").val()+"\" checked>"+$("#sharer :selected").val()+"&nbsp;";
+	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
+		"\" value=\""+$("#sharer :selected").val()+
+		"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
+		$("#sharer :selected").val()+
+		"&nbsp;</label>";
 	$("#sharer-list").append(checkboxString);
 
 	/*send notification*/
@@ -228,12 +232,12 @@ function notification(str,flag){//(notification string, 0: ! mark / 1: correct m
       }
       $("#msg").html(htmlString);
       if(detectmob()){
-        $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
+        $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
         $("#msg p").css({"font-size":"4em","margin-top":"1%"});
         $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});   	
       }else{
         $("#msg").css({"position":"fixed","width":"20%","left":"40%","top":"40px"});
-        $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
+        $("#msg").fadeIn( 1000 ).fadeOut( 2000 );
       };
 }
 

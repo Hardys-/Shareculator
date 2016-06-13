@@ -13,7 +13,6 @@
 <script type="text/javascript" src="js/talk.js"></script>
 <script type="text/javascript" src="js/index_cn.js"></script>
 <script type="text/javascript" src="js/lib/jquery_json.js"></script>
-<script type="text/javascript" src="js/lib/miniChart.js"></script>
 <input id="lan" type="text" value="cn">
 <img id="logo" src="http://hhao.hostei.com/shareculator/pic/logo.png"/> <span style="font-size: 8px;vertical-align: 7px; color: #a6a6a6;">Beta</span>
 

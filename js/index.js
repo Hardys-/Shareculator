@@ -2,7 +2,7 @@ var saved = false; //alert when quit without saving
 var groupName = "";
 var ownerName = "";
 var language = ""; //set the language.
-var checked = false;//check if already checked 
+var checked = false;//check if already checked
 
 function printOutJson(){
 	var s1 = "Names: ";
@@ -46,7 +46,7 @@ function addMoney(){
 	var num = $( "input:checked" ).length;
 	var payment ={"payer":"","consumer":[],"amount":"","memo":""};
 	payment.payer = payer;
-	 
+
 	/*find out who consumed this money, and add to their List*/
 	var ranPayer = Math.floor((Math.random() * num)+1) // if payment not divisible, find random cosumer to pay.
 	var remMoney = (val - num*(val/num).toFixed(2)).toFixed(2);
@@ -55,17 +55,17 @@ function addMoney(){
 		if($("#"+jsonData.sharerName[i]).prop("checked")){//charge on include person
 			payment.consumer.push(jsonData.sharerName[i]);
 			if(payerCount == ranPayer){ //find the random payer
-				var costValueTemp =  parseFloat((val/num).toFixed(2)) + parseFloat(remMoney); 
-				jsonData.sharerCosts[i].push(costValueTemp); 
+				var costValueTemp =  parseFloat((val/num).toFixed(2)) + parseFloat(remMoney);
+				jsonData.sharerCosts[i].push(costValueTemp);
 			}else{
-				jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(2))); 
+				jsonData.sharerCosts[i].push(parseFloat((val/num).toFixed(2)));
 			}
-			payerCount ++;			
+			payerCount ++;
 		}else{
 			jsonData.sharerCosts[i].push(0); //not include
 		}
 	}
-	
+
 	/*update cost*/
 	payment.amount = val;
 	payment.memo = $("#memo").val();
@@ -87,30 +87,30 @@ function undo(){
 
 function checkOut(){
 	//printOutJson();
-	var totalPaid = []; 
+	var totalPaid = [];
 	var totalCost = [];
        	checkoutResult = []; // reset
-	
+
 	for(i=0;i < jsonData.sharerName.length; i++){ //add each sharer's cost to totalCost
 		var personalCost = 0;
 		totalPaid.push(0);
-		for(j = 0; j < jsonData.sharerCosts[i].length; j++){//iteration each cost 
-			personalCost += jsonData.sharerCosts[i][j];	
+		for(j = 0; j < jsonData.sharerCosts[i].length; j++){//iteration each cost
+			personalCost += jsonData.sharerCosts[i][j];
 		};
 		totalCost.push(personalCost);
-	
+
 	}
 
-	for(i = 0; i< jsonData.payerList.length; i++){//check each payment 
+	for(i = 0; i< jsonData.payerList.length; i++){//check each payment
 		for(j =0; j< jsonData.sharerName.length;j++){ // add to totalPaid[sharer], if the payer's name is correct.
-			if(jsonData.payerList[i].payer == jsonData.sharerName[j]){ totalPaid[j] += jsonData.payerList[i].amount; continue;}		
+			if(jsonData.payerList[i].payer == jsonData.sharerName[j]){ totalPaid[j] += jsonData.payerList[i].amount; continue;}
 		}
-		
+
 	}
 
 	var htmlStringLine1 ="<tr class=\"tableTotalCost\"><td></td><td>Total cost:</td>";
-	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td></td><td>Total paid:</td>";   
-	var htmlStringLine3 ="<tr class=\"tableResult\"><td></td><td></td>"; 
+	var htmlStringLine2 ="<tr class=\"tableTotalPaid\"><td></td><td>Total paid:</td>";
+	var htmlStringLine3 ="<tr class=\"tableResult\"><td></td><td></td>";
     	for(i = 0; i< totalPaid.length;i++){
 		htmlStringLine1+="<td>"+totalCost[i].toFixed(2)+"</td>";
 		htmlStringLine2+="<td>"+totalPaid[i].toFixed(2)+"</td>";
@@ -135,37 +135,42 @@ function add(){
 
 	for(i = 0; i < jsonData.sharerName.length; i++ ){
 		if(jsonData.sharerName[i] == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
-		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.	
+		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.
 	}
 
-	/*add options*/	
+	/*add options*/
 	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
-	
+
 	if($("#sharer :selected").text() == "Add a sharer"){
 		$("#sharer").html(optionString);
 		$("#sharer-list").append("Shared with &nbsp;");
 	}else{
 		$("#sharer").append(optionString);
-	}	
+	}
 
 	/*add checkboxs*/
-	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+"\" value=\""+$("#sharer :selected").val()+"\" checked>"+$("#sharer :selected").val()+"&nbsp;";
+	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
+		"\" value=\""+$("#sharer :selected").val()+
+		"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
+		$("#sharer :selected").val()+
+		"&nbsp;</label>";
+
 	$("#sharer-list").append(checkboxString);
 
 	/*send notification*/
 	if( $("#sharer :selected").text() == newName){
 	       	notification(newName+" has been added",1);
-	}	
+	}
 
 	/*add data to json & sharer class*/
 	var costArray = [];
 	jsonData.sharerName.push(newName);
-	
+
 	if(jsonData.sharerCosts.length == 0 ){ //initialization
 		jsonData.sharerCosts.push(costArray);
 	}
 	else{
-		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
+		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill
 			costArray.push(0);
 		}
 		jsonData.sharerCosts.push(costArray);
@@ -173,15 +178,15 @@ function add(){
 
 	/*finish adding*/
 	$("#add-sharer-panel").fadeOut(300);
-	$("#addNewSharerText").val("");	
+	$("#addNewSharerText").val("");
 }
 
 
-function updateList(){ //updated when new data added or load a json 
-	//updateList();	
+function updateList(){ //updated when new data added or load a json
+	//updateList();
 	var htmlString = "";
 	var htmlTitle  = "<tr><th> No. </th><th> Amount </th><th>";
-	var totalAmount= 0; 
+	var totalAmount= 0;
 
 	for(i=0;i < jsonData.sharerName.length; i++){// add each sharer's name to table header: <th></th>
 		htmlTitle += jsonData.sharerName[i] + "</th><th >";
@@ -196,7 +201,7 @@ function updateList(){ //updated when new data added or load a json
 			}else{
 				htmlLine += jsonData.sharerCosts[j][i]+"</td><td>";
 			}
-			
+
 		}
 		var htmlMemo = "</td><td>"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
 		totalAmount = jsonData.payerList[i].amount;
@@ -205,7 +210,7 @@ function updateList(){ //updated when new data added or load a json
 	}
 
 	$("#list").html("<table id=\"paymentTable\">"+htmlTitle+htmlString+"</table>"); //content of the table
-	
+
 	//reset position
 	if($("#paymentTable").height()>300){
 		var h = $("#paymentTable").height() - $(window).height()/5;
@@ -230,7 +235,7 @@ function notification(str,flag){//(notification string, 0: ! mark / 1: correct m
       if(detectmob()){
         $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
         $("#msg p").css({"font-size":"4em","margin-top":"1%"});
-        $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});   	
+        $("#msg span").css({"height":"50px","width":"50px","line-height":"1em","font-size":"1em"});
       }else{
         $("#msg").css({"position":"fixed","width":"20%","left":"40%","top":"40px"});
         $("#msg").stop().fadeIn( 1000 ).fadeOut( 2000 );
@@ -267,7 +272,7 @@ $( document ).ready(function() {
 				$(this).stop().animate({
 				opacity:"1"
 			}, 300);//default 800
-	})
+	});
 
 	/*Front-page buttons*/
 
@@ -293,21 +298,21 @@ $( document ).ready(function() {
 	/*----------------add functions----------------*/
 	$("#addSharerButton").click(function(){// open add sharer panel
 		/*add panel*/
-    		$("#add-sharer-panel").css({"position":"absolute","left":"30%","top":"50%"});
+    $("#add-sharer-panel").css({"position":"absolute","left":"30%","top":"50%"});
 		$("#add-sharer-panel").fadeIn(300);//default 800
-		$("#addNewSharerText").focus();	
+		$("#addNewSharerText").focus();
 	});
 
 	$("#addNewSharerButton").click(function(){ //add new sharer
 		if($("#addNewSharerText").val() != ""){
 			add();
-			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving			
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 		}else{
 			notification("Please type in a name",0);
 		}
-		
+
 	});
-	
+
 	$("#addNewSharerCancelButton").click(function(){ //exit current panel
 		$("#add-sharer-panel").fadeOut(300);
 		$("#addNewSharerText").val("");
@@ -315,7 +320,7 @@ $( document ).ready(function() {
 
 	/*----------------save functions----------------*/
 	$("#saveButton").click(function(){// open save panel
-		if( ownerName == "" || groupName == ""){  //did not saved 
+		if( ownerName == "" || groupName == ""){  //did not saved
 			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
 			$("#save-panel").fadeIn(300);//default 800
 			$("#groupNameText").focus();
@@ -327,7 +332,7 @@ $( document ).ready(function() {
 	$("#savetoButton").click(function(){ //confirm save
 		if($("#groupNameText").val() == ""){notification("Please pick up a name for your group!",0);return;};
 		if(!checkEmail($("#ownerNameText").val())){notification("Please enter a valid email address!",0);return;}
-		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//add a new user 		
+		saveData($("#groupNameText").val(), $("#ownerNameText").val(),1);//add a new user
 	});
 
 	$("#saveCancelButton").click(function(){//exit current panel
@@ -337,16 +342,14 @@ $( document ).ready(function() {
 
 	/*----------------share functions----------------*/
 	$("#shareButton").click(function(){// open share panel
-		if( saved == false || ownerName == "" || groupName == ""){  //did not save 
-			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"});
-			$("#save-panel").fadeIn(300);//default 800
+		if( saved == false || ownerName == "" || groupName == ""){  //did not save
+			$("#save-panel").css({"position":"absolute","left":"28%","top":"3%"}).fadeIn(300);//default 800
 			$("#groupNameText").focus();
 			return;
 		}else {
-			$("#share-panel").css({"position":"absolute","left":"28%","top":"25%"});
-			$("#share-panel").fadeIn(300);//default 800
+			$("#share-panel").css({"position":"absolute","left":"28%","top":"25%"}).fadeIn(300);//default 800
 			$("#shareEmailText").focus();
-		}		
+		}
 	});
 
 	$("#sharetoButton").click(function(){// share
@@ -372,15 +375,15 @@ $( document ).ready(function() {
 		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
 		else{
 			addMoney();
-			checked = false; 
+			checked = false;
 			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
-		}		
+		}
 	});
 
 
 	$("#undoButton").click(function(){// open add sharer panel
 		undo();
-		checked = false; 
+		checked = false;
 		if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 	});
 
@@ -432,9 +435,9 @@ $( document ).ready(function() {
     	function confirmExit() {
        		if(saved == false && groupName != "" ){
 			return  'You have been editing something without saving it. \n\n'
-			+ 'If you leave before saving, your changes will be lost.';	
+			+ 'If you leave before saving, your changes will be lost.';
 		}
-		else if(saved == false && jsonData.sharerName.length > 0) {//User has some action and file not saved 
+		else if(saved == false && jsonData.sharerName.length > 0) {//User has some action and file not saved
 			return  'Are you sure you want to leave this page?';
 		}
   	}
@@ -442,26 +445,33 @@ $( document ).ready(function() {
 	/*Reset opera panel position when scrolling down*/
 	$(window).scroll(function() {
     		if ($(this).scrollTop() > 100) {
-			$("#opera").stop();
-			$("#opera").animate({
+			$("#opera").stop().animate({
 		       	        padding: '10px 15px',
 			        opacity: '0.85',
-			       	top:'20px'	
-			});
-			$("#opera").css({"position": 'fixed',"box-shadow": '4px 4px 10px #888888',"background-image": 'url("pic/bg.png")'});
-		};
+			       	top:'20px'
+			}).css({"position": 'fixed',"box-shadow": '4px 4px 10px #888888',"background-image": 'url("pic/bg.png")'});
+		}
 
 		if ($(this).scrollTop() < 100) {
-			$("#opera").stop();
-			$("#opera").animate({
-		       	        padding:'0px 0px',
+			$("#opera").stop().animate({
+		       	  padding:'0px 0px',
 			        opacity: '1'
-			});
+			}).css({"position": 'static',"box-shadow": 'none',"background-image": 'none',"margin-top": "40px"});
+		}
+	});
 
-			$("#opera").css({"position": 'static',"box-shadow": 'none',"background-image": 'none',"margin-top": "40px"});
-		};
-	})
+// testing
+	$("#printJson").click(function(){
+		printOutJson();
+	});
+
+	$('#sharer-list').on('click', ".sharerLabel",function(){
+			console.log($(this).text());
+	});
+//testing
+
 });
+
 
 
 /*Copyright Hao Hu, MIT LICENSE*/
