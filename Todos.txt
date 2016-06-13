@@ -25,7 +25,7 @@
 
 6. other features
   - allow user to upload a recipt (change json structure with a url)
-  - enable sharer name edit(jquery)
+  - change share name in json and UI after user edit the name
   
 7. enable deleting a specific record by clicking 
 
