@@ -148,12 +148,12 @@ function add(){
 		$("#sharer").append(optionString);
 	}
 
-	/*add checkboxs*/
+	/*add checkbox label and edit input*/
 	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
-		"\" value=\""+$("#sharer :selected").val()+
-		"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
-		$("#sharer :selected").val()+
-		"&nbsp;</label>";
+		"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
+		"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
+		"<label class=\"sharerLabel\">"+
+		$("#sharer :selected").val() + "&nbsp;</label>";
 
 	$("#sharer-list").append(checkboxString);
 
@@ -465,8 +465,27 @@ $( document ).ready(function() {
 		printOutJson();
 	});
 
-	$('#sharer-list').on('click', ".sharerLabel",function(){
-			console.log($(this).text());
+	// set listenr
+	$('#sharer-list').on('click', ".sharerLabel", function(){
+		$(this).css({"display" : "none"});
+		$(this).prev(".sharerEdit").css({"display": "inline"}).select();
+	});
+
+	$('#sharer-list').on('keypress', ".sharerEdit", function(e){
+		// press enter to finish edit
+		if (e.keyCode == 13) {
+			// change id & value
+			$(this).prev(".sharerCheckbox").attr({
+				"id": $(this).val(),
+				"value": $(this).val()
+			});
+			// change label and display
+			$(this).css({
+				"display": "none"
+			}).next(".sharerLabel").css({
+				"display": "inline"
+			}).text($(this).val());
+		}
 	});
 //testing
 

@@ -113,11 +113,11 @@ function load(id){// find user credential(in XML) and load data(from a json file
 			}
 
 			/*add checkboxs*/
-			var checkboxString = "<input type=\"checkbox\" id=\""+jsonData.sharerName[i]+
-				"\" value=\""+jsonData.sharerName[i]+
-				"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
-				jsonData.sharerName[i]+
-				"&nbsp;</label>";
+			var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
+				"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
+				"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
+				"<label class=\"sharerLabel\">"+
+				$("#sharer :selected").val() + "&nbsp;</label>";
 
 			$("#sharer-list").append(checkboxString);
 		}

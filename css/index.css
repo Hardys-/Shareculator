@@ -1,7 +1,6 @@
 body {
 	background-image: url("../pic/bg.png");
 	background-repeat: repeat;
-
 }
 
 #logo {
@@ -13,12 +12,8 @@ body {
 	display:none;
 }
 
-input:hover {
-	#646464
-}
-
 input:focus {
-	border: #19a5c8 solid 1px
+	border: rgba(25, 165, 200, 0.58) solid 1px
 }
 
 .title,
@@ -70,29 +65,70 @@ p.title {
 	box-shadow: 0 1px gray;
 }
 
-.submit:hover {cursor: pointer;}
+.submit:hover {
+	cursor: pointer;
+}
 
 
-#login-panel {display: none;height: 278px; margin-bottom: 7%;}
+#login-panel {
+	display: none;
+	height: 278px;
+	margin-bottom: 7%;
+}
 
-.contact-form {margin-top: 20px;margin-left: auto;margin-right: auto;width: 460px;}
+.contact-form {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 460px;
+}
 
-.contact-required-field {color:#f94444;font-family:Calibri;}
+.contact-required-field {
+	color:#f94444;
+	font-family:Calibri;
+}
 
-.input-text { border:#9f9f9f solid 1px; width:90px;color:#19a5c8; padding: 6px 18px;margin:8px 6px;}
+.input-text {
+	border: #9f9f9f solid 1px;
+	width: 90px;
+	color: #19a5c8;
+	padding: 6px 18px;
+	margin: 8px 6px;
+}
 
-#login {margin-top:8px;padding:4px 18px;}
+.input-text:focus {
+	border: rgba(25, 165, 200, 0.58) solid 1px;
+}
 
+#login {
+	margin-top: 8px;
+	padding: 4px 18px;
+}
 
-#main-panel {display:none;}
+#main-panel {
+	display: none;
+}
 
-#frame {margin-left:33px;margin-top:20px;margin-right:33px}
+#frame {
+	margin-left: 33px;
+	margin-top: 20px;
+	margin-right: 33px
+}
 
-.main-panel-button {padding: 4px 20px}
+.main-panel-button {
+	padding: 4px 20px
+}
 
-#user {margin-top:20px;margin-bottom:20px;}
+#user {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
 
-.line {color:#6a6a6a;width: 92%; position: absolute;}
+.line {
+	color: #6a6a6a;
+	width: 92%;
+	position: absolute;
+}
 
 #opera {margin-top:40px;}
 #sharer {padding:5px 10px;}
@@ -118,6 +154,11 @@ p.title {
 }
 .sharerLabel:hover {
 	opacity: .6;
+}
+
+.sharerEdit {
+	display: none;
+	padding: 0 0;
 }
 
 #add-sharer-panel,

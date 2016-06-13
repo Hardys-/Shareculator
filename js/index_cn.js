@@ -150,10 +150,10 @@ function add(){
 
 	/*add checkboxs*/
 	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
-		"\" value=\""+$("#sharer :selected").val()+
-		"\" class=\"sharerCheckbox\" checked><label class=\"sharerLabel\">"+
-		$("#sharer :selected").val()+
-		"&nbsp;</label>";
+		"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
+		"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
+		"<label class=\"sharerLabel\">"+
+		$("#sharer :selected").val() + "&nbsp;</label>";
 	$("#sharer-list").append(checkboxString);
 
 	/*send notification*/
