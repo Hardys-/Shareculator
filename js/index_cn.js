@@ -2,7 +2,9 @@ var saved = false; //alrt when quit without saving
 var groupName = "";
 var ownerName = "";
 var language = ""; //set the language.
-var checked = false;//check if already checked 
+var checked = false;//check if already checked
+var editName = ""; // to store the share name when edit
+var isEditing = false; // edit status flag
 
 function printOutJson(){
 	var s1 = "Names: ";
@@ -34,6 +36,29 @@ function printOutJson(){
 	console.log(s3);
 }
 
+function changeName(editName, newName) {
+	// update sharerNames
+	for(i = 0 ; i < jsonData.sharerName.length; i++){
+		if(jsonData.sharerName[i] === editName) {
+			jsonData.sharerName[i] = newName;
+		}
+	}
+	// update payerList: payer and consumer
+	for(i = 0 ; i < jsonData.payerList.length; i++){
+		if(jsonData.payerList[i].payer === editName) {
+			jsonData.payerList[i].payer = newName;
+		}
+		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
+			if (jsonData.payerList[i].consumer[j] === editName) {
+				jsonData.payerList[i].consumer[j] = newName;
+			}
+		}
+	}
+	$("#list").fadeOut(300, function(){
+		updateList();
+	}).fadeIn(300);
+
+}
 
 function addMoney(){
 	/*find out who paid this money*/
@@ -128,56 +153,76 @@ function checkOut(){
 	recommendation();
 }
 
+// check if the name already existed
+function isExistName(newName) {
+
+	for(i = 0; i < jsonData.sharerName.length; i++ ){
+		if(jsonData.sharerName[i] == newName){
+			notification("Sharer \""+newName+"\" already exsited!",0);
+			return true;
+		}
+		if(i == 7){
+			notification("You can only add at most 8 Sharer",0);
+			return true;
+		} // the limitation of # of sharers.
+	}
+	// not existed, not exceed
+	return false;
+}
+
 function add(){
 	/*check if name is available*/
 	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
     	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
 
-	for(i = 0; i < jsonData.sharerName.length; i++ ){
-		if(jsonData.sharerName[i] == newName){notification("用户 \""+newName+"\" 已存在!",0);return; }
-		if(i == 7){notification("您最多只能添加8个用户！",0);return;} //set the limitation of # of sharers.	
-	}
-
-	/*add options*/	
-	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
-	
-	if($("#sharer :selected").text() == "请先添加一个用户"){
-		$("#sharer").html(optionString);
-		$("#sharer-list").append("参与者： &nbsp;");
-	}else{
-		$("#sharer").append(optionString);
-	}	
-
-	/*add checkboxs*/
-	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
-		"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
-		"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
-		"<label class=\"sharerLabel\">"+
-		$("#sharer :selected").val() + "&nbsp;</label>";
-	$("#sharer-list").append(checkboxString);
-
-	/*send notification*/
-	if( $("#sharer :selected").text() == newName){
-	       	notification("用户："+newName+" 已添加！",1);
-	}	
-
-	/*add data to json & sharer class*/
-	var costArray = [];
-	jsonData.sharerName.push(newName);
-	
-	if(jsonData.sharerCosts.length == 0 ){ //initialization
-		jsonData.sharerCosts.push(costArray);
-	}
-	else{
-		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill  
-			costArray.push(0);
+	/*check if name is available*/
+	if( !isExistName(newName) ) {
+		for(i = 0; i < jsonData.sharerName.length; i++ ){
+			if(jsonData.sharerName[i] == newName){notification("用户 \""+newName+"\" 已存在!",0);return; }
+			if(i == 7){notification("您最多只能添加8个用户！",0);return;} //set the limitation of # of sharers.
 		}
-		jsonData.sharerCosts.push(costArray);
-	}
 
-	/*finish adding*/
-	$("#add-sharer-panel").fadeOut(300);
-	$("#addNewSharerText").val("");	
+		/*add options*/
+		var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
+
+		if($("#sharer :selected").text() == "请先添加一个用户"){
+			$("#sharer").html(optionString);
+			$("#sharer-list").append("参与者： &nbsp;");
+		}else{
+			$("#sharer").append(optionString);
+		}
+
+		/*add checkboxs*/
+		var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
+			"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
+			"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
+			"<label class=\"sharerLabel\">"+
+			$("#sharer :selected").val() + "</label>";
+		$("#sharer-list").append(checkboxString);
+
+		/*send notification*/
+		if( $("#sharer :selected").text() == newName){
+			notification("用户："+newName+" 已添加！",1);
+		}
+
+		/*add data to json & sharer class*/
+		var costArray = [];
+		jsonData.sharerName.push(newName);
+
+		if(jsonData.sharerCosts.length == 0 ){ //initialization
+			jsonData.sharerCosts.push(costArray);
+		}
+		else{
+			for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill
+				costArray.push(0);
+			}
+			jsonData.sharerCosts.push(costArray);
+		}
+
+		/*finish adding*/
+		$("#add-sharer-panel").fadeOut(300);
+		$("#addNewSharerText").val("");
+	}
 }
 
 
@@ -370,7 +415,49 @@ $( document ).ready(function() {
 		window.print();
 	});
 	
-	/*----------------opration functions----------------*/
+	/*----------------operation functions----------------*/
+	// set listenr when editing the sharer name
+	$('#sharer-list').on('click', ".sharerLabel", function(){
+		if(!isEditing) {
+			editName = $(this).text();
+			$(this).css({"display" : "none"});
+			$(this).prev(".sharerEdit").css({"display": "inline"}).select();
+			isEditing = true;
+		}
+	});
+
+	// set listener when press enter to confirm change name
+	$('#sharer-list').on('keypress', ".sharerEdit", function(e){
+		// get new name and format it
+		var newName = $(this).val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
+		newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+
+		// press enter to finish edit, either not exist OR no change can pass
+		if (e.keyCode == 13 && (newName == editName || !isExistName(newName) )) {
+			// change id & value
+			$(this).prev(".sharerCheckbox").attr({
+				"id": newName,
+				"value": newName
+			});
+
+			// change label and display
+			$(this).css({
+				"display": "none"
+			}).next(".sharerLabel").css({
+				"display": "inline"
+			}).text(newName);
+
+			$("#sharer option[value='"+editName+"']").val(newName).text(newName);
+
+			changeName(editName, newName);
+
+			// edit complete, set attributes
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
+			isEditing = false;
+			editName = '';
+		}
+	});
+
 	$("#addMoneyButton").click(function(){// open add sharer panel
 		if( $("#sharer :selected").text() == "Add a sharer"){notification("请先添加要分享的用户名称！",0)}
 		else if($("#amount").val() == ""){notification("请输入他/她支付的金额！",0)}

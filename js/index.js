@@ -1,19 +1,21 @@
-var saved = false; //alert when quit without saving
+var saved = false; // alert when quit without saving
 var groupName = "";
 var ownerName = "";
-var language = ""; //set the language.
-var checked = false;//check if already checked
+var language = ""; // set the language.
+var checked = false;// check if already checked
+var editName = ""; // to store the share name when edit
+var isEditing = false; // edit status flag
 
 function printOutJson(){
 	var s1 = "Names: ";
 	var s2 = "Costs: ";
 	var s3 = "Payer: ";
 
-	for(i = 0 ; i < jsonData.sharerName.length ; i++){
+	for(i = 0 ; i < jsonData.sharerName.length; i++){
 		s1 += jsonData.sharerName[i]+", ";
 	}
 
-	for(i = 0 ; i < jsonData.sharerCosts.length ; i++){
+	for(i = 0 ; i < jsonData.sharerCosts.length; i++){
 		s2 +="[";
 		for(j =0; j < jsonData.sharerCosts[i].length ;j++ ){
 			s2 += 	jsonData.sharerCosts[i][j]+","
@@ -21,19 +23,41 @@ function printOutJson(){
 		s2 +="]";
 	}
 
-	for(i = 0 ; i < jsonData.payerList.length;i++){
+	for(i = 0 ; i < jsonData.payerList.length; i++){
 		s3 += "[Payer: "+jsonData.payerList[i].payer+" | Consumer: ";
 		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
 			s3 += jsonData.payerList[i].consumer[j] + ", ";
 		};
 		s3 += " | Amount:"+ jsonData.payerList[i].amount+" ]"
-
 	}
 	console.log(s1);
 	console.log(s2);
 	console.log(s3);
 }
 
+function changeName(editName, newName) {
+	// update sharerNames
+	for(i = 0 ; i < jsonData.sharerName.length; i++){
+		if(jsonData.sharerName[i] === editName) {
+			jsonData.sharerName[i] = newName;
+		}
+	}
+	// update payerList: payer and consumer
+	for(i = 0 ; i < jsonData.payerList.length; i++){
+		if(jsonData.payerList[i].payer === editName) {
+			jsonData.payerList[i].payer = newName;
+		}
+		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
+			if (jsonData.payerList[i].consumer[j] === editName) {
+				jsonData.payerList[i].consumer[j] = newName;
+			}
+		}
+	}
+	$("#list").fadeOut(300, function(){
+		updateList();
+	}).fadeIn(300);
+
+}
 
 function addMoney(){
 	/*find out who paid this money*/
@@ -128,57 +152,70 @@ function checkOut(){
 	recommendation();
 }
 
-function add(){
-	/*check if name is available*/
-	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
-    	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+// check if the name already existed
+function isExistName(newName) {
 
 	for(i = 0; i < jsonData.sharerName.length; i++ ){
-		if(jsonData.sharerName[i] == newName){notification("Sharer \""+newName+"\" already exsited!",0);return; }
-		if(i == 7){notification("You can only add at most 8 Sharer",0);return;} //set the limitation of # of sharers.
-	}
-
-	/*add options*/
-	var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
-
-	if($("#sharer :selected").text() == "Add a sharer"){
-		$("#sharer").html(optionString);
-		$("#sharer-list").append("Shared with &nbsp;");
-	}else{
-		$("#sharer").append(optionString);
-	}
-
-	/*add checkbox label and edit input*/
-	var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
-		"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
-		"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
-		"<label class=\"sharerLabel\">"+
-		$("#sharer :selected").val() + "&nbsp;</label>";
-
-	$("#sharer-list").append(checkboxString);
-
-	/*send notification*/
-	if( $("#sharer :selected").text() == newName){
-	       	notification(newName+" has been added",1);
-	}
-
-	/*add data to json & sharer class*/
-	var costArray = [];
-	jsonData.sharerName.push(newName);
-
-	if(jsonData.sharerCosts.length == 0 ){ //initialization
-		jsonData.sharerCosts.push(costArray);
-	}
-	else{
-		for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill
-			costArray.push(0);
+		if(jsonData.sharerName[i] == newName){
+			notification("Sharer \""+newName+"\" already exsited!",0);
+			return true;
 		}
-		jsonData.sharerCosts.push(costArray);
+		if(i == 7){
+			notification("You can only add at most 8 Sharer",0);
+			return true;
+		} // the limitation of # of sharers.
 	}
+	// not existed, not exceed
+	return false;
+}
 
-	/*finish adding*/
-	$("#add-sharer-panel").fadeOut(300);
-	$("#addNewSharerText").val("");
+function add(){
+	var newName = $("#addNewSharerText").val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
+	newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+	/*check if name is available*/
+	if( !isExistName(newName) ) {
+		/*add options*/
+		var optionString = "<option value=\""+newName+"\" selected>"+newName+"</option>";
+
+		if($("#sharer :selected").text() == "Add a sharer"){
+			$("#sharer").html(optionString);
+			$("#sharer-list").append("Shared with &nbsp;");
+		}else{
+			$("#sharer").append(optionString);
+		}
+
+		/*add checkbox label and edit input*/
+		var checkboxString = "<input type=\"checkbox\" id=\""+$("#sharer :selected").val()+
+			"\" value=\"" + $("#sharer :selected").val() + "\" class=\"sharerCheckbox\" checked>" +
+			"<input type='text' class='input-text sharerEdit' value=\"" + $("#sharer :selected").val() + "\">" +
+			"<label class=\"sharerLabel\">"+
+			$("#sharer :selected").val() + "</label>";
+
+		$("#sharer-list").append(checkboxString);
+
+		/*send notification*/
+		if( $("#sharer :selected").text() == newName){
+			notification(newName+" has been added",1);
+		}
+
+		/*add data to json & sharer class*/
+		var costArray = [];
+		jsonData.sharerName.push(newName);
+
+		if(jsonData.sharerCosts.length == 0 ){ //initialization
+			jsonData.sharerCosts.push(costArray);
+		}
+		else{
+			for(i =0; i<jsonData.sharerCosts[0].length;i++){ //full fill
+				costArray.push(0);
+			}
+			jsonData.sharerCosts.push(costArray);
+		}
+
+		/*finish adding*/
+		$("#add-sharer-panel").fadeOut(300);
+		$("#addNewSharerText").val("");
+	}
 }
 
 
@@ -369,7 +406,50 @@ $( document ).ready(function() {
 		window.print();
 	});
 
-	/*----------------opration functions----------------*/
+	/*----------------operation functions----------------*/
+
+	// set listenr when editing the sharer name
+	$('#sharer-list').on('click', ".sharerLabel", function(){
+		if(!isEditing) {
+			editName = $(this).text();
+			$(this).css({"display" : "none"});
+			$(this).prev(".sharerEdit").css({"display": "inline"}).select();
+			isEditing = true;
+		}
+	});
+
+	// set listener when press enter to confirm change name
+	$('#sharer-list').on('keypress', ".sharerEdit", function(e){
+		// get new name and format it
+		var newName = $(this).val().replace(/ |!|@|%|{|}|;|:|"|'/g, "");	//format string e.g. no space allowed since the jquery will not recognize them
+		newName = newName.replace(/\/|\?|\#|\$|\^|\*|\(|\)|\[|\]|\.|\,|\<|\>|\||\\|\&/g, "");
+
+		// press enter to finish edit, either not exist OR no change can pass
+		if (e.keyCode == 13 && (newName == editName || !isExistName(newName) )) {
+			// change id & value
+			$(this).prev(".sharerCheckbox").attr({
+				"id": newName,
+				"value": newName
+			});
+
+			// change label and display
+			$(this).css({
+				"display": "none"
+			}).next(".sharerLabel").css({
+				"display": "inline"
+			}).text(newName);
+
+			$("#sharer option[value='"+editName+"']").val(newName).text(newName);
+
+			changeName(editName, newName);
+
+			// edit complete, set attributes
+			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
+			isEditing = false;
+			editName = '';
+		}
+	});
+
 	$("#addMoneyButton").click(function(){// open add sharer panel
 		if( $("#sharer :selected").text() == "Add a sharer"){notification("Please add a sharer first",0)}
 		else if($("#amount").val() == ""){notification("Please enter the amount he/she paid",0)}
@@ -463,29 +543,6 @@ $( document ).ready(function() {
 // testing
 	$("#printJson").click(function(){
 		printOutJson();
-	});
-
-	// set listenr
-	$('#sharer-list').on('click', ".sharerLabel", function(){
-		$(this).css({"display" : "none"});
-		$(this).prev(".sharerEdit").css({"display": "inline"}).select();
-	});
-
-	$('#sharer-list').on('keypress', ".sharerEdit", function(e){
-		// press enter to finish edit
-		if (e.keyCode == 13) {
-			// change id & value
-			$(this).prev(".sharerCheckbox").attr({
-				"id": $(this).val(),
-				"value": $(this).val()
-			});
-			// change label and display
-			$(this).css({
-				"display": "none"
-			}).next(".sharerLabel").css({
-				"display": "inline"
-			}).text($(this).val());
-		}
 	});
 //testing
 
