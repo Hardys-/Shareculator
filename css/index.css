@@ -43,19 +43,15 @@ p.title {
 
 #front-panel {
 	height: 280px;
-	margin-top: 0px;
-	margin-bottom: 7%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0 auto 7%;
 	width: 240px;
 }
 
 .submit {
 	-webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-	font-family: Calibri;
-	font-size: 14px;
+  	-moz-appearance: none;
+    appearance: none;
+	font: 14px Calibri;
 	padding: 6px 18px;
 	color: #ffffff;
 	background-color: #19a5c8;
@@ -84,8 +80,9 @@ p.title {
 }
 
 .contact-required-field {
-	color:#f94444;
-	font-family:Calibri;
+	color: #f94444;
+	font: 14px Calibri;
+	margin-right: 10px;
 }
 
 .input-text {
@@ -145,6 +142,7 @@ p.title {
 
 .sharerCheckbox {
 	cursor: pointer;
+	margin-left: 8px;
 }
 
 
@@ -158,7 +156,7 @@ p.title {
 
 .sharerEdit {
 	display: none;
-	padding: 0 0;
+	padding: 1px 4px;
 }
 
 #add-sharer-panel,
@@ -168,8 +166,7 @@ p.title {
    width:35%;
    height:50px;
    border-radius: 3px;
-   font-family: Calibri;
-   font-size: 14px;
+   font: 14px Calibri;
    font-weight:bold;
    border:  #626262 solid 1px;
    background-color:  #626262;
@@ -212,33 +209,69 @@ p.title {
 #paymentTable {width:100%; text-align:center;margin-bottom:100px}
 #paymentTable tr:last-child td {color:#19a5c8;}
 #paymentTable th {height:35px; font-weight:bold; color:#fe6161;margin:12px 10px;}
-#paymentTable th:first-child {text-align:left;width:3%;font-weight:bold;}
+#paymentTable th:first-child {text-align:left;width:3%;font-weight:bold;padding-left: 5px;}
 #paymentTable th:nth-child(2) {text-align:left;width:10%;font-weight:bold;padding-left:15px}
 #paymentTable th:last-child {width:25%;}
 
 #paymentTable td {height:20px;padding:6px 4px;}
-#paymentTable td:first-child {text-align:left;width:3%;border-right:1px #c0c0c0 solid;}
+#paymentTable td:first-child {text-align:left;width:3%;border-right:1px #c0c0c0 solid;padding-left: 5px}
 #paymentTable td:nth-child(2) {text-align:left;width:10%;border-right:1px #c0c0c0 solid;color:#1daf99;font-weight:bold;padding-left:15px}
 #paymentTable td:last-child {text-align:left; color:#808080;width:25%;border-right:1px #c0c0c0 solid;}
 
-#recommendation {color:#646464;font-family:Calibri;font-size:16px;display:flex;border: solid #c4c4c4 1px; padding: 20px 15px;}
+#paymentTable tr:hover {
+	background-color: rgba(255, 255, 255, 0.75);
+	opacity: 0.8;
+	cursor: pointer;
+	transition: .8s ease .3s;
+}
+
+#paymentTable tr:hover .deletePayment{
+	transition: .8s ease .3s;
+	opacity: 0.8;
+}
+
+
+.recordNumber {
+	float: right;
+	display: none;
+}
+
+.deletePayment {
+	font: 16px Calibri;
+	float: right;
+	margin-right: 20px;
+	cursor: pointer;
+	opacity: 0;
+	transform: scaleX(1.5);
+}
+
+.deletePayment:hover {
+	color: #fe6161;
+	transition: .2s ease;
+}
+
+#recommendation {
+	color: #646464;
+	font: 16px Calibri;
+	display: flex;
+	border: solid #c4c4c4 1px;
+	padding: 20px 15px;
+}
+
 .subRec {margin-left:25px;  line-height: 150%;}
-.subRec:first-child {margin-left:0px;}
+.subRec:first-child {margin-left:0;}
 .rt {color:#19a5c8;font-weight:bold}
 .rn {color:#fe6161;}
 .rm {color:#1daf99;font-style:italic}
 
 #bottom {color:#6a6a6a;width: 90%; position: absolute;bottom:28px;margin-left:5%;}
 
-#copyright { text-align:center ;font-size:12px; font-family:Calibri;color:#6a6a6a; position: absolute;bottom:10px;margin-left: 35%;width: 30%; }
-
-
+#copyright { text-align:center ;font:12px Calibri;color:#6a6a6a; position: absolute;bottom:10px;margin-left: 35%;width: 30%; }
 
 #msg {
    display: none;
    width:180px;
-   font-family: Calibri;
-   font-size: 13px;
+   font: 13px Calibri;
    font-weight:bold;
    text-align: center;
    border: #19a5c8 solid 1px;
@@ -249,7 +282,7 @@ p.title {
    padding: 6px 10px;
  }
 
-#msg p {margin: 0px;}
+#msg p {margin: 0;}
 #msg:hover {opacity:0.5}
 
 span.attention1, span.attention2 {
@@ -275,11 +308,11 @@ span.attention2:hover {opacity:0.5}
 	#msg {
 		position:absolute;
 		width:100%;
-		left:0px;
-		top:0px;
+		left:0;
+		top:0;
 		height:12%;
-		border:0px;
-		padding:6px 0px;
+		border:0;
+		padding:6px 0;
 	}
 
 }

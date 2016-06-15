@@ -19,7 +19,7 @@ function printOutJson(){
 		s2 +="[";
 		for(j =0; j < jsonData.sharerCosts[i].length ;j++ ){
 			s2 += 	jsonData.sharerCosts[i][j]+","
-		};
+		}
 		s2 +="]";
 	}
 
@@ -27,7 +27,7 @@ function printOutJson(){
 		s3 += "[Payer: "+jsonData.payerList[i].payer+" | Consumer: ";
 		for(j=0;j<jsonData.payerList[i].consumer.length ; j++){
 			s3 += jsonData.payerList[i].consumer[j] + ", ";
-		};
+		}
 		s3 += " | Amount:"+ jsonData.payerList[i].amount+" ]"
 	}
 	console.log(s1);
@@ -35,7 +35,7 @@ function printOutJson(){
 	console.log(s3);
 }
 
-function changeName(editName, newName) {
+function changeSharerName(editName, newName) {
 	// update sharerNames
 	for(i = 0 ; i < jsonData.sharerName.length; i++){
 		if(jsonData.sharerName[i] === editName) {
@@ -53,6 +53,7 @@ function changeName(editName, newName) {
 			}
 		}
 	}
+	// update UI
 	$("#list").fadeOut(300, function(){
 		updateList();
 	}).fadeIn(300);
@@ -110,7 +111,7 @@ function undo(){
 }
 
 function checkOut(){
-	//printOutJson();
+	// printOutJson();
 	var totalPaid = [];
 	var totalCost = [];
        	checkoutResult = []; // reset
@@ -120,12 +121,11 @@ function checkOut(){
 		totalPaid.push(0);
 		for(j = 0; j < jsonData.sharerCosts[i].length; j++){//iteration each cost
 			personalCost += jsonData.sharerCosts[i][j];
-		};
+		}
 		totalCost.push(personalCost);
-
 	}
 
-	for(i = 0; i< jsonData.payerList.length; i++){//check each payment
+	for(i = 0; i< jsonData.payerList.length; i++){// check each payment
 		for(j =0; j< jsonData.sharerName.length;j++){ // add to totalPaid[sharer], if the payer's name is correct.
 			if(jsonData.payerList[i].payer == jsonData.sharerName[j]){ totalPaid[j] += jsonData.payerList[i].amount; continue;}
 		}
@@ -141,14 +141,14 @@ function checkOut(){
 		htmlStringLine3+="<td>"+(totalPaid[i] - totalCost[i]).toFixed(2) +"</td>";
 		checkoutResult.push({"name":jsonData.sharerName[i],"val":(totalPaid[i] - totalCost[i]).toFixed(2)});
 	}
-	htmlStringLine1 +="<td></td><td></td></tr>";
-	htmlStringLine2 +="<td></td><td></td></tr>";
-	htmlStringLine3 +="<td></td><td></td></tr>";
+	htmlStringLine1 +="<td></td></tr>";
+	htmlStringLine2 +="<td></td></tr>";
+	htmlStringLine3 +="<td></td></tr>";
 
 	$("#paymentTable").append(htmlStringLine1 + htmlStringLine2 + htmlStringLine3 );
-	$(".tableTotalCost td").css({"border-top":"#fe6161  solid 1px","color":"#fe6161","font-size":"16px;","font-weight":"bold","padding-top":"12px"});
-	$(".tableTotalPaid td").css({"color":"#1daf99","font-size":"16px;","font-weight":"bold","padding-top":"6px"});
-	$(".tableResult td").css({"color":"#19a5c8","border-top":"#19a5c8  solid 1px","font-size":"16px;","font-weight":"bold","padding-top":"12px"});
+	$(".tableTotalCost td").css({"border-top": "#fe6161 solid 1px",	"color": "#fe6161",	"font-size": "16px","font-weight": "bold","padding-top": "12px"});
+	$(".tableTotalPaid td").css({"color": "#1daf99","font-size": "16px","font-weight": "bold","padding-top": "6px"});
+	$(".tableResult td").css({"color": "#19a5c8","border-top": "#19a5c8  solid 1px","font-size": "16px","font-weight": "bold","padding-top": "12px"});
 	recommendation();
 }
 
@@ -226,9 +226,9 @@ function updateList(){ //updated when new data added or load a json
 	var totalAmount= 0;
 
 	for(i=0;i < jsonData.sharerName.length; i++){// add each sharer's name to table header: <th></th>
-		htmlTitle += jsonData.sharerName[i] + "</th><th >";
+		htmlTitle += jsonData.sharerName[i] + "</th><th>";
 	}
-	htmlTitle +="</th><th>Memo</th></tr><br/>";
+	htmlTitle +="Memo</th></tr><br/>";
 
 	for(i = 0 ; i < jsonData.sharerCosts[0].length ; i++){// add the detail of each payment, format a line
 		var htmlLine = "<td>";
@@ -240,9 +240,9 @@ function updateList(){ //updated when new data added or load a json
 			}
 
 		}
-		var htmlMemo = "</td><td>"+jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"</td></tr>";
+		var htmlMemo = jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"<span class='recordNumber'>"+i+"</span><span class='deletePayment'>X</span></td></tr>";
 		totalAmount = jsonData.payerList[i].amount;
-		htmlString += "<tr><td> "+(i+1)+" </td><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo; //format of each row in table
+		htmlString += "<tr><td>"+(i+1)+" </td><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo; //format of each row in table
 		totalAmount = 0;
 	}
 
@@ -441,7 +441,7 @@ $( document ).ready(function() {
 
 			$("#sharer option[value='"+editName+"']").val(newName).text(newName);
 
-			changeName(editName, newName);
+			changeSharerName(editName, newName);
 
 			// edit complete, set attributes
 			if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
@@ -544,7 +544,37 @@ $( document ).ready(function() {
 	$("#printJson").click(function(){
 		printOutJson();
 	});
-//testing
+
+	$("#list").on("click", ".deletePayment", function(){
+
+		// get the record number
+		var rNum = parseInt($(this).prev(".recordNumber").text());
+		if (Number.isInteger(rNum)){
+			$(this).parent().parent().stop().fadeOut(300, function(){
+				// need a confirm button
+				deleteRecordByNumber(rNum);
+				updateList();
+				// set unsaved
+				if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
+			});
+		}
+	});
+
+
+	function deleteRecordByNumber(num){
+		// delete every one's cost record by given num
+		for(i = 0 ; i < jsonData.sharerCosts.length; i++) {
+			if(num <= jsonData.sharerCosts[i].length) {
+				jsonData.sharerCosts[i].splice(num, 1);
+			}
+		}
+
+		// delete total payment record by given num
+		if (num <= jsonData.payerList.length) {
+			jsonData.payerList.splice(num, 1);
+		}
+	}
+// testing
 
 });
 
