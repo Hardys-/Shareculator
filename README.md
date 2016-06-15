@@ -6,16 +6,17 @@
 
 <h3>Features: </h3>
   <ul>
-    <li>Online Calculator for sharing</li>
+    <li>Online Calculator for splitting payment</li>
     <li>Client-side Operation</li>
     <li>Up to 8 Users</li>
     <li>Payments Recommendation</li>
     <li>Mobile friendly design</li>
+    <li>English & Chinese support</li>
   </ul>
 
 <h3>Further Design: </h3>
   <ul>
-    <li>Build-in chart library(please see miniChart.js)</li>
+    <li>Data analyze with chart (please see miniChart.js)</li>
     <li>Massive user architecture(database)</li>
   </ul>
 
