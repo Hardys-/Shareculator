@@ -12,6 +12,7 @@
     <li>Payments Recommendation</li>
     <li>Mobile friendly design</li>
     <li>English & Chinese support</li>
+    <li>Operations: add, delete, drag and drop, undo</li>
   </ul>
 
 <h3>Further Design: </h3>
