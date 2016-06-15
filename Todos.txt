@@ -25,7 +25,13 @@
 
 6. other features
   - allow user to upload a recipt (change json structure with a url)
-  
-7. enable deleting a specific record by clicking 
 
 8. php to html?
+
+9. drag and drop to manage record
+
+10. update undo function by: undo last action(array): delete(rNum), move(mFrom, mTo), insertRecord(rNum)
+  - deleteRecordByNumber(rNum) undo: insertRecord(rNum)
+  - moveRecordTo(mFrom, mTo)   undo: moveRecordTo(mTo, mFrom);
+  - insertRecord(rNum)         undo: none
+  - add()                      undo: deleteRecordByNumber(jsonData.length);
