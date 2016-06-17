@@ -35,3 +35,4 @@
   - moveRecordTo(mFrom, mTo)   undo: moveRecordTo(mTo, mFrom);
   - insertRecord(rNum)         undo: none
   - add()                      undo: deleteRecordByNumber(jsonData.length);
+
