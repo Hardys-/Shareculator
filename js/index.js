@@ -240,7 +240,10 @@ function updateList(){ //updated when new data added or load a json
 			}
 
 		}
-		var htmlMemo = jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+"<span class='recordNumber'>"+i+"</span><span class='deletePayment'>X</span></td></tr>";
+		var htmlMemo = jsonData.payerList[i].payer+": "+ jsonData.payerList[i].memo+
+			"<span class='recordNumber'>"+i+"</span><span class=\"js-confirmDelete confirmDelete\">Confirm</span>" +
+			"<span class='deletePayment'>X</span></td></tr>";
+
 		totalAmount = jsonData.payerList[i].amount;
 		htmlString += "<tr><td>"+(i+1)+" </td><td><span>&#36;</span> "+totalAmount+"</td>" + htmlLine + htmlMemo; //format of each row in table
 		totalAmount = 0;
@@ -546,18 +549,23 @@ $( document ).ready(function() {
 	});
 
 	$("#list").on("click", ".deletePayment", function(){
-
+		// $(this).css({"opacity": "0"});
+		$(this).prev(".confirmDelete").stop().fadeIn(300);
+	}).on("click", ".js-confirmDelete", function(){
 		// get the record number
 		var rNum = parseInt($(this).prev(".recordNumber").text());
+		console.log(rNum);
 		if (Number.isInteger(rNum)){
-			$(this).parent().parent().stop().fadeOut(300, function(){
-				// need a confirm button
+			$(this).parent().parent().stop().fadeOut(100, function(){
+
 				deleteRecordByNumber(rNum);
 				updateList();
 				// set unsaved
 				if(saved == true){saved = false;document.title = "* " + document.title;}//check new actions after saving
 			});
 		}
+	}).on("mouseleave", "tr", function(){
+		$(".confirmDelete").stop().fadeOut(300);
 	});
 
 
@@ -573,6 +581,37 @@ $( document ).ready(function() {
 		if (num <= jsonData.payerList.length) {
 			jsonData.payerList.splice(num, 1);
 		}
+		notification("Payment Deleted!", 1);
+	}
+
+	function insertRecordByNumber(num){
+		// delete every one's cost record by given num
+		for(i = 0 ; i < jsonData.sharerCosts.length; i++) {
+			if(num <= jsonData.sharerCosts[i].length) {
+				jsonData.sharerCosts[i].splice(num, 1);
+			}
+		}
+
+		// delete total payment record by given num
+		if (num <= jsonData.payerList.length) {
+			jsonData.payerList.splice(num, 1);
+		}
+		notification("Payment Deleted!", 1);
+	}
+
+	function moveRecordTo(mFrom, mTo){
+		// delete every one's cost record by given num
+		for(i = 0 ; i < jsonData.sharerCosts.length; i++) {
+			if(num <= jsonData.sharerCosts[i].length) {
+				jsonData.sharerCosts[i].splice(num, 1);
+			}
+		}
+
+		// delete total payment record by given num
+		if (num <= jsonData.payerList.length) {
+			jsonData.payerList.splice(num, 1);
+		}
+		notification("Payment Deleted!", 1);
 	}
 // testing
 
