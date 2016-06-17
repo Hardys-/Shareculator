@@ -36,5 +36,3 @@
   - insertRecord(rNum)         undo: none
   - add()                      undo: deleteRecordByNumber(jsonData.length);
 
-
-11. confirm before delete
