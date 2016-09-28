@@ -36,3 +36,4 @@
   - insertRecord(rNum, record)         undo: deleteRecordByNumber(rNum)
   - add(record)                        undo: deleteRecordByNumber(jsonData.length);
 
+11. language resource: handle mutiple language version.
